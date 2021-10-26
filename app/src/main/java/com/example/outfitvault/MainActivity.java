@@ -18,23 +18,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // display database
         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
         List<Outfit> outfits = dataBaseHelper.getAll();
         Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
 
-        Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING);
-        dataBaseHelper.deleteOne(outfit);
-        Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
+
     }
 }
+
 /*
     // Outfit debug
     Outfit outfit = new Outfit(100, "newIMAGE!", "it's a new image", Season.SPRING);
     Toast.makeText(MainActivity.this, outfit.toString(), Toast.LENGTH_LONG).show();
 
-    // SQLITE db debug
+    // SQLITE db add debug
     DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
     boolean success = dataBaseHelper.addOne(outfit);
+    if (success) {
+        Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
+    }
+
+    // SQLITE db delete debug
+    Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING);
+    boolean success = dataBaseHelper.deleteOne(outfit);
     if (success) {
         Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
     }
