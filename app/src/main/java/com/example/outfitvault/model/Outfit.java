@@ -3,62 +3,22 @@ package com.example.outfitvault.model;
 import com.example.outfitvault.types.Season;
 
 public class Outfit {
-    private String image;
-    private String outer;
-    private String inner;
-    private String bottom;
-    private String footwear;
+    private String imageName;
     private String description;
     private Season season;
 
-    public Outfit(String image, String outer, String inner, String bottom, String footwear, String description, Season season) {
-        this.image = image;
-        this.outer = outer;
-        this.inner = inner;
-        this.bottom = bottom;
-        this.footwear = footwear;
+    public Outfit(String imageName, String description, Season season) {
+        this.imageName = imageName;
         this.description = description;
         this.season = season;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getOuter() {
-        return outer;
-    }
-
-    public void setOuter(String outer) {
-        this.outer = outer;
-    }
-
-    public String getInner() {
-        return inner;
-    }
-
-    public void setInner(String inner) {
-        this.inner = inner;
-    }
-
-    public String getBottom() {
-        return bottom;
-    }
-
-    public void setBottom(String bottom) {
-        this.bottom = bottom;
-    }
-
-    public String getFootwear() {
-        return footwear;
-    }
-
-    public void setFootwear(String footwear) {
-        this.footwear = footwear;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public String getDescription() {
@@ -80,12 +40,7 @@ public class Outfit {
     @Override
     public String toString() {
         return "Outfit{" +
-                "image='" + image + '\'' +
-                ", outer='" + outer + '\'' +
-                ", inner='" + inner + '\'' +
-                ", bottom='" + bottom + '\'' +
-                ", footwear='" + footwear + '\'' +
-                ", description='" + description + '\'' +
+                "description='" + description + '\'' +
                 ", season=" + season +
                 '}';
     }
