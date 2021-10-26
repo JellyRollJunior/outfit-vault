@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -75,10 +76,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         break;
                     case "WINTER":
                         season = Season.WINTER;
+                        break;
                     case "SPRING":
                         season = Season.SPRING;
+                        break;
                     case "SUMMER":
                         season = Season.SUMMER;
+                        break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + cursor.getString(3));
                 }
