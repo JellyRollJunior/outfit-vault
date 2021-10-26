@@ -57,6 +57,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
+    public boolean deleteOne(Outfit outfit) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + OUTFIT_TABLE +
+                " WHERE " + COLUMN_ID + " = " + outfit.getId();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        // rawQuery returns deleted item. if deleted item is present in cursor, success!
+        return cursor.moveToFirst();
+    }
+
     public List<Outfit> getAll() {
         List<Outfit> returnList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();

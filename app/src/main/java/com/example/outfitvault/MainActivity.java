@@ -22,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
         List<Outfit> outfits = dataBaseHelper.getAll();
         Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
+
+        Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING);
+        dataBaseHelper.deleteOne(outfit);
+        Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
     }
 }
-
-
 /*
     // Outfit debug
     Outfit outfit = new Outfit(100, "newIMAGE!", "it's a new image", Season.SPRING);
