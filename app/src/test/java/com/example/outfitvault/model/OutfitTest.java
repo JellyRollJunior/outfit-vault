@@ -10,7 +10,7 @@ public class OutfitTest {
 
     @Test
     public void getImageName() {
-        Outfit outfit = new Outfit("imageName", "that's an image", Season.FALL);
+        Outfit outfit = new Outfit(1,"imageName", "that's an image", Season.FALL);
         assertEquals("imageName", outfit.getImageName());
     }
 }
