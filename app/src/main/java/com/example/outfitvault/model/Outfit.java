@@ -51,7 +51,9 @@ public class Outfit {
     @Override
     public String toString() {
         return "Outfit{" +
-                "description='" + description + '\'' +
+                "id=" + id +
+                ", imageName='" + imageName + '\'' +
+                ", description='" + description + '\'' +
                 ", season=" + season +
                 '}';
     }

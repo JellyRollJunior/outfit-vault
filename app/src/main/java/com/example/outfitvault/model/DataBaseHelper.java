@@ -1,10 +1,17 @@
 package com.example.outfitvault.model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.outfitvault.types.Season;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -34,5 +41,55 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public boolean addOne(Outfit outfit) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_IMAGE_NAME, outfit.getImageName());
+        cv.put(COLUMN_DESCRIPTION, outfit.getDescription());
+        cv.put(COLUMN_SEASON, outfit.getSeason().toString());
+
+        long insert = db.insert(OUTFIT_TABLE, null, cv);
+        return insert != -1;
+    }
+
+    public List<Outfit> getAll() {
+        List<Outfit> returnList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String queryString = "SELECT * FROM " + OUTFIT_TABLE;
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                // extract values from tuple
+                int ID = cursor.getInt(0);
+                String imageName = cursor.getString(1);
+                String description = cursor.getString(2);
+                Season season;
+                switch(cursor.getString(3)){
+                    case "FALL":
+                        season = Season.FALL;
+                        break;
+                    case "WINTER":
+                        season = Season.WINTER;
+                    case "SPRING":
+                        season = Season.SPRING;
+                    case "SUMMER":
+                        season = Season.SUMMER;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + cursor.getString(3));
+                }
+
+                Outfit outfit = new Outfit(ID, imageName, description, season);
+                returnList.add(outfit);
+            } while (cursor.moveToNext());
+        } // else return empty list
+
+        cursor.close();
+        db.close();
+        return returnList;
     }
 }
