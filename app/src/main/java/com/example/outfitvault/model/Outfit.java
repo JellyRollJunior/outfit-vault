@@ -3,14 +3,25 @@ package com.example.outfitvault.model;
 import com.example.outfitvault.types.Season;
 
 public class Outfit {
+
+    private int id;
     private String imageName;
     private String description;
     private Season season;
 
-    public Outfit(String imageName, String description, Season season) {
+    public Outfit(int id, String imageName, String description, Season season) {
+        this.id = id;
         this.imageName = imageName;
         this.description = description;
         this.season = season;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImageName() {

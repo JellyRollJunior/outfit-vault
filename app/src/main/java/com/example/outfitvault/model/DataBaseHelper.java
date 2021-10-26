@@ -12,7 +12,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         super(context, "outfit.db", null, 1);
     }
 
-    // called first time db is generated
+    // called first time db is generated - create table schema here
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
