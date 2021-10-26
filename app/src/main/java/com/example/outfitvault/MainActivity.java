@@ -34,15 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
     // SQLITE db add debug
     DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-    boolean success = dataBaseHelper.addOne(outfit);
-    if (success) {
+    boolean successAdd = dataBaseHelper.addOne(outfit);
+    if (successAdd) {
         Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
     }
 
     // SQLITE db delete debug
     Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING);
-    boolean success = dataBaseHelper.deleteOne(outfit);
-    if (success) {
+    boolean successDel = dataBaseHelper.deleteOne(outfit);
+    if (successDel) {
         Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
     }
+
+    // SQLITE db getALL debug
+    List<Outfit> outfits = dataBaseHelper.getAll();
+    Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
  */
