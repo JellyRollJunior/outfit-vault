@@ -29,6 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // Create table schema here
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        // by using AUTOINCREMENT, any value passed to columnID is useless as it gets overwritten
         String createTableStatement = "CREATE TABLE " + OUTFIT_TABLE + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_IMAGE_NAME + " TEXT, " +
