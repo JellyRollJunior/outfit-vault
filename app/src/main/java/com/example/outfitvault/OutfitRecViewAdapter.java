@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class OutfitRecViewAdapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView outfitImage;
+        private final ImageView outfitImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            outfitImage = itemView.findViewById(R.id.mainRVOutfitImage);
         }
     }
 }
