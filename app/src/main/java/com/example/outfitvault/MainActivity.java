@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         List<Outfit> outfits = dataBaseHelper.getAll();
         Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
 
-
     }
 }
 
