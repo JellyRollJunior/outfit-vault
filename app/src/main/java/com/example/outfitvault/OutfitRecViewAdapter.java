@@ -1,19 +1,18 @@
 package com.example.outfitvault;
 
 import android.content.Context;
-import android.media.MediaRouter2;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.outfitvault.model.Outfit;
+import com.google.android.material.card.MaterialCardView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdapter.ViewHolder>{
@@ -36,6 +35,12 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        // move to outfit details on click
+        holder.parent.setOnClickListener(view -> {
+            Intent intent = OutfitViewActivity.makeIntent(context);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -47,10 +52,12 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView outfitImage;
+        private final MaterialCardView parent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             outfitImage = itemView.findViewById(R.id.mainRVOutfitImage);
+            parent = itemView.findViewById(R.id.rvCardView);
         }
     }
 }
