@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
@@ -12,6 +15,8 @@ import com.example.outfitvault.types.Season;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final int NUM_COLS = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         List<Outfit> outfits = dataBaseHelper.getAll();
         Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
 
+        // display recycler view
+        RecyclerView rvDisplayOutfits = findViewById(R.id.rvDisplayOutfits);
+        OutfitRecViewAdapter rvAdapter = new OutfitRecViewAdapter(MainActivity.this, outfits);
+        rvDisplayOutfits.setAdapter(rvAdapter);
+        rvDisplayOutfits.setLayoutManager(new GridLayoutManager(MainActivity.this, NUM_COLS));
     }
 }
 
