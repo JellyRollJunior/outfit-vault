@@ -28,7 +28,7 @@ android {
     sourceSets {
         main {
             res {
-                srcDirs 'src/main/res', 'src/main/res/layouts/home', 'src/main/res/layouts/outfit-view'
+                srcDirs 'src/main/res'
             }
         }
     }
