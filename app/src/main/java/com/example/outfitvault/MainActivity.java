@@ -5,35 +5,43 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
-import com.example.outfitvault.types.Season;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     public static final int NUM_COLS = 3;
+    private List<Outfit> outfits = new ArrayList<>();
+    private DataBaseHelper dataBaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // display database
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-        List<Outfit> outfits = dataBaseHelper.getAll();
-        Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
+        instantiateData();
+        displayOnRecView(outfits);
+    }
 
-        // display recycler view
+    private void instantiateData() {
+        dataBaseHelper = new DataBaseHelper(MainActivity.this);
+        outfits = dataBaseHelper.getAll();
+
+        // debug
+        Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    private void displayOnRecView(List<Outfit> outfits) {
         RecyclerView rvDisplayOutfits = findViewById(R.id.rvDisplayOutfits);
         OutfitRecViewAdapter rvAdapter = new OutfitRecViewAdapter(MainActivity.this, outfits);
         rvDisplayOutfits.setAdapter(rvAdapter);
         rvDisplayOutfits.setLayoutManager(new GridLayoutManager(MainActivity.this, NUM_COLS));
     }
+
 }
 
 /*
