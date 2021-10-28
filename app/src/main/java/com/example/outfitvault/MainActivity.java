@@ -16,6 +16,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int NUM_COLS = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rvDisplayOutfits = findViewById(R.id.rvDisplayOutfits);
         OutfitRecViewAdapter rvAdapter = new OutfitRecViewAdapter(MainActivity.this, outfits);
         rvDisplayOutfits.setAdapter(rvAdapter);
-
-        rvDisplayOutfits.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
+        rvDisplayOutfits.setLayoutManager(new GridLayoutManager(MainActivity.this, NUM_COLS));
     }
 }
 

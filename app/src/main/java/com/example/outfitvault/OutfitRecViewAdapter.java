@@ -40,7 +40,9 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
 
     @Override
     public int getItemCount() {
-        return outfits.size();
+        // return outfits.size();
+        // testing
+        return 10;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
