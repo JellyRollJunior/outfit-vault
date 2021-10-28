@@ -15,8 +15,8 @@ public class OutfitViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outfit_view);
 
-        Button btn = findViewById(R.id.btnEditOutfit);
-        btn.setVisibility(View.GONE);
+        // Button btn = findViewById(R.id.btnEditOutfit);
+        // btn.setVisibility(View.GONE);
     }
 
     public static Intent makeIntent(Context context) {
