@@ -23,18 +23,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        instantiateData();
+        instantiateDatabase();
         displayOnRecView(outfits);
-
     }
 
-    private void instantiateData() {
+    private void instantiateDatabase() {
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
         outfits = dataBaseHelper.getAll();
 
         // debug
         Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(MainActivity.this, dataBaseHelper.getOutfitFromID(3).toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, dataBaseHelper.getOutfitFromID(1).toString(), Toast.LENGTH_LONG).show();
     }
 
     private void displayOnRecView(List<Outfit> outfits) {
@@ -47,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
 }
 
 /*
-    // Outfit debug
-    Outfit outfit = new Outfit(100, "newIMAGE!", "it's a new image", Season.SPRING);
-    Toast.makeText(MainActivity.this, outfit.toString(), Toast.LENGTH_LONG).show();
-
     // SQLITE db add debug
     DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
     boolean successAdd = dataBaseHelper.addOne(outfit);
@@ -58,8 +54,12 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
     }
 
+    // sample data
+    Outfit outfit = new Outfit(100, "newIMAGE!", "it's a new image", Season.SPRING, false);
+    Outfit outfit2 = new Outfit(200, "yup new image", "omg its a new image", Season.FALL, true);
+
     // SQLITE db delete debug
-    Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING);
+    Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING, false);
     boolean successDel = dataBaseHelper.deleteOne(outfit);
     if (successDel) {
         Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();

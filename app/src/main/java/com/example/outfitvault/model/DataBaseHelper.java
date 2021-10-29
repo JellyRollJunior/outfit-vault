@@ -5,12 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.outfitvault.MainActivity;
 import com.example.outfitvault.types.Season;
 
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_IMAGE_NAME = "IMAGE_NAME";
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
     public static final String COLUMN_SEASON = "SEASON";
+    private static final String COLUMN_FAVORITE = "FAVORITE" ;
     private final String TAG = "com.example.outfitvault.model.databasehelper";
 
     public DataBaseHelper(@Nullable Context context) {
@@ -37,7 +35,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_IMAGE_NAME + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_SEASON + " TEXT)";
+                COLUMN_SEASON + " TEXT, " +
+                COLUMN_FAVORITE + " BOOL)";
 
         sqLiteDatabase.execSQL(createTableStatement);
     }
@@ -55,6 +54,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_IMAGE_NAME, outfit.getImageName());
         cv.put(COLUMN_DESCRIPTION, outfit.getDescription());
         cv.put(COLUMN_SEASON, outfit.getSeason().toString());
+        cv.put(COLUMN_FAVORITE, outfit.getFavorite());
 
         long insert = db.insert(OUTFIT_TABLE, null, cv);
         return insert != -1;
@@ -102,7 +102,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private List<Outfit> cursorToList(Cursor cursor) {
         List<Outfit> returnList = new ArrayList<>();
         if (cursor.moveToFirst()) {
-
             do {
                 // extract values from tuple
                 int ID = cursor.getInt(0);
@@ -125,8 +124,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     default:
                         throw new IllegalStateException("Unexpected value: " + cursor.getString(3));
                 }
-
-                Outfit outfit = new Outfit(ID, imageName, description, season);
+                // db saves boolean as 1 = true, 0 = false
+                Boolean favorite = cursor.getInt(4) == 1 ? true: false;
+                Outfit outfit = new Outfit(ID, imageName, description, season, favorite);
                 returnList.add(outfit);
             } while (cursor.moveToNext());
         } // else return empty list

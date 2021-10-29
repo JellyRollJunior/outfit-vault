@@ -16,7 +16,7 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdapter.ViewHolder>{
-    private static final String TAG = "OutfitRecViewAdapter";
+    private static final String TAG = "com.example.outfitvault.OutfitRecViewAdapter";
     private List<Outfit> outfits;
     private Context context;
 
@@ -48,8 +48,6 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
     @Override
     public int getItemCount() {
         return outfits.size();
-        // testing
-//        return 10;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
