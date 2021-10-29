@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
-import com.example.outfitvault.types.Season;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        instantiateData();
+        instantiateDatabase();
         displayOnRecView(outfits);
     }
 
-    private void instantiateData() {
+    private void instantiateDatabase() {
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
         outfits = dataBaseHelper.getAll();
 
