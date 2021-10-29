@@ -5,9 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.outfitvault.MainActivity;
 import com.example.outfitvault.types.Season;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_IMAGE_NAME = "IMAGE_NAME";
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
     public static final String COLUMN_SEASON = "SEASON";
+    private final String TAG = "com.example.outfitvault.model.databasehelper";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "outfit.db", null, 1);
@@ -67,16 +71,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return cursor.moveToFirst();
     }
 
-    public Outfit get(int ID) {
+    public Outfit getOutfitFromID(int ID) {
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + OUTFIT_TABLE +
                 " WHERE " + COLUMN_ID + " = " + ID;
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> tempOutfitList = cursorToList(cursor);
-
         cursor.close();
-        return tempOutfitList.get(0);
+
+        if (tempOutfitList.size() == 0) {
+            return null;
+        } else {
+            return tempOutfitList.get(0);
+        }
     }
 
     public List<Outfit> getAll() {
@@ -94,6 +102,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private List<Outfit> cursorToList(Cursor cursor) {
         List<Outfit> returnList = new ArrayList<>();
         if (cursor.moveToFirst()) {
+
             do {
                 // extract values from tuple
                 int ID = cursor.getInt(0);

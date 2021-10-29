@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         // debug
         Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(MainActivity.this, dataBaseHelper.get(3).toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, dataBaseHelper.getOutfitFromID(3).toString(), Toast.LENGTH_LONG).show();
     }
 
     private void displayOnRecView(List<Outfit> outfits) {
