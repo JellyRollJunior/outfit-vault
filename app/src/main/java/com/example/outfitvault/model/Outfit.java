@@ -8,12 +8,14 @@ public class Outfit {
     private String imageName;
     private String description;
     private Season season;
+    private Boolean favorite;
 
-    public Outfit(int id, String imageName, String description, Season season) {
+    public Outfit(int id, String imageName, String description, Season season, Boolean favorite) {
         this.id = id;
         this.imageName = imageName;
         this.description = description;
         this.season = season;
+        this.favorite = favorite;
     }
 
     public int getID() {
@@ -48,13 +50,22 @@ public class Outfit {
         this.season = season;
     }
 
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     public String toString() {
         return "Outfit{" +
                 "id=" + id +
                 ", imageName='" + imageName + '\'' +
                 ", description='" + description + '\'' +
-                ", season=" + season +
+                ", season=" + season + '\'' +
+                ", favorite=" + favorite.toString() + '\'' +
                 '}';
     }
 }
