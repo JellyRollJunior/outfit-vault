@@ -56,10 +56,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return insert != -1;
     }
 
-    public boolean deleteOne(Outfit outfit) {
+    public boolean deleteOne(int ID) {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + OUTFIT_TABLE +
-                " WHERE " + COLUMN_ID + " = " + outfit.getID();
+                " WHERE " + COLUMN_ID + " = " + ID;
 
         Cursor cursor = db.rawQuery(queryString, null);
 
@@ -67,13 +67,32 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return cursor.moveToFirst();
     }
 
-    public List<Outfit> getAll() {
-        List<Outfit> returnList = new ArrayList<>();
+    public Outfit get(int ID) {
         SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + OUTFIT_TABLE +
+                " WHERE " + COLUMN_ID + " = " + ID;
 
-        String queryString = "SELECT * FROM " + OUTFIT_TABLE;
         Cursor cursor = db.rawQuery(queryString, null);
+        List<Outfit> tempOutfitList = cursorToList(cursor);
 
+        cursor.close();
+        return tempOutfitList.get(0);
+    }
+
+    public List<Outfit> getAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + OUTFIT_TABLE;
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        List<Outfit> returnList = cursorToList(cursor);
+
+        cursor.close();
+        db.close();
+        return returnList;
+    }
+
+    private List<Outfit> cursorToList(Cursor cursor) {
+        List<Outfit> returnList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
                 // extract values from tuple
@@ -104,7 +123,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         } // else return empty list
 
         cursor.close();
-        db.close();
         return returnList;
     }
 }
