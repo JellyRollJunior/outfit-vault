@@ -16,7 +16,7 @@ public class Outfit {
         this.season = season;
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 

@@ -35,19 +35,21 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Outfit currentOutfit = outfits.get(position);
 
         // move to outfit details on click
         holder.parent.setOnClickListener(view -> {
-            Intent intent = OutfitViewActivity.makeIntent(context);
+            int currentOutfitID = currentOutfit.getID();
+            Intent intent = OutfitViewActivity.makeIntent(context, currentOutfitID);
             context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        // return outfits.size();
+        return outfits.size();
         // testing
-        return 10;
+//        return 10;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
