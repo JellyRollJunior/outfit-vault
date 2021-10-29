@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         instantiateData();
-
         displayOnRecView(outfits);
+
     }
 
     private void instantiateData() {
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         // debug
         Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, dataBaseHelper.get(3).toString(), Toast.LENGTH_LONG).show();
     }
 
     private void displayOnRecView(List<Outfit> outfits) {
