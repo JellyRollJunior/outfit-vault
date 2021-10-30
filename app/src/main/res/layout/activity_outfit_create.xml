@@ -14,58 +14,58 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/outfitAddIV"
+            android:id="@+id/outfitCreateIV"
             android:layout_width="300dp"
             android:layout_height="450dp"
             android:contentDescription="@string/outfit_image_content_description"
             android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/outfitAddHorGL"
+            app:layout_constraintBottom_toTopOf="@+id/outfitCreateHorGL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddHorGL"
+            android:id="@+id/outfitCreateHorGL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddVertGLLeft"
+            android:id="@+id/outfitCreateVertGLLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.2" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddVertGLRight"
+            android:id="@+id/outfitCreateVertGLRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.8" />
 
         <Spinner
-            android:id="@+id/outfitAddSeasonSpinner"
+            android:id="@+id/outfitCreateSeasonSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/outfitAddSetImageButton"
-            app:layout_constraintEnd_toStartOf="@+id/outfitAddSetImageButton"
-            app:layout_constraintStart_toEndOf="@+id/outfitAddSetFavoriteBtn"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
+            app:layout_constraintBottom_toBottomOf="@+id/outfitCreateSetImageButton"
+            app:layout_constraintEnd_toStartOf="@+id/outfitCreateSetImageButton"
+            app:layout_constraintStart_toEndOf="@+id/outfitCreateSetFavoriteBtn"
+            app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
 
         <Button
-            android:id="@+id/outfitAddSetImageButton"
+            android:id="@+id/outfitCreateSetImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/set_image"
-            app:layout_constraintEnd_toStartOf="@+id/outfitAddVertGLRight"
-            app:layout_constraintStart_toStartOf="@+id/outfitAddVertGLRight"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
+            app:layout_constraintEnd_toStartOf="@+id/outfitCreateVertGLRight"
+            app:layout_constraintStart_toStartOf="@+id/outfitCreateVertGLRight"
+            app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
 
         <ScrollView
-            android:id="@+id/outfitAddDescriptionSV"
+            android:id="@+id/outfitCreateDescriptionSV"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="5dp"
@@ -73,14 +73,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/outfitAddSetFavoriteBtn">
+            app:layout_constraintTop_toBottomOf="@+id/outfitCreateSetFavoriteBtn">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/outfitAddDescriptionET"
+                    android:id="@+id/outfitCreateDescriptionET"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/sampleParagraph"
@@ -89,21 +89,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:inputType="textMultiLine"
-                    android:autofillHints="Set Description" />
+                    tools:ignore="LabelFor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
 
         <Button
-            android:id="@+id/outfitAddSetFavoriteBtn"
+            android:id="@+id/outfitCreateSetFavoriteBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/favorite"
-            app:layout_constraintEnd_toStartOf="@+id/outfitAddVertGLLeft"
+            app:layout_constraintEnd_toStartOf="@+id/outfitCreateVertGLLeft"
             app:layout_constraintHorizontal_bias="0.476"
-            app:layout_constraintStart_toStartOf="@+id/outfitAddVertGLLeft"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
+            app:layout_constraintStart_toStartOf="@+id/outfitCreateVertGLLeft"
+            app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

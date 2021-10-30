@@ -41,7 +41,7 @@ public class OutfitViewActivity extends AppCompatActivity {
         TextView tvSeason = findViewById(R.id.tvSeason);
         tvSeason.setText(currentOutfit.getSeason().toString());
 
-        TextView tvDescription = findViewById(R.id.outfitAddDescriptionET);
+        TextView tvDescription = findViewById(R.id.outfitCreateDescriptionET);
         tvDescription.setText(currentOutfit.getDescription());
     }
 

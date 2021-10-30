@@ -15,11 +15,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/outfitAddIV"
+            android:id="@+id/outfitCreateIV"
             android:layout_width="300dp"
             android:layout_height="450dp"
             android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/outfitAddHorGL"
+            app:layout_constraintBottom_toTopOf="@+id/outfitCreateHorGL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +27,7 @@
             android:contentDescription="@string/outfit_image_content_description" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddHorGL"
+            android:id="@+id/outfitCreateHorGL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btnEditOutfit"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnDeleteOutfit"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
+            app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
 
         <Button
             android:id="@+id/btnEditOutfit"
@@ -65,7 +65,7 @@
 
 
         <ScrollView
-            android:id="@+id/outfitAddDescriptionSV"
+            android:id="@+id/outfitCreateDescriptionSV"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="5dp"
@@ -85,13 +85,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="@string/season"
-                    app:layout_constraintBottom_toTopOf="@+id/outfitAddDescriptionET"
+                    app:layout_constraintBottom_toTopOf="@+id/outfitCreateDescriptionET"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/outfitAddDescriptionET"
+                    android:id="@+id/outfitCreateDescriptionET"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/sampleParagraph"
