@@ -1,10 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OutfitVault</string>
     <string name="delete">Delete</string>
     <string name="favorite">Favorite</string>
     <string name="edit">Edit</string>
     <string name="season">SEASON</string>
-    <string name="sampleParagraph">a\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\n</string>
+    <string name="sampleParagraph">
+        Outter:
+        \nInner:
+        \nBottom:
+        \nSocks:
+        \nFootwear:
+        \nHeadgear:
+        \nBag:
+        \nAccessories:
+        \nEyewear:
+        \nOther:
+    </string>
     <string name="outfit_image_content_description">Outfit Image</string>
     <string name="main_activity_fab_content_description">add outfit</string>
     <string name="set_image">set image</string>
