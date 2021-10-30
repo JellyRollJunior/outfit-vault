@@ -19,7 +19,7 @@
             android:layout_width="300dp"
             android:layout_height="450dp"
             android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/outfitAddHorGL70"
+            app:layout_constraintBottom_toTopOf="@+id/outfitAddHorGL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +27,7 @@
             android:contentDescription="@string/outfit_image_content_description" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddHorGL70"
+            android:id="@+id/outfitAddHorGL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btnEditOutfit"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnDeleteOutfit"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL70" />
+            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
 
         <Button
             android:id="@+id/btnEditOutfit"
@@ -65,7 +65,7 @@
 
 
         <ScrollView
-            android:id="@+id/svDescription"
+            android:id="@+id/outfitAddDescriptionSV"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="5dp"

@@ -19,53 +19,53 @@
             android:layout_height="450dp"
             android:contentDescription="@string/outfit_image_content_description"
             android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/outfitAddHorGL70"
+            app:layout_constraintBottom_toTopOf="@+id/outfitAddHorGL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddHorGL70"
+            android:id="@+id/outfitAddHorGL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddVertGL25"
+            android:id="@+id/outfitAddVertGLLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.2" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitAddVertGL75"
+            android:id="@+id/outfitAddVertGLRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.75" />
+            app:layout_constraintGuide_percent="0.8" />
 
         <Spinner
             android:id="@+id/outfitAddSeasonSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/btnSetImage"
-            app:layout_constraintEnd_toStartOf="@+id/btnSetImage"
-            app:layout_constraintStart_toEndOf="@+id/btnSetFavoriteAdd"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL70" />
+            app:layout_constraintBottom_toBottomOf="@+id/outfitAddSetImageButton"
+            app:layout_constraintEnd_toStartOf="@+id/outfitAddSetImageButton"
+            app:layout_constraintStart_toEndOf="@+id/outfitAddSetFavoriteBtn"
+            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
 
         <Button
-            android:id="@+id/btnSetImage"
+            android:id="@+id/outfitAddSetImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/set_image"
-            app:layout_constraintEnd_toStartOf="@+id/outfitAddVertGL75"
-            app:layout_constraintStart_toStartOf="@+id/outfitAddVertGL75"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL70" />
+            app:layout_constraintEnd_toStartOf="@+id/outfitAddVertGLRight"
+            app:layout_constraintStart_toStartOf="@+id/outfitAddVertGLRight"
+            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
 
         <ScrollView
-            android:id="@+id/svDescription"
+            android:id="@+id/outfitAddDescriptionSV"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="5dp"
@@ -73,7 +73,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSetFavoriteAdd">
+            app:layout_constraintTop_toBottomOf="@+id/outfitAddSetFavoriteBtn">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -94,14 +94,14 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/btnSetFavoriteAdd"
+            android:id="@+id/outfitAddSetFavoriteBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/favorite"
-            app:layout_constraintEnd_toStartOf="@+id/outfitAddVertGL25"
+            app:layout_constraintEnd_toStartOf="@+id/outfitAddVertGLLeft"
             app:layout_constraintHorizontal_bias="0.476"
-            app:layout_constraintStart_toStartOf="@+id/outfitAddVertGL25"
-            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL70" />
+            app:layout_constraintStart_toStartOf="@+id/outfitAddVertGLLeft"
+            app:layout_constraintTop_toTopOf="@+id/outfitAddHorGL" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

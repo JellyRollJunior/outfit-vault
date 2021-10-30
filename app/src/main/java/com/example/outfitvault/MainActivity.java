@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
-import com.example.outfitvault.types.Season;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -30,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         instantiateDatabase();
         displayOnRecView(outfits);
+        wireAddOutfitFloatingActionButton();
+    }
 
+    private void wireAddOutfitFloatingActionButton() {
         FloatingActionButton fabAddButton = findViewById(R.id.fabAddOutfit);
         fabAddButton.setOnClickListener(view -> {
             Intent intent = OutfitCreateActivity.makeIntent(MainActivity.this);
