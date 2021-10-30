@@ -50,7 +50,7 @@
             android:id="@+id/outfitCreateSeasonSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/outfitCreateSetImageButton"
             app:layout_constraintEnd_toStartOf="@+id/outfitCreateSetImageButton"
             app:layout_constraintStart_toEndOf="@+id/outfitCreateSetFavoriteBtn"
