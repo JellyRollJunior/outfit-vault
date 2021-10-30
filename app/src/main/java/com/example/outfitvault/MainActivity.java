@@ -1,5 +1,6 @@
 package com.example.outfitvault;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -31,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
         displayOnRecView(outfits);
 
         FloatingActionButton fabAddButton = findViewById(R.id.fabAddOutfit);
+        fabAddButton.setOnClickListener(view -> {
+            Intent intent = OutfitCreateActivity.makeIntent(MainActivity.this);
+            startActivity(intent);
+        });
     }
 
     private void instantiateDatabase() {

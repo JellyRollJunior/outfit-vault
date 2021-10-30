@@ -7,4 +7,5 @@
     <string name="sampleParagraph">a\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\na\n</string>
     <string name="outfit_image_content_description">Outfit Image</string>
     <string name="main_activity_fab_content_description">add outfit</string>
+    <string name="set_image">set image</string>
 </resources>
