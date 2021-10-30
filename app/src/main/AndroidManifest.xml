@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OutfitVault">
         <activity
+            android:name=".OutfitCreateActivity"
+            android:exported="true" />
+        <activity
             android:name=".OutfitViewActivity"
             android:exported="true" />
         <activity
