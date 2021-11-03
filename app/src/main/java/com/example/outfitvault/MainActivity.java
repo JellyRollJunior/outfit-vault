@@ -32,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
         wireAddOutfitFloatingActionButton();
     }
 
+    @Override
+    protected void onResume() {
+        refreshRecyclerView();
+        super.onResume();
+    }
+
+    private void refreshRecyclerView() {
+        instantiateDatabase();
+        displayOnRecView(outfits);
+    }
+
     private void wireAddOutfitFloatingActionButton() {
         FloatingActionButton fabAddButton = findViewById(R.id.fabAddOutfit);
         fabAddButton.setOnClickListener(view -> {
@@ -52,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         outfits = dataBaseHelper.getAll();
 
         // debug
-        Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(MainActivity.this, dataBaseHelper.getOutfitFromID(1).toString(), Toast.LENGTH_LONG).show();
         Log.d(TAG, "instantiateDatabase: " + outfits.toString());
     }
 

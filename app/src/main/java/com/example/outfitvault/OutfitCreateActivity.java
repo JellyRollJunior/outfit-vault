@@ -67,9 +67,9 @@ public class OutfitCreateActivity extends AppCompatActivity {
             case R.id.outfitCreateMenuCreate:
                 Outfit newOutfit = compileOutfitDetails();
                 if (addToDatabase(newOutfit)) {
-                    Toast.makeText(OutfitCreateActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                };
-                // finish();
+                    Toast.makeText(OutfitCreateActivity.this, "Successfully added", Toast.LENGTH_SHORT).show();
+                }
+                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -91,8 +91,9 @@ public class OutfitCreateActivity extends AppCompatActivity {
         Season season = (Season) seasonSpinner.getSelectedItem();
 
         Outfit newOutfit = new Outfit(100, imageName, description, season, isFavorite);
+
         // debug
-        Toast.makeText(OutfitCreateActivity.this, newOutfit.toString(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(OutfitCreateActivity.this, newOutfit.toString(), Toast.LENGTH_LONG).show();
         return newOutfit;
     }
 
