@@ -53,13 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void instantiateDatabase() {
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
-
-        // debug
-//        Outfit outfit = new Outfit(100, "newIMAGE!", "it's a new image a\na\na\na\na\na\na\na\na\na\na\n", Season.SPRING, false);
-//        Outfit outfit2 = new Outfit(200, "yup new image", "omg its a new image a\na\na\na\na\na\na\na\na\na\na\n", Season.FALL, true);
-//        dataBaseHelper.addOne(outfit);
-//        dataBaseHelper.addOne(outfit2);
-
         outfits = dataBaseHelper.getAll();
 
         // debug

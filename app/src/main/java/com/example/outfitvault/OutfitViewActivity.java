@@ -27,9 +27,6 @@ public class OutfitViewActivity extends AppCompatActivity {
 
         // debug
         Toast.makeText(OutfitViewActivity.this, "THE NUMBER IS: " + getExtraCurrentOutfitID(), Toast.LENGTH_LONG).show();
-
-//         Button btn = findViewById(R.id.btnEditOutfit);
-//         btn.setVisibility(View.GONE);
     }
 
     private void populateUIWithOutfitDetails() {
