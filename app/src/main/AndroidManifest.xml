@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OutfitVault">
         <activity
+            android:name=".OutfitCreateActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:exported="true" />
+        <activity
             android:name=".OutfitViewActivity"
             android:exported="true" />
         <activity

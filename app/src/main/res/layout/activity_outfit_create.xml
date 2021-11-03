@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OutfitViewActivity"
+    tools:context=".OutfitCreateActivity"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
     app:cardCornerRadius="5dp">
@@ -18,13 +17,13 @@
             android:id="@+id/outfitCreateIV"
             android:layout_width="300dp"
             android:layout_height="450dp"
+            android:contentDescription="@string/outfit_image_content_description"
             android:padding="5dp"
             app:layout_constraintBottom_toTopOf="@+id/outfitCreateHorGL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:contentDescription="@string/outfit_image_content_description" />
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/outfitCreateHorGL"
@@ -33,36 +32,38 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
 
-        <Button
-            android:id="@+id/btnDeleteOutfit"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/outfitCreateVertGLLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delete"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btnFavoriteOutfit"
-            app:layout_constraintEnd_toStartOf="@+id/btnFavoriteOutfit"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
 
-        <Button
-            android:id="@+id/btnFavoriteOutfit"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/outfitCreateVertGLRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/favorite"
-            app:layout_constraintEnd_toStartOf="@+id/btnEditOutfit"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnDeleteOutfit"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <Spinner
+            android:id="@+id/outfitCreateSeasonSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/outfitCreateSetImageButton"
+            app:layout_constraintEnd_toStartOf="@+id/outfitCreateSetImageButton"
+            app:layout_constraintStart_toEndOf="@+id/outfitCreateSetFavoriteButton"
             app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
 
         <Button
-            android:id="@+id/btnEditOutfit"
+            android:id="@+id/outfitCreateSetImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btnFavoriteOutfit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnFavoriteOutfit" />
-
+            android:text="@string/set_image"
+            app:layout_constraintEnd_toStartOf="@+id/outfitCreateVertGLRight"
+            app:layout_constraintStart_toStartOf="@+id/outfitCreateVertGLRight"
+            app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
 
         <ScrollView
             android:id="@+id/outfitCreateDescriptionSV"
@@ -73,24 +74,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnFavoriteOutfit">
+            app:layout_constraintTop_toBottomOf="@+id/outfitCreateSetFavoriteButton">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tvSeason"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/season"
-                    app:layout_constraintBottom_toTopOf="@+id/outfitCreateDescriptionET"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
+                <EditText
                     android:id="@+id/outfitCreateDescriptionET"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -98,11 +88,23 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:inputType="textMultiLine"
+                    tools:ignore="LabelFor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
+
+        <Button
+            android:id="@+id/outfitCreateSetFavoriteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favorite"
+            app:layout_constraintEnd_toStartOf="@+id/outfitCreateVertGLLeft"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintStart_toStartOf="@+id/outfitCreateVertGLLeft"
+            app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

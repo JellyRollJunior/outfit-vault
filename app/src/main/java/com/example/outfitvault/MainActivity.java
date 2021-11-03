@@ -1,5 +1,6 @@
 package com.example.outfitvault;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
-import com.example.outfitvault.types.Season;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,22 +29,33 @@ public class MainActivity extends AppCompatActivity {
 
         instantiateDatabase();
         displayOnRecView(outfits);
+        wireAddOutfitFloatingActionButton();
+    }
+
+    @Override
+    protected void onResume() {
+        refreshRecyclerView();
+        super.onResume();
+    }
+
+    private void refreshRecyclerView() {
+        instantiateDatabase();
+        displayOnRecView(outfits);
+    }
+
+    private void wireAddOutfitFloatingActionButton() {
+        FloatingActionButton fabAddButton = findViewById(R.id.fabAddOutfit);
+        fabAddButton.setOnClickListener(view -> {
+            Intent intent = OutfitCreateActivity.makeIntent(MainActivity.this);
+            startActivity(intent);
+        });
     }
 
     private void instantiateDatabase() {
         dataBaseHelper = new DataBaseHelper(MainActivity.this);
-
-        // debug
-//        Outfit outfit = new Outfit(100, "newIMAGE!", "it's a new image a\na\na\na\na\na\na\na\na\na\na\n", Season.SPRING, false);
-//        Outfit outfit2 = new Outfit(200, "yup new image", "omg its a new image a\na\na\na\na\na\na\na\na\na\na\n", Season.FALL, true);
-//        dataBaseHelper.addOne(outfit);
-//        dataBaseHelper.addOne(outfit2);
-
         outfits = dataBaseHelper.getAll();
 
         // debug
-        Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(MainActivity.this, dataBaseHelper.getOutfitFromID(1).toString(), Toast.LENGTH_LONG).show();
         Log.d(TAG, "instantiateDatabase: " + outfits.toString());
     }
 

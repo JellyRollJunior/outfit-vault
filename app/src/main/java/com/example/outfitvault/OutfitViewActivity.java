@@ -27,9 +27,6 @@ public class OutfitViewActivity extends AppCompatActivity {
 
         // debug
         Toast.makeText(OutfitViewActivity.this, "THE NUMBER IS: " + getExtraCurrentOutfitID(), Toast.LENGTH_LONG).show();
-
-//         Button btn = findViewById(R.id.btnEditOutfit);
-//         btn.setVisibility(View.GONE);
     }
 
     private void populateUIWithOutfitDetails() {
@@ -41,7 +38,7 @@ public class OutfitViewActivity extends AppCompatActivity {
         TextView tvSeason = findViewById(R.id.tvSeason);
         tvSeason.setText(currentOutfit.getSeason().toString());
 
-        TextView tvDescription = findViewById(R.id.tvOutfitDescription);
+        TextView tvDescription = findViewById(R.id.outfitCreateDescriptionET);
         tvDescription.setText(currentOutfit.getDescription());
     }
 
