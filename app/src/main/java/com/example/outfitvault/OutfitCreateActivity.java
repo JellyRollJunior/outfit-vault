@@ -131,7 +131,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private void enableCamera() {
-        Intent intent = new Intent(this, CameraActivity.class);
+        Intent intent = CameraActivity.makeIntent(OutfitCreateActivity.this);
         startActivity(intent);
     }
 }
