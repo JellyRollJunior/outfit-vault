@@ -2,10 +2,14 @@ package com.example.outfitvault;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +24,8 @@ import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.types.Season;
 
 public class OutfitCreateActivity extends AppCompatActivity {
+    private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
+    private static final int CAMERA_REQUEST_CODE = 10;
     private boolean isFavorite = false;
 
     @Override
@@ -27,24 +33,12 @@ public class OutfitCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outfit_create);
 
-        // IMAGESAVE + NAME - DESCRIPTION
-        populateSpinner();
+        populateSpinnerWithSeasons();
         wireFavoriteButton();
         wireSetImageButton();
     }
 
-    private void wireSetImageButton() {
-        // TODO: move to camera -> start activity for result image name
-    }
-
-    private void wireFavoriteButton() {
-        Button favoriteBtn = findViewById(R.id.outfitCreateSetFavoriteButton);
-        favoriteBtn.setOnClickListener(view -> {
-            isFavorite = !isFavorite;
-        });
-    }
-
-    private void populateSpinner() {
+    private void populateSpinnerWithSeasons() {
         Spinner seasonSpinner = findViewById(R.id.outfitCreateSeasonSpinner);
         ArrayAdapter<Season> spinnerAdapter = new ArrayAdapter<Season>(
                 OutfitCreateActivity.this,
@@ -52,6 +46,13 @@ public class OutfitCreateActivity extends AppCompatActivity {
                 Season.values()
         );
         seasonSpinner.setAdapter(spinnerAdapter);
+    }
+
+    private void wireFavoriteButton() {
+        Button favoriteBtn = findViewById(R.id.outfitCreateSetFavoriteButton);
+        favoriteBtn.setOnClickListener(view -> {
+            isFavorite = !isFavorite;
+        });
     }
 
     @Override
@@ -99,5 +100,38 @@ public class OutfitCreateActivity extends AppCompatActivity {
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, OutfitCreateActivity.class);
+    }
+
+    private void wireSetImageButton() {
+        // TODO: move to camera -> start activity for result image name
+        Button setImageButton = findViewById(R.id.outfitCreateSetImageButton);
+        setImageButton.setOnClickListener(view -> {
+            if (hasCameraPermission()) {
+                enableCamera();
+            } else {
+                requestPermission();
+            }
+        });
+    }
+
+    private boolean hasCameraPermission() {
+        // return bool if our camera permission == PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(
+                this,
+                CAMERA_PERMISSION,
+                CAMERA_REQUEST_CODE
+        );
+    }
+
+    private void enableCamera() {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
     }
 }
