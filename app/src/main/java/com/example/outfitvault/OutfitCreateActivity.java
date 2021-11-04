@@ -13,6 +13,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,6 +23,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -32,6 +36,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 10;
     private final String TAG = "com.example.outfitvault.OutfitCreateActivity";
     private boolean isFavorite = false;
+    private String photoName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,27 @@ public class OutfitCreateActivity extends AppCompatActivity {
         populateSpinnerWithSeasons();
         wireFavoriteButton();
         wireSetImageButton();
+    }
+
+    @Override
+    protected void onResume() {
+        if (photoName != null) {
+            instantiateImageView();
+        }
+        super.onResume();
+    }
+
+    private void instantiateImageView() {
+        ImageView iv = findViewById(R.id.outfitCreateIV);
+        String photoFilePath = CameraActivity.getPhotoFilePath(OutfitCreateActivity.this, photoName).getAbsolutePath();
+        Bitmap bmp = BitmapFactory.decodeFile(photoFilePath);
+
+        Matrix matrix = new Matrix();
+
+        matrix.postRotate(90);
+
+        Bitmap rotatedBitmap = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+        iv.setImageBitmap(rotatedBitmap);
     }
 
     private void populateSpinnerWithSeasons() {
@@ -71,11 +97,15 @@ public class OutfitCreateActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
             case R.id.outfitCreateMenuCreate:
-                Outfit newOutfit = compileOutfitDetails();
-                if (addToDatabase(newOutfit)) {
-                    Toast.makeText(OutfitCreateActivity.this, "Successfully added", Toast.LENGTH_SHORT).show();
+                if (photoName != null) {
+                    Outfit newOutfit = compileOutfitDetails();
+                    if (addToDatabase(newOutfit)) {
+                        Toast.makeText(OutfitCreateActivity.this, "Successfully added", Toast.LENGTH_SHORT).show();
+                    }
+                    finish();
+                } else {
+                    Toast.makeText(OutfitCreateActivity.this, "Take photo first!", Toast.LENGTH_SHORT).show();
                 }
-                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -87,16 +117,13 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private Outfit compileOutfitDetails() {
-        // TODO: get image name
-        String imageName = "sample name";
-
         EditText editTextDescription = findViewById(R.id.outfitCreateDescriptionET);
         String description = editTextDescription.getText().toString();
 
         Spinner seasonSpinner = findViewById(R.id.outfitCreateSeasonSpinner);
         Season season = (Season) seasonSpinner.getSelectedItem();
 
-        Outfit newOutfit = new Outfit(100, imageName, description, season, isFavorite);
+        Outfit newOutfit = new Outfit(100, photoName, description, season, isFavorite);
 
         // debug
 //        Toast.makeText(OutfitCreateActivity.this, newOutfit.toString(), Toast.LENGTH_LONG).show();
@@ -115,8 +142,8 @@ public class OutfitCreateActivity extends AppCompatActivity {
                         Intent data = result.getData();
 
                         if (data != null) {
-                            String imageName = CameraActivity.getImageNameFromCameraActivity(data);
-                            Toast.makeText(OutfitCreateActivity.this, "from camera: imageName is " + imageName, Toast.LENGTH_SHORT).show();
+                            photoName = CameraActivity.getImageNameFromCameraActivity(data);
+                            Toast.makeText(OutfitCreateActivity.this, "from camera: imageName is " + photoName, Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Log.d(TAG, "onCreate: " + result.toString());
