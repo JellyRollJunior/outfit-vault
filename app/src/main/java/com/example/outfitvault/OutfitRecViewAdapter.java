@@ -2,6 +2,8 @@ package com.example.outfitvault;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.model.PhotoHelper;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
@@ -36,6 +39,13 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Outfit currentOutfit = outfits.get(position);
+
+        // set image
+        String photoFilePath = PhotoHelper.getPhotoFile(context, currentOutfit.getImageName()).getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
+
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
+        holder.outfitImage.setImageBitmap(rotatedBitmap);
 
         // move to outfit details on click
         holder.parent.setOnClickListener(view -> {

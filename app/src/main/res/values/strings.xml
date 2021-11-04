@@ -19,7 +19,6 @@
     </string>
     <string name="outfit_image_content_description">Outfit Image</string>
     <string name="main_activity_fab_content_description">add outfit</string>
-    <string name="set_image">set image</string>
     <string name="create_outfit">Create Outfit</string>
     <string name="take_photo">Take Photo</string>
 </resources>

@@ -60,7 +60,7 @@
             android:id="@+id/outfitCreateSetImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/set_image"
+            android:text="@string/take_photo"
             app:layout_constraintEnd_toStartOf="@+id/outfitCreateVertGLRight"
             app:layout_constraintStart_toStartOf="@+id/outfitCreateVertGLRight"
             app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
