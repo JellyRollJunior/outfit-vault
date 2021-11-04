@@ -5,7 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraActivity">
+    tools:context=".CameraActivity"
+    android:screenOrientation="portrait"
+    tools:ignore="LockedOrientationActivity"
+    android:id="@+id/cameraParent">
 
     <Button
         android:id="@+id/camera_capture_button"
@@ -13,7 +16,7 @@
         android:layout_height="100dp"
         android:layout_marginBottom="50dp"
         android:scaleType="fitCenter"
-        android:text="Take Photo"
+        android:text="@string/take_photo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
