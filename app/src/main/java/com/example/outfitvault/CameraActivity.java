@@ -1,26 +1,27 @@
 package com.example.outfitvault;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.Camera;
-import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ImageCapture;
-import androidx.camera.core.ImageCaptureException;
-import androidx.camera.core.Preview;
-import androidx.camera.lifecycle.ProcessCameraProvider;
-import androidx.camera.view.PreviewView;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
-
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.Camera;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.ImageProxy;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -28,10 +29,12 @@ import java.io.File;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity implements ImageAnalysis.Analyzer {
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
-    PreviewView previewView;
-    ImageCapture imageCapture;
+    private PreviewView previewView;
+    private ImageCapture imageCapture;
+    private ImageAnalysis imageAnalysis;
+    private String imageFilePathName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class CameraActivity extends AppCompatActivity {
         previewView = findViewById(R.id.viewFinder);
         startCamera();
         wireTakePhotoButton();
+
     }
 
     // hold option + move mouse key to look around
@@ -66,12 +70,16 @@ public class CameraActivity extends AppCompatActivity {
         cameraProvider.unbindAll();
 
         // select which camera to use
-        CameraSelector cameraSelector = new CameraSelector.Builder()
-                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-                .build();
+        CameraSelector cameraSelector =
+                new CameraSelector.Builder()
+                        .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                        .build();
 
         // use case 1: view finder mode
-        Preview preview = new Preview.Builder().build();
+        Preview preview =
+                new Preview.Builder()
+                        .setTargetRotation(previewView.getDisplay().getRotation())
+                        .build();
         preview.setSurfaceProvider(previewView.getSurfaceProvider());
 
         // use case 2: image capture
@@ -80,7 +88,19 @@ public class CameraActivity extends AppCompatActivity {
                         .setTargetRotation(previewView.getDisplay().getRotation())
                         .build();
 
-        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, imageCapture, preview);
+        // use case 3: image analysis - image editing
+        imageAnalysis =
+                new ImageAnalysis.Builder()
+                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                        .setTargetRotation(previewView.getDisplay().getRotation())
+                        .build();
+
+        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, imageCapture, preview, imageAnalysis);
+    }
+
+    @Override
+    public void analyze(@NonNull ImageProxy image) {
+        image.close();
     }
 
     private void wireTakePhotoButton() {
@@ -94,9 +114,9 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private File getPhotoFilePath(String photoName) {
-        String imageFilePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
-        Log.d("CameraActivity", "getPhotoFilePath: " + imageFilePath);
-        return new File(imageFilePath);
+        imageFilePathName = getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
+        Log.d("CameraActivity", "getPhotoFilePath: " + imageFilePathName);
+        return new File(imageFilePathName);
     }
 
     private void takePhoto(File photoFilePath) {
@@ -125,4 +145,5 @@ public class CameraActivity extends AppCompatActivity {
         Intent intent = new Intent(context, CameraActivity.class);
         return intent;
     }
+
 }
