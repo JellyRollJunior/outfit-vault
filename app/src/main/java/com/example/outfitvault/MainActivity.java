@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         displayOnRecView(outfits);
         wireAddOutfitFloatingActionButton();
 
-        Log.d(TAG, "onCreate: " + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-        Log.d(TAG, "onCreate: " + getExternalFilesDir(null));
     }
 
     @Override
