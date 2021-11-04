@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +41,10 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
         Outfit currentOutfit = outfits.get(position);
 
         // set image
-        String photoFilePath = PhotoHelper.getPhotoFilePath(context, currentOutfit.getImageName()).getAbsolutePath();
-        Bitmap bmp = BitmapFactory.decodeFile(photoFilePath);
-        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(bmp);
+        String photoFilePath = PhotoHelper.getPhotoFile(context, currentOutfit.getImageName()).getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
+
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         holder.outfitImage.setImageBitmap(rotatedBitmap);
 
         // move to outfit details on click

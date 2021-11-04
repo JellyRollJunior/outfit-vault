@@ -3,10 +3,7 @@ package com.example.outfitvault;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.Surface;
 import android.widget.Button;
 import android.widget.Toast;
@@ -55,7 +52,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
 
     private void takePhoto() {
         String photoName = "" + System.currentTimeMillis() + ".jpg";
-        File photoFilePath = PhotoHelper.getPhotoFilePath(CameraActivity.this, photoName);
+        File photoFilePath = PhotoHelper.getPhotoFile(CameraActivity.this, photoName);
 
         imageCapture.takePicture(
                 new ImageCapture.OutputFileOptions.Builder(photoFilePath).build(),

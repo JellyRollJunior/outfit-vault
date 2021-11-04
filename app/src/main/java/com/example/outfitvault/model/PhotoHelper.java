@@ -21,7 +21,7 @@ public class PhotoHelper {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
-    public static File getPhotoFilePath(Context context, String photoName) {
+    public static File getPhotoFile(Context context, String photoName) {
         String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
         Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
         return new File(imageFilePathName);

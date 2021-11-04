@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -59,9 +58,11 @@ public class OutfitCreateActivity extends AppCompatActivity {
 
     private void instantiateImageView() {
         ImageView iv = findViewById(R.id.outfitCreateIV);
-        String photoFilePath = PhotoHelper.getPhotoFilePath(OutfitCreateActivity.this, photoName).getAbsolutePath();
-        Bitmap bmp = BitmapFactory.decodeFile(photoFilePath);
-        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(bmp);
+
+        String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
+
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         iv.setImageBitmap(rotatedBitmap);
     }
 
