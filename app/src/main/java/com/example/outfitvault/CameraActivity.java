@@ -1,5 +1,7 @@
 package com.example.outfitvault;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
@@ -15,6 +17,8 @@ import androidx.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -37,47 +41,6 @@ public class CameraActivity extends AppCompatActivity {
         previewView = findViewById(R.id.viewFinder);
         startCamera();
         wireTakePhotoButton();
-    }
-
-    private void wireTakePhotoButton() {
-        File photoFilePath = getPhotoFilePath();
-
-        Button takePhotoButton = findViewById(R.id.camera_capture_button);
-        takePhotoButton.setOnClickListener(view -> {
-            takePhoto(photoFilePath);
-        });
-    }
-
-    private void takePhoto(File photoFilePath) {
-        imageCapture.takePicture(
-                new ImageCapture.OutputFileOptions.Builder(photoFilePath).build(),
-                getExecutor(),
-                new ImageCapture.OnImageSavedCallback() {
-                    @Override
-                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        Toast.makeText(CameraActivity.this, "Image has been saved successfully", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(@NonNull ImageCaptureException exception) {
-                        Toast.makeText(CameraActivity.this, "Error saving photo" + exception.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-    }
-
-    private File getPhotoFilePath() {
-        // TODO: set directory
-        File photoDir = new File("");
-
-        if(!photoDir.exists()) {
-            photoDir.mkdir();
-        }
-
-        String timestamp = "" + System.currentTimeMillis();
-        String imageFilePath = photoDir.getAbsolutePath() + "/" + timestamp + ".jpg";
-
-        return new File(imageFilePath);
     }
 
     // hold option + move mouse key to look around
@@ -118,6 +81,40 @@ public class CameraActivity extends AppCompatActivity {
                         .build();
 
         Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, imageCapture, preview);
+    }
+
+    private void wireTakePhotoButton() {
+        String timestampPhotoName = "" + System.currentTimeMillis() + ".jpg";
+        File photoFilePath = getPhotoFilePath(timestampPhotoName);
+
+        Button takePhotoButton = findViewById(R.id.camera_capture_button);
+        takePhotoButton.setOnClickListener(view -> {
+            takePhoto(photoFilePath);
+        });
+    }
+
+    private File getPhotoFilePath(String photoName) {
+        String imageFilePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
+        Log.d("CameraActivity", "getPhotoFilePath: " + imageFilePath);
+        return new File(imageFilePath);
+    }
+
+    private void takePhoto(File photoFilePath) {
+        imageCapture.takePicture(
+                new ImageCapture.OutputFileOptions.Builder(photoFilePath).build(),
+                getExecutor(),
+                new ImageCapture.OnImageSavedCallback() {
+                    @Override
+                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                        Toast.makeText(CameraActivity.this, "Image has been saved successfully", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(@NonNull ImageCaptureException exception) {
+                        Toast.makeText(CameraActivity.this, "Error saving photo" + exception.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     private Executor getExecutor() {
