@@ -25,6 +25,7 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
+import com.example.outfitvault.model.PhotoHelper;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
@@ -54,7 +55,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
 
     private void takePhoto() {
         String photoName = "" + System.currentTimeMillis() + ".jpg";
-        File photoFilePath = getPhotoFilePath(CameraActivity.this, photoName);
+        File photoFilePath = PhotoHelper.getPhotoFilePath(CameraActivity.this, photoName);
 
         imageCapture.takePicture(
                 new ImageCapture.OutputFileOptions.Builder(photoFilePath).build(),
@@ -87,12 +88,6 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         intent.putExtra(EXTRA_IMAGE_NAME, photoName);
         setResult(Activity.RESULT_OK, intent);
 //        finish();
-    }
-
-    public static File getPhotoFilePath(Context context, String photoName) {
-        String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
-        Log.d("CameraActivity", "getPhotoFilePath: " + imageFilePathName);
-        return new File(imageFilePathName);
     }
 
     private Executor getExecutor() {

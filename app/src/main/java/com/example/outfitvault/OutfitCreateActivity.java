@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.model.PhotoHelper;
 import com.example.outfitvault.types.Season;
 
 public class OutfitCreateActivity extends AppCompatActivity {
@@ -58,14 +59,9 @@ public class OutfitCreateActivity extends AppCompatActivity {
 
     private void instantiateImageView() {
         ImageView iv = findViewById(R.id.outfitCreateIV);
-        String photoFilePath = CameraActivity.getPhotoFilePath(OutfitCreateActivity.this, photoName).getAbsolutePath();
+        String photoFilePath = PhotoHelper.getPhotoFilePath(OutfitCreateActivity.this, photoName).getAbsolutePath();
         Bitmap bmp = BitmapFactory.decodeFile(photoFilePath);
-
-        Matrix matrix = new Matrix();
-
-        matrix.postRotate(90);
-
-        Bitmap rotatedBitmap = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(bmp);
         iv.setImageBitmap(rotatedBitmap);
     }
 
