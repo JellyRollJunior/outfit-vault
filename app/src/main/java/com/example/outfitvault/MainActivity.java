@@ -2,6 +2,7 @@ package com.example.outfitvault;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         instantiateDatabase();
         displayOnRecView(outfits);
         wireAddOutfitFloatingActionButton();
+
+        Log.d(TAG, "onCreate: " + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+        Log.d(TAG, "onCreate: " + getExternalFilesDir(null));
     }
 
     @Override
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         outfits = dataBaseHelper.getAll();
 
         // debug
-        Log.d(TAG, "instantiateDatabase: " + outfits.toString());
+//        Log.d(TAG, "instantiateDatabase: " + outfits.toString());
     }
 
     private void displayOnRecView(List<Outfit> outfits) {
