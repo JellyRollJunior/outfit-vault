@@ -2,7 +2,11 @@ package com.example.outfitvault;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.model.PhotoHelper;
 
 public class OutfitViewActivity extends AppCompatActivity {
 
@@ -31,7 +36,12 @@ public class OutfitViewActivity extends AppCompatActivity {
 
     private void populateUIWithOutfitDetails() {
         // set image with image name
+        ImageView ivOutfit = findViewById(R.id.outfitViewIV);
+        String photoFilePath = PhotoHelper.getPhotoFile(OutfitViewActivity.this, currentOutfit.getImageName()).getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
 
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
+        ivOutfit.setImageBitmap(rotatedBitmap);
 
         // set favorite button style with favorite
 

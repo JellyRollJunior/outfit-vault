@@ -57,7 +57,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private void instantiateImageView() {
-        ImageView iv = findViewById(R.id.outfitCreateIV);
+        ImageView iv = findViewById(R.id.outfitViewIV);
 
         String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
