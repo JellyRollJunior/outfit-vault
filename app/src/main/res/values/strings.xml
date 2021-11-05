@@ -21,4 +21,7 @@
     <string name="main_activity_fab_content_description">add outfit</string>
     <string name="create_outfit">Create Outfit</string>
     <string name="take_photo">Take Photo</string>
+    <string name="delete_outfit">Delete outfit</string>
+    <string name="delete_outfit_confirmation">Are you sure you want to permanently delete this outfit?</string>
+    <string name="cancel">Cancel</string>
 </resources>

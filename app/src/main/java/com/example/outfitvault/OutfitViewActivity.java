@@ -42,15 +42,15 @@ public class OutfitViewActivity extends AppCompatActivity {
         Button btnDelete = findViewById(R.id.btn_delete);
         btnDelete.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(OutfitViewActivity.this)
-                        .setTitle("Delete outfit")
-                        .setMessage("Are you sure you want to permanently delete this outfit?")
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.delete_outfit)
+                        .setMessage(R.string.delete_outfit_confirmation)
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // do nothing
                             }
                         })
-                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dataBaseHelper = new DataBaseHelper(OutfitViewActivity.this);
