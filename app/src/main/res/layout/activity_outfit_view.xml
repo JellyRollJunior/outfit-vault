@@ -18,13 +18,14 @@
             android:id="@+id/iv_outfit_view"
             android:layout_width="300dp"
             android:layout_height="450dp"
+            app:srcCompat="@drawable/ic_launcher_background"
+            android:contentDescription="@string/iv_outfit_content_description"
             android:padding="5dp"
+
             app:layout_constraintBottom_toTopOf="@+id/gl_hor_outfit_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:contentDescription="@string/iv_outfit_content_description" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_hor_outfit_view"
@@ -38,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete"
+
             app:layout_constraintBaseline_toBaselineOf="@+id/btn_favorite_outfit_view"
             app:layout_constraintEnd_toStartOf="@+id/btn_favorite_outfit_view"
             app:layout_constraintHorizontal_bias="0.5"
@@ -48,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/favorite"
+
             app:layout_constraintEnd_toStartOf="@+id/btn_edit"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_delete"
@@ -58,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit"
+
             app:layout_constraintBaseline_toBaselineOf="@+id/btn_favorite_outfit_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -68,6 +72,7 @@
             android:id="@+id/sv_outfit_view"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+
             android:layout_margin="5dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,8 +88,9 @@
                     android:id="@+id/tv_season"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:text="@string/season"
+
+                    android:layout_marginBottom="5dp"
                     app:layout_constraintBottom_toTopOf="@+id/et_description_outfit_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/sample_outfit_description"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

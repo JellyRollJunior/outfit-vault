@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OutfitCreateActivity"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp"
+    tools:context=".OutfitCreateActivity" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,13 +17,14 @@
             android:id="@+id/iv_outfit_create"
             android:layout_width="300dp"
             android:layout_height="450dp"
+            app:srcCompat="@drawable/ic_launcher_background"
             android:contentDescription="@string/iv_outfit_content_description"
             android:padding="5dp"
+
             app:layout_constraintBottom_toTopOf="@+id/gl_hor_outfit_create"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_hor_outfit_create"
@@ -50,6 +51,7 @@
             android:id="@+id/spnSeason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_take_photo"
             app:layout_constraintEnd_toStartOf="@+id/btn_take_photo"
@@ -61,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/take_photo"
+
             app:layout_constraintEnd_toStartOf="@+id/gl_vert_right_outfit_create"
             app:layout_constraintStart_toStartOf="@+id/gl_vert_right_outfit_create"
             app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_create" />
@@ -69,6 +72,7 @@
             android:id="@+id/sv_outfit_create"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+
             android:layout_margin="5dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -84,12 +88,14 @@
                     android:id="@+id/et_description_outfit_create"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="textMultiLine"
                     android:text="@string/sample_outfit_description"
+                    android:autofillHints="@null"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:inputType="textMultiLine"
                     tools:ignore="LabelFor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -101,6 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/favorite"
+
             app:layout_constraintEnd_toStartOf="@+id/gl_vert_left_outfit_create"
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="@+id/gl_vert_left_outfit_create"
