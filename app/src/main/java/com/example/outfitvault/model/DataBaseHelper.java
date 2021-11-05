@@ -31,12 +31,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // by using AUTOINCREMENT, any value passed to columnID is useless as it gets overwritten
-        String createTableStatement = "CREATE TABLE " + OUTFIT_TABLE + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_IMAGE_NAME + " TEXT, " +
-                COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_SEASON + " TEXT, " +
-                COLUMN_FAVORITE + " BOOL)";
+        String createTableStatement =
+                    "CREATE TABLE " + OUTFIT_TABLE + " (" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_IMAGE_NAME + " TEXT, " +
+                    COLUMN_DESCRIPTION + " TEXT, " +
+                    COLUMN_SEASON + " TEXT, " +
+                    COLUMN_FAVORITE + " BOOL)";
 
         sqLiteDatabase.execSQL(createTableStatement);
     }
@@ -62,8 +63,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteOne(int ID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + OUTFIT_TABLE +
-                " WHERE " + COLUMN_ID + " = " + ID;
+        String queryString =
+                    "DELETE FROM " + OUTFIT_TABLE + " " +
+                    "WHERE " + COLUMN_ID + " = " + ID;
 
         Cursor cursor = db.rawQuery(queryString, null);
 
@@ -73,8 +75,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public Outfit getOutfitFromID(int ID) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + OUTFIT_TABLE +
-                " WHERE " + COLUMN_ID + " = " + ID;
+        String queryString =
+                    "SELECT * " +
+                    "FROM " + OUTFIT_TABLE + " " +
+                    "WHERE " + COLUMN_ID + " = " + ID;
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> tempOutfitList = cursorToList(cursor);
@@ -89,7 +93,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public List<Outfit> getAll() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + OUTFIT_TABLE;
+        String queryString =
+                    "SELECT * " +
+                    "FROM " + OUTFIT_TABLE + " " +
+                    "GROUP BY " + COLUMN_SEASON;;
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> returnList = cursorToList(cursor);

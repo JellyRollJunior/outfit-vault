@@ -140,7 +140,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         // use case 3: image analysis - image editing
         ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .setTargetRotation(previewView.getDisplay().getRotation())
+                .setTargetRotation(Surface.ROTATION_0)
                 .build();
 
         Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, imageCapture, preview, imageAnalysis);
