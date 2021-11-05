@@ -107,7 +107,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private void instantiateImageView() {
-        ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
+        ImageView ivOutfit = findViewById(R.id.iv_outfit_create);
 
         String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
@@ -142,7 +142,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private Outfit compileOutfitDetails() {
-        EditText etDescription = findViewById(R.id.et_description_outfit_view);
+        EditText etDescription = findViewById(R.id.et_description_outfit_create);
         String description = etDescription.getText().toString();
 
         Spinner spnSeason = findViewById(R.id.spnSeason);
