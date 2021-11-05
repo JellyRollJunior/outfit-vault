@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/outfitCreateIV"
+            android:id="@+id/outfitViewIV"
             android:layout_width="300dp"
             android:layout_height="450dp"
             android:contentDescription="@string/outfit_image_content_description"
