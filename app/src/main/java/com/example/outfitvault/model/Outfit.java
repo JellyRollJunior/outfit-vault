@@ -1,5 +1,7 @@
 package com.example.outfitvault.model;
 
+import androidx.annotation.NonNull;
+
 import com.example.outfitvault.types.Season;
 
 public class Outfit {
@@ -58,6 +60,7 @@ public class Outfit {
         this.favorite = favorite;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Outfit{" +

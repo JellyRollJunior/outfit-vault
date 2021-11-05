@@ -32,9 +32,10 @@ import com.example.outfitvault.model.PhotoHelper;
 import com.example.outfitvault.types.Season;
 
 public class OutfitCreateActivity extends AppCompatActivity {
+    private final String TAG = "com.example.outfitvault.OutfitCreateActivity";
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
     private static final int CAMERA_REQUEST_CODE = 10;
-    private final String TAG = "com.example.outfitvault.OutfitCreateActivity";
+
     private boolean isFavorite = false;
     private String photoName;
 
@@ -56,31 +57,63 @@ public class OutfitCreateActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void instantiateImageView() {
-        ImageView iv = findViewById(R.id.outfitViewIV);
-
-        String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
-        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-
-        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
-        iv.setImageBitmap(rotatedBitmap);
-    }
-
     private void populateSpinnerWithSeasons() {
-        Spinner seasonSpinner = findViewById(R.id.outfitCreateSeasonSpinner);
+        Spinner spinnerSeason = findViewById(R.id.outfitCreateSeasonSpinner);
         ArrayAdapter<Season> spinnerAdapter = new ArrayAdapter<Season>(
                 OutfitCreateActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 Season.values()
         );
-        seasonSpinner.setAdapter(spinnerAdapter);
+        spinnerSeason.setAdapter(spinnerAdapter);
     }
 
     private void wireFavoriteButton() {
-        Button favoriteBtn = findViewById(R.id.outfitCreateSetFavoriteButton);
-        favoriteBtn.setOnClickListener(view -> {
+        Button btnFavorite = findViewById(R.id.outfitCreateSetFavoriteButton);
+        btnFavorite.setOnClickListener(view -> {
             isFavorite = !isFavorite;
         });
+    }
+
+    private void wireSetImageButton() {
+        ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+
+                        if (data != null) {
+                            photoName = CameraActivity.getImageNameFromCameraActivity(data);
+                            Toast.makeText(OutfitCreateActivity.this, "from camera: imageName is " + photoName, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.d(TAG, "onCreate: " + result.toString());
+                    }
+                }
+        );
+
+        Button btnSetImage = findViewById(R.id.outfitCreateSetImageButton);
+        btnSetImage.setOnClickListener(view -> {
+            if (hasCameraPermission()) {
+                enableCamera(cameraActivityResultLauncher);
+            } else {
+                requestPermission();
+            }
+        });
+    }
+
+    private void enableCamera(ActivityResultLauncher<Intent> cameraActivityResultLauncher) {
+        Intent intent = CameraActivity.makeIntent(OutfitCreateActivity.this);
+        cameraActivityResultLauncher.launch(intent);
+    }
+
+    private void instantiateImageView() {
+        ImageView ivOutfit = findViewById(R.id.outfitViewIV);
+
+        String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
+
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
+        ivOutfit.setImageBitmap(rotatedBitmap);
     }
 
     @Override
@@ -108,54 +141,27 @@ public class OutfitCreateActivity extends AppCompatActivity {
         }
     }
 
+    private Outfit compileOutfitDetails() {
+        EditText etDescription = findViewById(R.id.outfitCreateDescriptionET);
+        String description = etDescription.getText().toString();
+
+        Spinner spinnerSeason = findViewById(R.id.outfitCreateSeasonSpinner);
+        Season season = (Season) spinnerSeason.getSelectedItem();
+
+        Outfit newOutfit = new Outfit(100, photoName, description, season, isFavorite);
+
+        // debug
+        Log.d(TAG, "compileOutfitDetails: " + newOutfit.toString());
+        return newOutfit;
+    }
+
     private boolean addToDatabase(Outfit newOutfit) {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(OutfitCreateActivity.this);
         return dataBaseHelper.addOne(newOutfit);
     }
 
-    private Outfit compileOutfitDetails() {
-        EditText editTextDescription = findViewById(R.id.outfitCreateDescriptionET);
-        String description = editTextDescription.getText().toString();
-
-        Spinner seasonSpinner = findViewById(R.id.outfitCreateSeasonSpinner);
-        Season season = (Season) seasonSpinner.getSelectedItem();
-
-        Outfit newOutfit = new Outfit(100, photoName, description, season, isFavorite);
-
-        // debug
-//        Toast.makeText(OutfitCreateActivity.this, newOutfit.toString(), Toast.LENGTH_LONG).show();
-        return newOutfit;
-    }
-
     public static Intent makeIntent(Context context) {
         return new Intent(context, OutfitCreateActivity.class);
-    }
-
-    private void wireSetImageButton() {
-        ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-
-                        if (data != null) {
-                            photoName = CameraActivity.getImageNameFromCameraActivity(data);
-                            Toast.makeText(OutfitCreateActivity.this, "from camera: imageName is " + photoName, Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Log.d(TAG, "onCreate: " + result.toString());
-                    }
-                }
-        );
-
-        Button setImageButton = findViewById(R.id.outfitCreateSetImageButton);
-        setImageButton.setOnClickListener(view -> {
-            if (hasCameraPermission()) {
-                enableCamera(cameraActivityResultLauncher);
-            } else {
-                requestPermission();
-            }
-        });
     }
 
     private boolean hasCameraPermission() {
@@ -172,11 +178,6 @@ public class OutfitCreateActivity extends AppCompatActivity {
                 CAMERA_PERMISSION,
                 CAMERA_REQUEST_CODE
         );
-    }
-
-    private void enableCamera(ActivityResultLauncher<Intent> cameraActivityResultLauncher) {
-        Intent intent = CameraActivity.makeIntent(OutfitCreateActivity.this);
-        cameraActivityResultLauncher.launch(intent);
     }
 
 

@@ -2,9 +2,7 @@ package com.example.outfitvault;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,7 +12,6 @@ import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         instantiateDatabase();
         displayOnRecView(outfits);
         wireAddOutfitFloatingActionButton();
-
     }
 
     @Override
@@ -48,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void wireAddOutfitFloatingActionButton() {
         FloatingActionButton fabAddButton = findViewById(R.id.fabAddOutfit);
+
         fabAddButton.setOnClickListener(view -> {
             Intent intent = OutfitCreateActivity.makeIntent(MainActivity.this);
             startActivity(intent);
@@ -59,12 +56,13 @@ public class MainActivity extends AppCompatActivity {
         outfits = dataBaseHelper.getAll();
 
         // debug
-//        Log.d(TAG, "instantiateDatabase: " + outfits.toString());
+        Log.d(TAG, "instantiateDatabase: " + outfits.toString());
     }
 
     private void displayOnRecView(List<Outfit> outfits) {
         RecyclerView rvDisplayOutfits = findViewById(R.id.rvDisplayOutfits);
         OutfitRecViewAdapter rvAdapter = new OutfitRecViewAdapter(MainActivity.this, outfits);
+
         rvDisplayOutfits.setAdapter(rvAdapter);
         rvDisplayOutfits.setLayoutManager(new GridLayoutManager(MainActivity.this, NUM_COLS));
     }
@@ -72,27 +70,10 @@ public class MainActivity extends AppCompatActivity {
 }
 
 /*
-    // SQLITE db add debug
-    DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-    boolean successAdd = dataBaseHelper.addOne(outfit);
-    if (successAdd) {
-        Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
-    }
-
-    // sample data
-    Outfit outfit = new Outfit(100, "newIMAGE!", "it's a new image", Season.SPRING, false);
-    Outfit outfit2 = new Outfit(200, "yup new image", "omg its a new image", Season.FALL, true);
-    dataBaseHelper.addOne(outfit);
-    dataBaseHelper.addOne(outfit2);
-
     // SQLITE db delete debug
     Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING, false);
     boolean successDel = dataBaseHelper.deleteOne(outfit);
     if (successDel) {
         Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
     }
-
-    // SQLITE db getALL debug
-    List<Outfit> outfits = dataBaseHelper.getAll();
-    Toast.makeText(MainActivity.this, outfits.toString(), Toast.LENGTH_LONG).show();
  */
