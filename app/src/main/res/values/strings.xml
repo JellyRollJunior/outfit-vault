@@ -5,8 +5,8 @@
     <string name="favorite">Favorite</string>
     <string name="edit">Edit</string>
     <string name="season">SEASON</string>
-    <string name="sampleParagraph">
-        Outter:
+    <string name="sample_outfit_description">
+        Outer:
         \nInner:
         \nBottom:
         \nSocks:
@@ -17,7 +17,7 @@
         \nEyewear:
         \nOther:
     </string>
-    <string name="outfit_image_content_description">Outfit Image</string>
+    <string name="iv_outfit_content_description">Outfit Image</string>
     <string name="main_activity_fab_content_description">add outfit</string>
     <string name="create_outfit">Create Outfit</string>
     <string name="take_photo">Take Photo</string>

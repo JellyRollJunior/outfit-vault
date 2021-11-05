@@ -8,10 +8,10 @@
     tools:context=".CameraActivity"
     android:screenOrientation="portrait"
     tools:ignore="LockedOrientationActivity"
-    android:id="@+id/cameraParent">
+    android:id="@+id/camera_parent">
 
     <Button
-        android:id="@+id/camera_capture_button"
+        android:id="@+id/btn_camera_capture"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="50dp"
@@ -23,7 +23,7 @@
         android:elevation="2dp" />
 
     <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinder"
+        android:id="@+id/view_finder"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

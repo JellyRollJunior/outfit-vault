@@ -46,7 +46,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
     }
 
     private void wireTakePhotoButton() {
-        Button takePhotoButton = findViewById(R.id.camera_capture_button);
+        Button takePhotoButton = findViewById(R.id.btn_camera_capture);
         takePhotoButton.setOnClickListener(view -> {
             takePhoto();
         });
@@ -124,7 +124,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                         .build();
 
         // use case 1: view finder mode
-        PreviewView previewView = findViewById(R.id.viewFinder);
+        PreviewView previewView = findViewById(R.id.view_finder);
         Preview preview =
                 new Preview.Builder()
                         .setTargetRotation(Surface.ROTATION_0)

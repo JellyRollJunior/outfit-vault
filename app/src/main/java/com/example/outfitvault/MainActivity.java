@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void wireAddOutfitFloatingActionButton() {
-        FloatingActionButton fabAddButton = findViewById(R.id.fabAddOutfit);
+        FloatingActionButton fabAddButton = findViewById(R.id.fab_add_outfits);
 
         fabAddButton.setOnClickListener(view -> {
             Intent intent = OutfitCreateActivity.makeIntent(MainActivity.this);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayOnRecView(List<Outfit> outfits) {
-        RecyclerView rvDisplayOutfits = findViewById(R.id.rvDisplayOutfits);
+        RecyclerView rvDisplayOutfits = findViewById(R.id.rv_display_outfits);
         OutfitRecViewAdapter rvAdapter = new OutfitRecViewAdapter(MainActivity.this, outfits);
 
         rvDisplayOutfits.setAdapter(rvAdapter);

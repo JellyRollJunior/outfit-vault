@@ -58,17 +58,17 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private void populateSpinnerWithSeasons() {
-        Spinner spinnerSeason = findViewById(R.id.outfitCreateSeasonSpinner);
+        Spinner spnSeason = findViewById(R.id.spnSeason);
         ArrayAdapter<Season> spinnerAdapter = new ArrayAdapter<Season>(
                 OutfitCreateActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 Season.values()
         );
-        spinnerSeason.setAdapter(spinnerAdapter);
+        spnSeason.setAdapter(spinnerAdapter);
     }
 
     private void wireFavoriteButton() {
-        Button btnFavorite = findViewById(R.id.outfitCreateSetFavoriteButton);
+        Button btnFavorite = findViewById(R.id.btn_favorite_outfit_create);
         btnFavorite.setOnClickListener(view -> {
             isFavorite = !isFavorite;
         });
@@ -91,7 +91,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
                 }
         );
 
-        Button btnSetImage = findViewById(R.id.outfitCreateSetImageButton);
+        Button btnSetImage = findViewById(R.id.btn_take_photo);
         btnSetImage.setOnClickListener(view -> {
             if (hasCameraPermission()) {
                 enableCamera(cameraActivityResultLauncher);
@@ -107,7 +107,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private void instantiateImageView() {
-        ImageView ivOutfit = findViewById(R.id.outfitViewIV);
+        ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
 
         String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
@@ -126,7 +126,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
-            case R.id.outfitCreateMenuCreate:
+            case R.id.outfit_menu_create:
                 if (photoName != null) {
                     Outfit newOutfit = compileOutfitDetails();
                     if (addToDatabase(newOutfit)) {
@@ -142,11 +142,11 @@ public class OutfitCreateActivity extends AppCompatActivity {
     }
 
     private Outfit compileOutfitDetails() {
-        EditText etDescription = findViewById(R.id.outfitCreateDescriptionET);
+        EditText etDescription = findViewById(R.id.et_description_outfit_view);
         String description = etDescription.getText().toString();
 
-        Spinner spinnerSeason = findViewById(R.id.outfitCreateSeasonSpinner);
-        Season season = (Season) spinnerSeason.getSelectedItem();
+        Spinner spnSeason = findViewById(R.id.spnSeason);
+        Season season = (Season) spnSeason.getSelectedItem();
 
         Outfit newOutfit = new Outfit(100, photoName, description, season, isFavorite);
 

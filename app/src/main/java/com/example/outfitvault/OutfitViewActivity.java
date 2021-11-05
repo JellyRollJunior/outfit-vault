@@ -37,16 +37,16 @@ public class OutfitViewActivity extends AppCompatActivity {
     }
 
     private void populateUIWithOutfitDetails() {
-        ImageView ivOutfit = findViewById(R.id.outfitViewIV);
+        ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
         String photoFilePath = PhotoHelper.getPhotoFile(OutfitViewActivity.this, currentOutfit.getImageName()).getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         ivOutfit.setImageBitmap(rotatedBitmap);
 
-        TextView tvSeason = findViewById(R.id.tvSeason);
+        TextView tvSeason = findViewById(R.id.tv_season);
         tvSeason.setText(currentOutfit.getSeason().toString());
 
-        TextView tvDescription = findViewById(R.id.outfitCreateDescriptionET);
+        TextView tvDescription = findViewById(R.id.et_description_outfit_view);
         tvDescription.setText(currentOutfit.getDescription());
     }
 

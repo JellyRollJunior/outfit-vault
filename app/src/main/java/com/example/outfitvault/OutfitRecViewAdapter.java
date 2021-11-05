@@ -66,8 +66,8 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivOutfit = itemView.findViewById(R.id.mainRVOutfitImage);
-            parent = itemView.findViewById(R.id.rvCardView);
+            ivOutfit = itemView.findViewById(R.id.iv_recycler_item);
+            parent = itemView.findViewById(R.id.cv_recycler_item);
         }
     }
 }
