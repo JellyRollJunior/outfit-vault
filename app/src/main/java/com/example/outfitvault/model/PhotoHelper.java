@@ -3,11 +3,8 @@ package com.example.outfitvault.model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.nfc.Tag;
 import android.os.Environment;
 import android.util.Log;
-
-import com.google.android.material.tabs.TabLayout;
 
 import java.io.File;
 
@@ -26,5 +23,4 @@ public class PhotoHelper {
         Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
         return new File(imageFilePathName);
     }
-
 }

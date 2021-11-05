@@ -8,27 +8,29 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDisplayOutfits"
+        android:id="@+id/rv_display_outfits"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddOutfit"
+        android:id="@+id/fab_add_outfits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_24_light_grey"
         android:backgroundTint="#ffff4444"
         app:backgroundTint="@null"
+        app:srcCompat="@drawable/ic_baseline_add_24_light_grey"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="@string/main_activity_fab_content_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

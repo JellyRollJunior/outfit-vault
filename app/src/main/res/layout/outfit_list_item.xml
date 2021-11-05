@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_margin="5dp"
-    android:id="@+id/rvCardView"
+    android:id="@+id/cv_recycler_item"
     app:cardElevation="5dp"
     app:cardCornerRadius="5dp">
 
@@ -14,11 +14,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/mainRVOutfitImage"
+            android:id="@+id/iv_recycler_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/ic_launcher_background"
-            android:contentDescription="@string/outfit_image_content_description" />
+            android:contentDescription="@string/iv_outfit_content_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

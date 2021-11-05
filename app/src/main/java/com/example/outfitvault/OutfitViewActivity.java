@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +18,8 @@ import com.example.outfitvault.model.PhotoHelper;
 
 public class OutfitViewActivity extends AppCompatActivity {
 
-    private static final String OUTFIT_ID = "com.example.outfitvault.OutfitViewActivity - outfitID";
+    private static final String EXTRA_OUTFIT_ID = "com.example.outfitvault.OutfitViewActivity - outfitID";
+    private static final String TAG = "com.example.outfitvault.OutfitViewActivity";
     private Outfit currentOutfit;
     private DataBaseHelper dataBaseHelper;
 
@@ -31,41 +32,39 @@ public class OutfitViewActivity extends AppCompatActivity {
         populateUIWithOutfitDetails();
 
         // debug
-        Toast.makeText(OutfitViewActivity.this, "THE NUMBER IS: " + getExtraCurrentOutfitID(), Toast.LENGTH_LONG).show();
+        Log.d(TAG, "onCreate: " + getExtraCurrentOutfitID());
+        Toast.makeText(OutfitViewActivity.this, "Outfit ID: " + getExtraCurrentOutfitID(), Toast.LENGTH_LONG).show();
     }
 
     private void populateUIWithOutfitDetails() {
-        // set image with image name
-        ImageView ivOutfit = findViewById(R.id.outfitViewIV);
+        ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
         String photoFilePath = PhotoHelper.getPhotoFile(OutfitViewActivity.this, currentOutfit.getImageName()).getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         ivOutfit.setImageBitmap(rotatedBitmap);
 
-        // set favorite button style with favorite
-
-        TextView tvSeason = findViewById(R.id.tvSeason);
+        TextView tvSeason = findViewById(R.id.tv_season);
         tvSeason.setText(currentOutfit.getSeason().toString());
 
-        TextView tvDescription = findViewById(R.id.outfitCreateDescriptionET);
+        TextView tvDescription = findViewById(R.id.et_description_outfit_view);
         tvDescription.setText(currentOutfit.getDescription());
     }
 
     private void instantiateVariables() {
-        dataBaseHelper = new DataBaseHelper(OutfitViewActivity.this);
         int currentOutfitID = getExtraCurrentOutfitID();
+
+        dataBaseHelper = new DataBaseHelper(OutfitViewActivity.this);
         currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
     }
 
     private int getExtraCurrentOutfitID() {
         Intent i = getIntent();
-        return i.getIntExtra(OUTFIT_ID, -1);
+        return i.getIntExtra(EXTRA_OUTFIT_ID, -1);
     }
 
     public static Intent makeIntent(Context context, int outfitID) {
         Intent intent = new Intent(context, OutfitViewActivity.class);
-        intent.putExtra(OUTFIT_ID, outfitID);
+        intent.putExtra(EXTRA_OUTFIT_ID, outfitID);
         return intent;
     }
 }

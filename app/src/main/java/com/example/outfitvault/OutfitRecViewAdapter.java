@@ -20,8 +20,8 @@ import java.util.List;
 
 public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdapter.ViewHolder>{
     private static final String TAG = "com.example.outfitvault.OutfitRecViewAdapter";
-    private List<Outfit> outfits;
-    private Context context;
+    private final List<Outfit> outfits;
+    private final Context context;
 
     public OutfitRecViewAdapter(Context context, List<Outfit> outfits) {
         this.context = context;
@@ -45,7 +45,7 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
 
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
-        holder.outfitImage.setImageBitmap(rotatedBitmap);
+        holder.ivOutfit.setImageBitmap(rotatedBitmap);
 
         // move to outfit details on click
         holder.parent.setOnClickListener(view -> {
@@ -61,13 +61,13 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView outfitImage;
+        private final ImageView ivOutfit;
         private final MaterialCardView parent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            outfitImage = itemView.findViewById(R.id.mainRVOutfitImage);
-            parent = itemView.findViewById(R.id.rvCardView);
+            ivOutfit = itemView.findViewById(R.id.iv_recycler_item);
+            parent = itemView.findViewById(R.id.cv_recycler_item);
         }
     }
 }

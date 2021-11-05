@@ -5,96 +5,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OutfitViewActivity"
     android:layout_margin="5dp"
     app:cardElevation="5dp"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp"
+    tools:context=".OutfitViewActivity" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/outfitViewIV"
+            android:id="@+id/iv_outfit_view"
             android:layout_width="300dp"
             android:layout_height="450dp"
+            app:srcCompat="@drawable/ic_launcher_background"
+            android:contentDescription="@string/iv_outfit_content_description"
             android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/outfitCreateHorGL"
+
+            app:layout_constraintBottom_toTopOf="@+id/gl_hor_outfit_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:contentDescription="@string/outfit_image_content_description" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/outfitCreateHorGL"
+            android:id="@+id/gl_hor_outfit_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
 
         <Button
-            android:id="@+id/btnDeleteOutfit"
+            android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btnFavoriteOutfit"
-            app:layout_constraintEnd_toStartOf="@+id/btnFavoriteOutfit"
+
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_favorite_outfit_view"
+            app:layout_constraintEnd_toStartOf="@+id/btn_favorite_outfit_view"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btnFavoriteOutfit"
+            android:id="@+id/btn_favorite_outfit_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/favorite"
-            app:layout_constraintEnd_toStartOf="@+id/btnEditOutfit"
+
+            app:layout_constraintEnd_toStartOf="@+id/btn_edit"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnDeleteOutfit"
-            app:layout_constraintTop_toTopOf="@+id/outfitCreateHorGL" />
+            app:layout_constraintStart_toEndOf="@+id/btn_delete"
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view" />
 
         <Button
-            android:id="@+id/btnEditOutfit"
+            android:id="@+id/btn_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btnFavoriteOutfit"
+
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_favorite_outfit_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnFavoriteOutfit" />
+            app:layout_constraintStart_toEndOf="@+id/btn_favorite_outfit_view" />
 
 
         <ScrollView
-            android:id="@+id/outfitCreateDescriptionSV"
+            android:id="@+id/sv_outfit_view"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+
             android:layout_margin="5dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnFavoriteOutfit">
+            app:layout_constraintTop_toBottomOf="@+id/btn_favorite_outfit_view">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tvSeason"
+                    android:id="@+id/tv_season"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:text="@string/season"
-                    app:layout_constraintBottom_toTopOf="@+id/outfitCreateDescriptionET"
+
+                    android:layout_marginBottom="5dp"
+                    app:layout_constraintBottom_toTopOf="@+id/et_description_outfit_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/outfitCreateDescriptionET"
+                    android:id="@+id/et_description_outfit_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/sampleParagraph"
+                    android:text="@string/sample_outfit_description"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

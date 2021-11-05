@@ -32,9 +32,10 @@ import com.example.outfitvault.model.PhotoHelper;
 import com.example.outfitvault.types.Season;
 
 public class OutfitCreateActivity extends AppCompatActivity {
+    private final String TAG = "com.example.outfitvault.OutfitCreateActivity";
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
     private static final int CAMERA_REQUEST_CODE = 10;
-    private final String TAG = "com.example.outfitvault.OutfitCreateActivity";
+
     private boolean isFavorite = false;
     private String photoName;
 
@@ -56,79 +57,21 @@ public class OutfitCreateActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void instantiateImageView() {
-        ImageView iv = findViewById(R.id.outfitViewIV);
-
-        String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
-        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-
-        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
-        iv.setImageBitmap(rotatedBitmap);
-    }
-
     private void populateSpinnerWithSeasons() {
-        Spinner seasonSpinner = findViewById(R.id.outfitCreateSeasonSpinner);
+        Spinner spnSeason = findViewById(R.id.spnSeason);
         ArrayAdapter<Season> spinnerAdapter = new ArrayAdapter<Season>(
                 OutfitCreateActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 Season.values()
         );
-        seasonSpinner.setAdapter(spinnerAdapter);
+        spnSeason.setAdapter(spinnerAdapter);
     }
 
     private void wireFavoriteButton() {
-        Button favoriteBtn = findViewById(R.id.outfitCreateSetFavoriteButton);
-        favoriteBtn.setOnClickListener(view -> {
+        Button btnFavorite = findViewById(R.id.btn_favorite_outfit_create);
+        btnFavorite.setOnClickListener(view -> {
             isFavorite = !isFavorite;
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_outfit_create, menu);
-        return true;
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.outfitCreateMenuCreate:
-                if (photoName != null) {
-                    Outfit newOutfit = compileOutfitDetails();
-                    if (addToDatabase(newOutfit)) {
-                        Toast.makeText(OutfitCreateActivity.this, "Successfully added", Toast.LENGTH_SHORT).show();
-                    }
-                    finish();
-                } else {
-                    Toast.makeText(OutfitCreateActivity.this, "Take photo first!", Toast.LENGTH_SHORT).show();
-                }
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private boolean addToDatabase(Outfit newOutfit) {
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(OutfitCreateActivity.this);
-        return dataBaseHelper.addOne(newOutfit);
-    }
-
-    private Outfit compileOutfitDetails() {
-        EditText editTextDescription = findViewById(R.id.outfitCreateDescriptionET);
-        String description = editTextDescription.getText().toString();
-
-        Spinner seasonSpinner = findViewById(R.id.outfitCreateSeasonSpinner);
-        Season season = (Season) seasonSpinner.getSelectedItem();
-
-        Outfit newOutfit = new Outfit(100, photoName, description, season, isFavorite);
-
-        // debug
-//        Toast.makeText(OutfitCreateActivity.this, newOutfit.toString(), Toast.LENGTH_LONG).show();
-        return newOutfit;
-    }
-
-    public static Intent makeIntent(Context context) {
-        return new Intent(context, OutfitCreateActivity.class);
     }
 
     private void wireSetImageButton() {
@@ -148,14 +91,77 @@ public class OutfitCreateActivity extends AppCompatActivity {
                 }
         );
 
-        Button setImageButton = findViewById(R.id.outfitCreateSetImageButton);
-        setImageButton.setOnClickListener(view -> {
+        Button btnSetImage = findViewById(R.id.btn_take_photo);
+        btnSetImage.setOnClickListener(view -> {
             if (hasCameraPermission()) {
                 enableCamera(cameraActivityResultLauncher);
             } else {
                 requestPermission();
             }
         });
+    }
+
+    private void enableCamera(ActivityResultLauncher<Intent> cameraActivityResultLauncher) {
+        Intent intent = CameraActivity.makeIntent(OutfitCreateActivity.this);
+        cameraActivityResultLauncher.launch(intent);
+    }
+
+    private void instantiateImageView() {
+        ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
+
+        String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
+
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
+        ivOutfit.setImageBitmap(rotatedBitmap);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_outfit_create, menu);
+        return true;
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.outfit_menu_create:
+                if (photoName != null) {
+                    Outfit newOutfit = compileOutfitDetails();
+                    if (addToDatabase(newOutfit)) {
+                        Toast.makeText(OutfitCreateActivity.this, "Successfully added", Toast.LENGTH_SHORT).show();
+                    }
+                    finish();
+                } else {
+                    Toast.makeText(OutfitCreateActivity.this, "Take photo first!", Toast.LENGTH_SHORT).show();
+                }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private Outfit compileOutfitDetails() {
+        EditText etDescription = findViewById(R.id.et_description_outfit_view);
+        String description = etDescription.getText().toString();
+
+        Spinner spnSeason = findViewById(R.id.spnSeason);
+        Season season = (Season) spnSeason.getSelectedItem();
+
+        Outfit newOutfit = new Outfit(100, photoName, description, season, isFavorite);
+
+        // debug
+        Log.d(TAG, "compileOutfitDetails: " + newOutfit.toString());
+        return newOutfit;
+    }
+
+    private boolean addToDatabase(Outfit newOutfit) {
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(OutfitCreateActivity.this);
+        return dataBaseHelper.addOne(newOutfit);
+    }
+
+    public static Intent makeIntent(Context context) {
+        return new Intent(context, OutfitCreateActivity.class);
     }
 
     private boolean hasCameraPermission() {
@@ -172,11 +178,6 @@ public class OutfitCreateActivity extends AppCompatActivity {
                 CAMERA_PERMISSION,
                 CAMERA_REQUEST_CODE
         );
-    }
-
-    private void enableCamera(ActivityResultLauncher<Intent> cameraActivityResultLauncher) {
-        Intent intent = CameraActivity.makeIntent(OutfitCreateActivity.this);
-        cameraActivityResultLauncher.launch(intent);
     }
 
 

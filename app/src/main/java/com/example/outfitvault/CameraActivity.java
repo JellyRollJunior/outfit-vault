@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Surface;
 import android.widget.Button;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ import java.util.concurrent.Executor;
 
 public class CameraActivity extends AppCompatActivity implements ImageAnalysis.Analyzer {
     public static final String EXTRA_IMAGE_NAME = "com.example.outfitvault.CameraActivity - imageName";
+    private static final String TAG = "com.example.outfitvault.CameraActivity";
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ImageCapture imageCapture;
 
@@ -44,7 +46,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
     }
 
     private void wireTakePhotoButton() {
-        Button takePhotoButton = findViewById(R.id.camera_capture_button);
+        Button takePhotoButton = findViewById(R.id.btn_camera_capture);
         takePhotoButton.setOnClickListener(view -> {
             takePhoto();
         });
@@ -60,10 +62,10 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                 new ImageCapture.OnImageSavedCallback() {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-//                        Toast.makeText(CameraActivity.this, "Image has been saved successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CameraActivity.this, "Image has been saved successfully", Toast.LENGTH_SHORT).show();
 
                         // debug
-                        Toast.makeText(CameraActivity.this, "Image: " + photoName + " has been saved successfully.", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onImageSaved: " + "Image: " + photoName);
                         passImageNameToOutfitCreateActivity(photoName);
                     }
 
@@ -84,7 +86,6 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         Intent intent = new Intent();
         intent.putExtra(EXTRA_IMAGE_NAME, photoName);
         setResult(Activity.RESULT_OK, intent);
-//        finish();
     }
 
     private Executor getExecutor() {
@@ -96,8 +97,6 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         return intent;
     }
 
-    // hold option + move mouse key to look around
-    // wasd to move around
     private void startCamera() {
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
@@ -125,7 +124,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                         .build();
 
         // use case 1: view finder mode
-        PreviewView previewView = findViewById(R.id.viewFinder);
+        PreviewView previewView = findViewById(R.id.view_finder);
         Preview preview =
                 new Preview.Builder()
                         .setTargetRotation(Surface.ROTATION_0)
