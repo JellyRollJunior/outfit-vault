@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,7 +55,11 @@ public class OutfitViewActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dataBaseHelper = new DataBaseHelper(OutfitViewActivity.this);
-                                dataBaseHelper.deleteOne(currentOutfit.getID());
+                                if (dataBaseHelper.deleteOne(currentOutfit.getID())){
+                                    Toast.makeText(OutfitViewActivity.this, R.string.successful_delete, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(OutfitViewActivity.this, R.string.error_deleting_outfit, Toast.LENGTH_SHORT).show();
+                                }
                                 finish();
                             }
                         })

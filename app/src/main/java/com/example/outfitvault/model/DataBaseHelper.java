@@ -21,7 +21,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
     public static final String COLUMN_SEASON = "SEASON";
     private static final String COLUMN_FAVORITE = "FAVORITE" ;
-    private final String TAG = "com.example.outfitvault.model.databasehelper";
+    private final String TAG = "com.example.outfitvault.model.DatabaseHelper";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "outfit.db", null, 1);
@@ -31,12 +31,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // by using AUTOINCREMENT, any value passed to columnID is useless as it gets overwritten
-        String createTableStatement = "CREATE TABLE " + OUTFIT_TABLE + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_IMAGE_NAME + " TEXT, " +
-                COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_SEASON + " TEXT, " +
-                COLUMN_FAVORITE + " BOOL)";
+        String createTableStatement =
+                    "CREATE TABLE " + OUTFIT_TABLE + " (" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_IMAGE_NAME + " TEXT, " +
+                    COLUMN_DESCRIPTION + " TEXT, " +
+                    COLUMN_SEASON + " TEXT, " +
+                    COLUMN_FAVORITE + " BOOL)";
 
         sqLiteDatabase.execSQL(createTableStatement);
     }
@@ -62,19 +63,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteOne(int ID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + OUTFIT_TABLE +
-                " WHERE " + COLUMN_ID + " = " + ID;
+        String queryString =
+                    "DELETE FROM " + OUTFIT_TABLE + " " +
+                    "WHERE " + COLUMN_ID + " = " + ID;
 
         Cursor cursor = db.rawQuery(queryString, null);
 
         // rawQuery returns deleted item. if deleted item is present in cursor, success!
-        return cursor.moveToFirst();
+        boolean deleteSuccess = cursor.moveToFirst();
+        cursor.close();
+        return deleteSuccess;
     }
 
     public Outfit getOutfitFromID(int ID) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + OUTFIT_TABLE +
-                " WHERE " + COLUMN_ID + " = " + ID;
+        String queryString =
+                    "SELECT * " +
+                    "FROM " + OUTFIT_TABLE + " " +
+                    "WHERE " + COLUMN_ID + " = " + ID;
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> tempOutfitList = cursorToList(cursor);
@@ -89,7 +95,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public List<Outfit> getAll() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + OUTFIT_TABLE;
+        String queryString =
+                    "SELECT * " +
+                    "FROM " + OUTFIT_TABLE + " " +
+                    "ORDER BY " +
+                        "CASE " + COLUMN_SEASON + " " +
+                            "WHEN '" + Season.FALL.toString() + "' THEN 0 " +
+                            "WHEN '" + Season.WINTER.toString() + "' THEN 1 " +
+                            "WHEN '" + Season.SPRING.toString() + "' THEN 2 " +
+                            "WHEN '" + Season.SUMMER.toString() + "' THEN 3 " +
+                        "END ";
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> returnList = cursorToList(cursor);

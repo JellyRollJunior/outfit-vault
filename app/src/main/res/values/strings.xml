@@ -24,4 +24,6 @@
     <string name="delete_outfit">Delete outfit</string>
     <string name="delete_outfit_confirmation">Are you sure you want to permanently delete this outfit?</string>
     <string name="cancel">Cancel</string>
+    <string name="successful_delete">Successfully deleted outfit</string>
+    <string name="error_deleting_outfit">Error deleting outfit</string>
 </resources>
