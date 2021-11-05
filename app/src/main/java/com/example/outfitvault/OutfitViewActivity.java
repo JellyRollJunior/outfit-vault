@@ -1,20 +1,22 @@
 package com.example.outfitvault;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.model.PhotoHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class OutfitViewActivity extends AppCompatActivity {
 
@@ -29,14 +31,38 @@ public class OutfitViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_outfit_view);
 
         instantiateVariables();
-        populateUIWithOutfitDetails();
+        populateOutfitUI();
+        wireDeleteButton();
 
         // debug
-        Log.d(TAG, "onCreate: " + getExtraCurrentOutfitID());
-        Toast.makeText(OutfitViewActivity.this, "Outfit ID: " + getExtraCurrentOutfitID(), Toast.LENGTH_LONG).show();
+        Log.d(TAG, "onCreate: Outfit ID: " + getExtraCurrentOutfitID());
     }
 
-    private void populateUIWithOutfitDetails() {
+    private void wireDeleteButton() {
+        Button btnDelete = findViewById(R.id.btn_delete);
+        btnDelete.setOnClickListener(view -> {
+            new MaterialAlertDialogBuilder(OutfitViewActivity.this)
+                        .setTitle("Delete outfit")
+                        .setMessage("Are you sure you want to permanently delete this outfit?")
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // do nothing
+                            }
+                        })
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dataBaseHelper = new DataBaseHelper(OutfitViewActivity.this);
+                                dataBaseHelper.deleteOne(currentOutfit.getID());
+                                finish();
+                            }
+                        })
+                        .show();
+        });
+    }
+
+    private void populateOutfitUI() {
         ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
         String photoFilePath = PhotoHelper.getPhotoFile(OutfitViewActivity.this, currentOutfit.getImageName()).getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);

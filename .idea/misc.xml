@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.325" />
+        <entry key="../../../../Library/Android/sdk/platforms/android-31/data/res/layout/select_dialog_multichoice.xml" value="0.12817028985507245" />
+        <entry key="../../../../Library/Android/sdk/platforms/android-31/data/res/layout/select_dialog_singlechoice.xml" value="0.12817028985507245" />
         <entry key="app/src/main/res/layout/activity_camera.xml" value="0.13677811550151975" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3157894736842105" />
         <entry key="app/src/main/res/layout/activity_outfit_create.xml" value="0.3098958333333333" />
