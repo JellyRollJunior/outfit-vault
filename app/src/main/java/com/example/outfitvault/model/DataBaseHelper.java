@@ -21,7 +21,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
     public static final String COLUMN_SEASON = "SEASON";
     private static final String COLUMN_FAVORITE = "FAVORITE" ;
-    private final String TAG = "com.example.outfitvault.model.databasehelper";
+    private final String TAG = "com.example.outfitvault.model.DatabaseHelper";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "outfit.db", null, 1);
@@ -70,7 +70,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
 
         // rawQuery returns deleted item. if deleted item is present in cursor, success!
-        return cursor.moveToFirst();
+        boolean deleteSuccess = cursor.moveToFirst();
+        cursor.close();
+        return deleteSuccess;
     }
 
     public Outfit getOutfitFromID(int ID) {
@@ -96,7 +98,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String queryString =
                     "SELECT * " +
                     "FROM " + OUTFIT_TABLE + " " +
-                    "GROUP BY " + COLUMN_SEASON;;
+                    "GROUP BY " + COLUMN_SEASON;
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> returnList = cursorToList(cursor);
