@@ -98,7 +98,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String queryString =
                     "SELECT * " +
                     "FROM " + OUTFIT_TABLE + " " +
-                    "GROUP BY " + COLUMN_SEASON;
+                    "ORDER BY " +
+                        "CASE " + COLUMN_SEASON + " " +
+                            "WHEN '" + Season.FALL.toString() + "' THEN 0 " +
+                            "WHEN '" + Season.WINTER.toString() + "' THEN 1 " +
+                            "WHEN '" + Season.SPRING.toString() + "' THEN 2 " +
+                            "WHEN '" + Season.SUMMER.toString() + "' THEN 3 " +
+                        "END ";
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> returnList = cursorToList(cursor);
