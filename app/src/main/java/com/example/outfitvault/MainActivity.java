@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.nav_charts:
+                        selectedFragment = new ChartFragment();
                         break;
                     case R.id.nav_home:
                         selectedFragment = HomeFragment.displayOnlyFavorites(false);
