@@ -26,4 +26,8 @@
     <string name="cancel">Cancel</string>
     <string name="successful_delete">Successfully deleted outfit</string>
     <string name="error_deleting_outfit">Error deleting outfit</string>
+    <string name="charts">Charts</string>
+    <string name="home">Home</string>
+    <string name="favorites">Favorites</string>
+    <string name="places">Places</string>
 </resources>
