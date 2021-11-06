@@ -22,23 +22,29 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     public static final int NUM_COLS = 3;
-    private final String TAG = "com.example.outfitvault.MainActivity";
+    private final String TAG = "com.example.outfitvault.MainActivity.HomeFragment";
     private List<Outfit> outfits = new ArrayList<>();
     private DataBaseHelper dataBaseHelper;
+
+    FloatingActionButton fabAddButton;
+    RecyclerView rvDisplayOutfits;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+
+        instantiateViews(view);
+        instantiateDatabase();
+        displayOnRecView(outfits);
+        wireAddOutfitFloatingActionButton();
+
+        return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //instantiateDatabase();
-        //displayOnRecView(outfits);
-        //wireAddOutfitFloatingActionButton();
+    private void instantiateViews(View view) {
+        fabAddButton = view.findViewById(R.id.fab_add_outfits);
+        rvDisplayOutfits = view.findViewById(R.id.rv_display_outfits2);
     }
 
     @Override
@@ -53,8 +59,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void wireAddOutfitFloatingActionButton() {
-        FloatingActionButton fabAddButton = getActivity().findViewById(R.id.fab_add_outfits);
-
         fabAddButton.setOnClickListener(view -> {
             Intent intent = OutfitCreateActivity.makeIntent(getActivity());
             startActivity(intent);
@@ -70,7 +74,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void displayOnRecView(List<Outfit> outfits) {
-        RecyclerView rvDisplayOutfits = getActivity().findViewById(R.id.rv_display_outfits);
         OutfitRecViewAdapter rvAdapter = new OutfitRecViewAdapter(getActivity(), outfits);
 
         rvDisplayOutfits.setAdapter(rvAdapter);
