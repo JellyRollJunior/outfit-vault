@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,24 +23,45 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     public static final int NUM_COLS = 3;
-    private final String TAG = "com.example.outfitvault.MainActivity.HomeFragment";
+    private static final String EXTRA_DISPLAY_FAVORITE = "com.example.outfitvault.MainActivity.HomeFragment - display favorite";
+    private static final String TAG = "com.example.outfitvault.MainActivity.HomeFragment";
+
     private List<Outfit> outfits = new ArrayList<>();
     private DataBaseHelper dataBaseHelper;
+    private FloatingActionButton fabAddButton;
+    private RecyclerView rvDisplayOutfits;
+    private boolean displayOnlyFavorites;
 
-    FloatingActionButton fabAddButton;
-    RecyclerView rvDisplayOutfits;
+    static HomeFragment displayOnlyFavorites(Boolean displayFavorite) {
+        HomeFragment homeFragment = new HomeFragment();
+
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putBoolean(EXTRA_DISPLAY_FAVORITE, displayFavorite);
+        homeFragment.setArguments(args);
+
+        return homeFragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
+        getExtra();
         instantiateViews(view);
-        instantiateDatabase();
+        instantiateDatabase(displayOnlyFavorites);
         displayOnRecView(outfits);
         wireAddOutfitFloatingActionButton();
 
         return view;
+    }
+
+    private void getExtra() {
+        if (getArguments() != null) {
+            displayOnlyFavorites = getArguments().getBoolean(EXTRA_DISPLAY_FAVORITE);
+            Toast.makeText(getContext(), "Display Only favorites: " + displayOnlyFavorites, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void instantiateViews(View view) {
@@ -54,7 +76,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void refreshRecyclerView() {
-        instantiateDatabase();
+        instantiateDatabase(displayOnlyFavorites);
         displayOnRecView(outfits);
     }
 
@@ -65,9 +87,15 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void instantiateDatabase() {
+    private void instantiateDatabase(boolean displayOnlyFavoritess) {
         dataBaseHelper = new DataBaseHelper(getActivity());
-        outfits = dataBaseHelper.getAll();
+
+        if (displayOnlyFavoritess) {
+            // get only favorites TODO: ADD GET FAVORITES TO DB
+            outfits = dataBaseHelper.getAllFavorites();
+        } else {
+            outfits = dataBaseHelper.getAll();
+        }
 
         // debug
         Log.d(TAG, "instantiateDatabase: " + outfits.toString());

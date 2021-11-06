@@ -11,7 +11,6 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_charts:
                         break;
                     case R.id.nav_home:
-                        selectedFragment = new HomeFragment();
+                        selectedFragment = HomeFragment.displayOnlyFavorites(false);
                         break;
                     case R.id.nav_favorites:
+                        selectedFragment = HomeFragment.displayOnlyFavorites(true);
                         break;
                     case R.id.nav_places:
                         break;
