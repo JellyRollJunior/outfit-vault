@@ -17,8 +17,7 @@
         android:id="@+id/nav_favorites"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="@string/favorites"
-        />
+        android:title="@string/favorites" />
 
     <item
         android:id="@+id/nav_places"
