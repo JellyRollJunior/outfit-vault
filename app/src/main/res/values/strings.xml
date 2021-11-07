@@ -30,4 +30,6 @@
     <string name="home">Home</string>
     <string name="favorites">Favorites</string>
     <string name="places">Places</string>
+    <string name="outfits_per_season">OUTFITS PER SEASON</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
