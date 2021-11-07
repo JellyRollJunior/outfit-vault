@@ -114,6 +114,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    public List<Outfit> getAllFavorites() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString =
+                "SELECT * " +
+                "FROM " + OUTFIT_TABLE + " " +
+                "WHERE " + COLUMN_FAVORITE + " = 1 " +
+                "ORDER BY " +
+                    "CASE " + COLUMN_SEASON + " " +
+                        "WHEN '" + Season.FALL.toString()   + "' THEN 0 " +
+                        "WHEN '" + Season.WINTER.toString() + "' THEN 1 " +
+                        "WHEN '" + Season.SPRING.toString() + "' THEN 2 " +
+                        "WHEN '" + Season.SUMMER.toString() + "' THEN 3 " +
+                    "END ";
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        List<Outfit> returnList = cursorToList(cursor);
+
+        cursor.close();
+        db.close();
+        return returnList;
+    }
+
     private List<Outfit> cursorToList(Cursor cursor) {
         List<Outfit> returnList = new ArrayList<>();
         if (cursor.moveToFirst()) {

@@ -1,71 +1,52 @@
 package com.example.outfitvault;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
-import com.example.outfitvault.model.DataBaseHelper;
-import com.example.outfitvault.model.Outfit;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int NUM_COLS = 3;
-    private final String TAG = "com.example.outfitvault.MainActivity";
-    private List<Outfit> outfits = new ArrayList<>();
-    private DataBaseHelper dataBaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // NEVER DELETE THIS LINE BY ACCIDENT OR CANT ACCESS VIEWS
 
-        instantiateDatabase();
-        displayOnRecView(outfits);
-        wireAddOutfitFloatingActionButton();
-    }
+        NavigationBarView navigationBarView = findViewById(R.id.bottom_navigation);
+        navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
 
-    @Override
-    protected void onResume() {
-        refreshRecyclerView();
-        super.onResume();
-    }
+                switch (item.getItemId()) {
+                    case R.id.nav_charts:
+                        selectedFragment = new ChartFragment();
+                        break;
+                    case R.id.nav_home:
+                        selectedFragment = HomeFragment.displayOnlyFavorites(false);
+                        break;
+                    case R.id.nav_favorites:
+                        selectedFragment = HomeFragment.displayOnlyFavorites(true);
+                        break;
+                    case R.id.nav_places:
+                        break;
+                }
 
-    private void refreshRecyclerView() {
-        instantiateDatabase();
-        displayOnRecView(outfits);
-    }
-
-    private void wireAddOutfitFloatingActionButton() {
-        FloatingActionButton fabAddButton = findViewById(R.id.fab_add_outfits);
-
-        fabAddButton.setOnClickListener(view -> {
-            Intent intent = OutfitCreateActivity.makeIntent(MainActivity.this);
-            startActivity(intent);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                return true;
+            }
         });
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        navigationBarView.setSelectedItemId(R.id.nav_home);
+        navigationBarView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
     }
 
-    private void instantiateDatabase() {
-        dataBaseHelper = new DataBaseHelper(MainActivity.this);
-        outfits = dataBaseHelper.getAll();
 
-        // debug
-        Log.d(TAG, "instantiateDatabase: " + outfits.toString());
-    }
-
-    private void displayOnRecView(List<Outfit> outfits) {
-        RecyclerView rvDisplayOutfits = findViewById(R.id.rv_display_outfits);
-        OutfitRecViewAdapter rvAdapter = new OutfitRecViewAdapter(MainActivity.this, outfits);
-
-        rvDisplayOutfits.setAdapter(rvAdapter);
-        rvDisplayOutfits.setLayoutManager(new GridLayoutManager(MainActivity.this, NUM_COLS));
-    }
 
 }
 
