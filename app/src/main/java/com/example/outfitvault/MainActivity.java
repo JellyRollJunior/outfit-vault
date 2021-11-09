@@ -7,17 +7,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private NavigationBarView navigationBarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // NEVER DELETE THIS LINE BY ACCIDENT OR CANT ACCESS VIEWS
 
-        NavigationBarView navigationBarView = findViewById(R.id.bottom_navigation);
+        setupBottomNavDefaults();
+        setupBottomNavFragmentSwitch();
+    }
+
+    private void setupBottomNavDefaults() {
+        navigationBarView = findViewById(R.id.bottom_navigation);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        navigationBarView.setSelectedItemId(R.id.nav_home);
+        navigationBarView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
+    }
+
+    private void setupBottomNavFragmentSwitch() {
         navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -42,13 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-        navigationBarView.setSelectedItemId(R.id.nav_home);
-        navigationBarView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
     }
-
-
 
 }
 
