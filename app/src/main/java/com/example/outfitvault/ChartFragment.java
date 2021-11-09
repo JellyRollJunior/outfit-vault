@@ -69,6 +69,7 @@ public class ChartFragment extends Fragment {
         for (Outfit outfit : outfits) {
             String currOutfitSeason = outfit.getSeason().toString();
 
+            // i know hard coding isn't good practice :(
             switch (currOutfitSeason) {
                 case "FALL":
                     outfitsPerSeason[0]++;

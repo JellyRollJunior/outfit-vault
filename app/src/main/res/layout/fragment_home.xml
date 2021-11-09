@@ -18,14 +18,15 @@
         android:id="@+id/fab_add_outfits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:backgroundTint="#ffff4444"
         android:clickable="true"
-
-        android:contentDescription="@string/main_activity_fab_content_description"
         android:focusable="true"
         app:backgroundTint="@null"
+        android:contentDescription="@string/main_activity_fab_content_description"
+
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_add_24_light_grey" />

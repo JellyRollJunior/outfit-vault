@@ -69,11 +69,10 @@ public class HomeFragment extends Fragment {
         rvDisplayOutfits = view.findViewById(R.id.rv_display_outfits2);
     }
 
-    private void instantiateDatabase(boolean displayOnlyFavoritess) {
+    private void instantiateDatabase(boolean displayOnlyFavorites) {
         dataBaseHelper = new DataBaseHelper(getActivity());
 
-        if (displayOnlyFavoritess) {
-            // get only favorites TODO: ADD GET FAVORITES TO DB
+        if (displayOnlyFavorites) {
             outfits = dataBaseHelper.getAllFavorites();
         } else {
             outfits = dataBaseHelper.getAll();
