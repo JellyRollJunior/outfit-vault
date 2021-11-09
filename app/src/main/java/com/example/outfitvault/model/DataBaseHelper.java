@@ -21,7 +21,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
     public static final String COLUMN_SEASON = "SEASON";
     private static final String COLUMN_FAVORITE = "FAVORITE" ;
-    private final String TAG = "com.example.outfitvault.model.DatabaseHelper";
+    private static final String TAG = "com.example.outfitvault.model.DatabaseHelper";
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, "outfit.db", null, 1);

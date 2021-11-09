@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
     static HomeFragment displayOnlyFavorites(Boolean displayFavorite) {
         HomeFragment homeFragment = new HomeFragment();
 
-        // Supply num input as an argument.
+        // store displayFavorite boolean in EXTRA
         Bundle args = new Bundle();
         args.putBoolean(EXTRA_DISPLAY_FAVORITE, displayFavorite);
         homeFragment.setArguments(args);
@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
-        getExtra();
+        getExtraDisplayOnlyFavorites();
         instantiateViews(view);
         instantiateDatabase(displayOnlyFavorites);
         displayOnRecView(outfits);
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void getExtra() {
+    private void getExtraDisplayOnlyFavorites() {
         if (getArguments() != null) {
             displayOnlyFavorites = getArguments().getBoolean(EXTRA_DISPLAY_FAVORITE);
             Toast.makeText(getContext(), "Display Only favorites: " + displayOnlyFavorites, Toast.LENGTH_SHORT).show();
@@ -67,24 +67,6 @@ public class HomeFragment extends Fragment {
     private void instantiateViews(View view) {
         fabAddButton = view.findViewById(R.id.fab_add_outfits);
         rvDisplayOutfits = view.findViewById(R.id.rv_display_outfits2);
-    }
-
-    @Override
-    public void onResume() {
-        refreshRecyclerView();
-        super.onResume();
-    }
-
-    private void refreshRecyclerView() {
-        instantiateDatabase(displayOnlyFavorites);
-        displayOnRecView(outfits);
-    }
-
-    private void wireAddOutfitFloatingActionButton() {
-        fabAddButton.setOnClickListener(view -> {
-            Intent intent = OutfitCreateActivity.makeIntent(getActivity());
-            startActivity(intent);
-        });
     }
 
     private void instantiateDatabase(boolean displayOnlyFavoritess) {
@@ -106,5 +88,23 @@ public class HomeFragment extends Fragment {
 
         rvDisplayOutfits.setAdapter(rvAdapter);
         rvDisplayOutfits.setLayoutManager(new GridLayoutManager(getActivity(), NUM_COLS));
+    }
+
+    private void wireAddOutfitFloatingActionButton() {
+        fabAddButton.setOnClickListener(view -> {
+            Intent intent = OutfitCreateActivity.makeIntent(getActivity());
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    public void onResume() {
+        refreshRecyclerView();
+        super.onResume();
+    }
+
+    private void refreshRecyclerView() {
+        instantiateDatabase(displayOnlyFavorites);
+        displayOnRecView(outfits);
     }
 }
