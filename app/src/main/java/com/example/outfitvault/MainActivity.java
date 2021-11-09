@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = HomeFragment.displayOnlyFavorites(true);
                         break;
                     case R.id.nav_places:
+                        selectedFragment = new MapsFragment();
                         break;
                 }
 
