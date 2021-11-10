@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.ActivityNavigator;
 
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -24,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNavDefaults() {
         navigationBarView = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment()).commit();
+
         navigationBarView.setSelectedItemId(R.id.nav_home);
+
         navigationBarView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
     }
 
@@ -49,8 +52,13 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new MapsFragment();
                         break;
                 }
-                //navigationBarView.
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(
+                                android.R.anim.fade_in,
+                                android.R.anim.fade_out)
+                        .replace(R.id.nav_host_fragment, selectedFragment)
+                        .commit();
                 return true;
             }
         });
