@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.outfitvault.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_outfitViewActivity"
+            app:destination="@id/outfitViewActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_outfitCreateActivity"
+            app:destination="@id/outfitCreateActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_chartFragment"
+            app:destination="@id/chartFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/chartFragment"
+        android:name="com.example.outfitvault.ChartFragment"
+        android:label="ChartFragment" >
+        <action
+            android:id="@+id/action_chartFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_chartFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.outfitvault.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_chartFragment"
+            app:destination="@id/chartFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/outfitCreateActivity"
+        android:name="com.example.outfitvault.OutfitCreateActivity"
+        android:label="activity_outfit_create"
+        tools:layout="@layout/activity_outfit_create" />
+    <activity
+        android:id="@+id/outfitViewActivity"
+        android:name="com.example.outfitvault.OutfitViewActivity"
+        android:label="activity_outfit_view"
+        tools:layout="@layout/activity_outfit_view" />
+</navigation>

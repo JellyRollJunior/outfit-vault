@@ -46,7 +46,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
 
         populateSpinnerWithSeasons();
         wireFavoriteButton();
-        wireSetImageButton();
+        wireSetTakePhoto();
     }
 
     @Override
@@ -74,7 +74,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
         });
     }
 
-    private void wireSetImageButton() {
+    private void wireSetTakePhoto() {
         ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {

@@ -1,5 +1,7 @@
 package com.example.outfitvault;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,8 +33,9 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.outfit_list_item, parent, false);
+        View view = LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.outfit_list_item, parent, false);
         return new ViewHolder(view);    // make sure to pass OUR created ViewHolder class
     }
 
@@ -47,11 +50,19 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         holder.ivOutfit.setImageBitmap(rotatedBitmap);
 
-        // move to outfit details on click
+        // move to OutfitViewActivity on click
         holder.parent.setOnClickListener(view -> {
             int currentOutfitID = currentOutfit.getID();
             Intent intent = OutfitViewActivity.makeIntent(context, currentOutfitID);
-            context.startActivity(intent);
+
+            // create shared element transition
+            ActivityOptions options =
+                    ActivityOptions
+                        .makeSceneTransitionAnimation(
+                                (Activity) context,
+                                holder.ivOutfit,
+                                "outfit");
+            context.startActivity(intent, options.toBundle());
         });
     }
 
@@ -63,10 +74,12 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView ivOutfit;
         private final MaterialCardView parent;
+        final View ivOutfitViewActivityIV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivOutfit = itemView.findViewById(R.id.iv_recycler_item);
+            ivOutfitViewActivityIV = itemView.findViewById(R.id.iv_outfit_view);
             parent = itemView.findViewById(R.id.cv_recycler_item);
         }
     }
