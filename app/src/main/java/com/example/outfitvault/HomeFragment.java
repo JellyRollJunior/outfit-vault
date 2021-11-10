@@ -1,11 +1,15 @@
 package com.example.outfitvault;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -90,9 +94,17 @@ public class HomeFragment extends Fragment {
     }
 
     private void wireAddOutfitFloatingActionButton() {
+
         fabAddButton.setOnClickListener(view -> {
             Intent intent = OutfitCreateActivity.makeIntent(getActivity());
-            startActivity(intent);
+
+            // get exit transition set in MainActivity
+            startActivity(
+                    intent,
+                    ActivityOptions
+                            .makeSceneTransitionAnimation(getActivity())
+                            .toBundle()
+            );
         });
     }
 

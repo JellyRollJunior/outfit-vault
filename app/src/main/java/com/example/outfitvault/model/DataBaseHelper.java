@@ -161,6 +161,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     default:
                         throw new IllegalStateException("Unexpected value: " + cursor.getString(3));
                 }
+
                 // db saves boolean as 1 = true, 0 = false
                 Boolean favorite = cursor.getInt(4) == 1 ? true: false;
                 Outfit outfit = new Outfit(ID, imageName, description, season, favorite);
