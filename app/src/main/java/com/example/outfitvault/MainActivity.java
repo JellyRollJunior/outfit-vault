@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new MapsFragment();
                         break;
                 }
-
+                //navigationBarView.
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;
             }
