@@ -76,13 +76,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean update(int ID, Outfit outfit) {
+        int favoriteToInt = outfit.getFavorite() ? 1 : 0;
+
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString =
                 "UPDATE " + OUTFIT_TABLE + " " +
-                "SET " + COLUMN_IMAGE_NAME + " = " + outfit.getImageName() + ", " +
-                         COLUMN_DESCRIPTION + " = " + outfit.getDescription() + ", " +
-                         COLUMN_SEASON + " = " + outfit.getSeason() + ", " +
-                         COLUMN_FAVORITE + " = " + outfit.getFavorite() + " " +
+                "SET " + COLUMN_IMAGE_NAME + " = '" + outfit.getImageName() + "', " +
+                         COLUMN_DESCRIPTION + " = '" + outfit.getDescription() + "', " +
+                         COLUMN_SEASON + " = '" + outfit.getSeason() + "', " +
+                         COLUMN_FAVORITE + " = " + favoriteToInt + " " +
                 "WHERE " + COLUMN_ID + " = " + outfit.getID();
 
         Cursor cursor = db.rawQuery(queryString, null);

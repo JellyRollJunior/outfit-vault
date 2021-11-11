@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.outfitvault.model.DataBaseHelper;
+import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.types.Season;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
