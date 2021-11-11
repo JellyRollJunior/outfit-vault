@@ -75,6 +75,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return deleteSuccess;
     }
 
+    public boolean update(int ID, Outfit outfit) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString =
+                "UPDATE " + OUTFIT_TABLE + " " +
+                "SET " + COLUMN_IMAGE_NAME + " = " + outfit.getImageName() + ", " +
+                         COLUMN_DESCRIPTION + " = " + outfit.getDescription() + ", " +
+                         COLUMN_SEASON + " = " + outfit.getSeason() + ", " +
+                         COLUMN_FAVORITE + " = " + outfit.getFavorite() + " " +
+                "WHERE " + COLUMN_ID + " = " + outfit.getID();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        boolean updateSuccess = cursor.moveToFirst();
+        cursor.close();
+        return updateSuccess;
+    }
+
+
     public Outfit getOutfitFromID(int ID) {
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString =
