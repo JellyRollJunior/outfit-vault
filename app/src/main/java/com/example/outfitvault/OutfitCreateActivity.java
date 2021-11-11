@@ -59,10 +59,11 @@ public class OutfitCreateActivity extends AppCompatActivity {
 
     private void populateSpinnerWithSeasons() {
         Spinner spnSeason = findViewById(R.id.spnSeason);
-        ArrayAdapter<Season> spinnerAdapter = new ArrayAdapter<Season>(
-                OutfitCreateActivity.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                Season.values()
+        ArrayAdapter<Season> spinnerAdapter =
+                new ArrayAdapter<Season>(
+                            OutfitCreateActivity.this,
+                            android.R.layout.simple_spinner_dropdown_item,
+                            Season.values()
         );
         spnSeason.setAdapter(spinnerAdapter);
     }
@@ -83,7 +84,9 @@ public class OutfitCreateActivity extends AppCompatActivity {
 
                         if (data != null) {
                             photoName = CameraActivity.getImageNameFromCameraActivity(data);
-                            Toast.makeText(OutfitCreateActivity.this, "from camera: imageName is " + photoName, Toast.LENGTH_SHORT).show();
+
+                            // debug
+                            Log.d(TAG, "from camera: imageName is " + photoName);
                         }
                     } else {
                         Log.d(TAG, "onCreate: " + result.toString());
@@ -109,7 +112,9 @@ public class OutfitCreateActivity extends AppCompatActivity {
     private void instantiateImageView() {
         ImageView ivOutfit = findViewById(R.id.iv_outfit_create);
 
-        String photoFilePath = PhotoHelper.getPhotoFile(OutfitCreateActivity.this, photoName).getAbsolutePath();
+        String photoFilePath = PhotoHelper
+                                    .getPhotoFile(OutfitCreateActivity.this, photoName)
+                                    .getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
 
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
@@ -130,11 +135,19 @@ public class OutfitCreateActivity extends AppCompatActivity {
                 if (photoName != null) {
                     Outfit newOutfit = compileOutfitDetails();
                     if (addToDatabase(newOutfit)) {
-                        Toast.makeText(OutfitCreateActivity.this, "Successfully added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(
+                                OutfitCreateActivity.this,
+                                "Successfully added",
+                                Toast.LENGTH_SHORT)
+                             .show();
                     }
                     finish();
                 } else {
-                    Toast.makeText(OutfitCreateActivity.this, "Take photo first!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                            OutfitCreateActivity.this,
+                            "Take photo first!",
+                            Toast.LENGTH_SHORT)
+                         .show();
                 }
             default:
                 return super.onOptionsItemSelected(item);

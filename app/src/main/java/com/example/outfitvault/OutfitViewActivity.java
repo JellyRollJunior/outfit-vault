@@ -55,11 +55,22 @@ public class OutfitViewActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dataBaseHelper = new DataBaseHelper(OutfitViewActivity.this);
-                                if (dataBaseHelper.deleteOne(currentOutfit.getID())){
-                                    Toast.makeText(OutfitViewActivity.this, R.string.successful_delete, Toast.LENGTH_SHORT).show();
+
+                                boolean deleteSuccess = dataBaseHelper.deleteOne(currentOutfit.getID());
+                                if (deleteSuccess){
+                                    Toast.makeText(
+                                            OutfitViewActivity.this,
+                                            R.string.successful_delete,
+                                            Toast.LENGTH_SHORT)
+                                         .show();
                                 } else {
-                                    Toast.makeText(OutfitViewActivity.this, R.string.error_deleting_outfit, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(
+                                            OutfitViewActivity.this,
+                                            R.string.error_deleting_outfit,
+                                            Toast.LENGTH_SHORT)
+                                         .show();
                                 }
+
                                 finish();
                             }
                         })
@@ -69,7 +80,9 @@ public class OutfitViewActivity extends AppCompatActivity {
 
     private void populateOutfitUI() {
         ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
-        String photoFilePath = PhotoHelper.getPhotoFile(OutfitViewActivity.this, currentOutfit.getImageName()).getAbsolutePath();
+        String photoFilePath = PhotoHelper
+                                    .getPhotoFile(OutfitViewActivity.this, currentOutfit.getImageName())
+                                    .getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         ivOutfit.setImageBitmap(rotatedBitmap);
