@@ -34,6 +34,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
 
+
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
@@ -41,9 +42,8 @@
             android:text="@string/delete"
 
             app:layout_constraintBaseline_toBaselineOf="@+id/btn_favorite_outfit_view"
-            app:layout_constraintEnd_toStartOf="@+id/btn_favorite_outfit_view"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_edit" />
 
         <Button
             android:id="@+id/btn_favorite_outfit_view"
@@ -52,21 +52,18 @@
             android:text="@string/favorite"
 
             app:layout_constraintEnd_toStartOf="@+id/btn_edit"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_delete"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view" />
 
         <Button
             android:id="@+id/btn_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="@string/edit"
-
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_favorite_outfit_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_favorite_outfit_view" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view" />
 
         <ScrollView
             android:id="@+id/sv_outfit_view"

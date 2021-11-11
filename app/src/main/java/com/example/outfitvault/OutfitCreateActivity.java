@@ -44,7 +44,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outfit_create);
 
-        populateSpinnerWithSeasons();
+        populateSpinner();
         wireFavoriteButton();
         wireSetTakePhoto();
     }
@@ -57,8 +57,8 @@ public class OutfitCreateActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void populateSpinnerWithSeasons() {
-        Spinner spnSeason = findViewById(R.id.spnSeason);
+    private void populateSpinner() {
+        Spinner spnSeason = findViewById(R.id.spn_season_create);
         ArrayAdapter<Season> spinnerAdapter =
                 new ArrayAdapter<Season>(
                             OutfitCreateActivity.this,
@@ -94,7 +94,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
                 }
         );
 
-        Button btnSetImage = findViewById(R.id.btn_take_photo);
+        Button btnSetImage = findViewById(R.id.btn_take_photo_create);
         btnSetImage.setOnClickListener(view -> {
             if (hasCameraPermission()) {
                 enableCamera(cameraActivityResultLauncher);
@@ -158,7 +158,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
         EditText etDescription = findViewById(R.id.et_description_outfit_create);
         String description = etDescription.getText().toString();
 
-        Spinner spnSeason = findViewById(R.id.spnSeason);
+        Spinner spnSeason = findViewById(R.id.spn_season_create);
         Season season = (Season) spnSeason.getSelectedItem();
 
         Outfit newOutfit = new Outfit(100, photoName, description, season, isFavorite);
@@ -171,10 +171,6 @@ public class OutfitCreateActivity extends AppCompatActivity {
     private boolean addToDatabase(Outfit newOutfit) {
         DataBaseHelper dataBaseHelper = new DataBaseHelper(OutfitCreateActivity.this);
         return dataBaseHelper.addOne(newOutfit);
-    }
-
-    public static Intent makeIntent(Context context) {
-        return new Intent(context, OutfitCreateActivity.class);
     }
 
     private boolean hasCameraPermission() {
@@ -193,5 +189,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
         );
     }
 
-
+    public static Intent makeIntent(Context context) {
+        return new Intent(context, OutfitCreateActivity.class);
+    }
 }

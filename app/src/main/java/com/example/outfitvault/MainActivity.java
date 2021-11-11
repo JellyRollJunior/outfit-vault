@@ -1,9 +1,11 @@
 package com.example.outfitvault;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -11,10 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.outfitvault.model.DataBaseHelper;
+import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.types.Season;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = "com.example.outfitvault.MainActivity";
     private NavigationBarView navigationBar;
 
     @Override
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupBottomNavDefaults();
         setupBottomNavFragmentSwitch();
+
     }
 
     private void setupBottomNavDefaults() {
