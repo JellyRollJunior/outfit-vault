@@ -64,7 +64,9 @@ public class HomeFragment extends Fragment {
     private void getExtraDisplayOnlyFavorites() {
         if (getArguments() != null) {
             displayOnlyFavorites = getArguments().getBoolean(EXTRA_DISPLAY_FAVORITE);
-            Toast.makeText(getContext(), "Display Only favorites: " + displayOnlyFavorites, Toast.LENGTH_SHORT).show();
+
+            // debug
+            Log.d(TAG, "Display Only favorites: " + displayOnlyFavorites);
         }
     }
 
@@ -98,9 +100,8 @@ public class HomeFragment extends Fragment {
         fabAddButton.setOnClickListener(view -> {
             Intent intent = OutfitCreateActivity.makeIntent(getActivity());
 
-            // get exit transition set in MainActivity
-            startActivity(
-                    intent,
+            // get exit transition set from MainActivity
+            startActivity(intent,
                     ActivityOptions
                             .makeSceneTransitionAnimation(getActivity())
                             .toBundle()

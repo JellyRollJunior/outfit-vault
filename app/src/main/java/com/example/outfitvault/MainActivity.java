@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // REQUEST NEEDS TO BE BEFORE super.onCreate CALL
         getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
-        getWindow().setExitTransition(new Explode());
+        getWindow().setExitTransition(new Fade());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // NEVER DELETE THIS LINE BY ACCIDENT OR CANT ACCESS VIEWS
@@ -75,12 +75,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-/*
-    // SQLITE db delete debug
-    Outfit outfit = new Outfit(1, "newIMAGE!", "it's a new image", Season.SPRING, false);
-    boolean successDel = dataBaseHelper.deleteOne(outfit);
-    if (successDel) {
-        Toast.makeText(MainActivity.this, "success", Toast.LENGTH_LONG).show();
-    }
- */

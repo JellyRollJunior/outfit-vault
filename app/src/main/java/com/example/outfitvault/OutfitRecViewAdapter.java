@@ -44,7 +44,9 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
         Outfit currentOutfit = outfits.get(position);
 
         // set image
-        String photoFilePath = PhotoHelper.getPhotoFile(context, currentOutfit.getImageName()).getAbsolutePath();
+        String photoFilePath = PhotoHelper
+                                    .getPhotoFile(context, currentOutfit.getImageName())
+                                    .getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
 
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
@@ -58,10 +60,10 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
             // create shared element transition
             ActivityOptions options =
                     ActivityOptions
-                        .makeSceneTransitionAnimation(
-                                (Activity) context,
-                                holder.ivOutfit,
-                                "outfit");
+                            .makeSceneTransitionAnimation(
+                                    (Activity) context,
+                                    holder.ivOutfit,
+                                    "outfit");
             context.startActivity(intent, options.toBundle());
         });
     }

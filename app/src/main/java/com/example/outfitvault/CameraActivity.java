@@ -62,16 +62,23 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                 new ImageCapture.OnImageSavedCallback() {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        Toast.makeText(CameraActivity.this, "Image has been saved successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(
+                                CameraActivity.this,
+                                "Image has been saved successfully",
+                                Toast.LENGTH_SHORT).show();
 
                         // debug
                         Log.d(TAG, "onImageSaved: " + "Image: " + photoName);
+
                         passImageNameToOutfitCreateActivity(photoName);
                     }
 
                     @Override
                     public void onError(@NonNull ImageCaptureException exception) {
-                        Toast.makeText(CameraActivity.this, "Error saving photo" + exception.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(
+                                CameraActivity.this,
+                                "Error saving photo" + exception.getLocalizedMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
         );
