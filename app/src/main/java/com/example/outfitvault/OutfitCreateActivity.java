@@ -60,11 +60,11 @@ public class OutfitCreateActivity extends AppCompatActivity {
     private void populateSpinner() {
         Spinner spnSeason = findViewById(R.id.spn_season_create);
         ArrayAdapter<Season> spinnerAdapter =
-                new ArrayAdapter<Season>(
-                            OutfitCreateActivity.this,
-                            android.R.layout.simple_spinner_dropdown_item,
-                            Season.values()
-        );
+                new ArrayAdapter<>(
+                        OutfitCreateActivity.this,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        Season.values()
+                );
         spnSeason.setAdapter(spinnerAdapter);
     }
 
@@ -83,7 +83,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
                         Intent data = result.getData();
 
                         if (data != null) {
-                            photoName = CameraActivity.getImageNameFromCameraActivity(data);
+                            photoName = CameraActivity.getImageName(data);
 
                             // debug
                             Log.d(TAG, "from camera: imageName is " + photoName);
@@ -137,11 +137,12 @@ public class OutfitCreateActivity extends AppCompatActivity {
                     if (addToDatabase(newOutfit)) {
                         Toast.makeText(
                                 OutfitCreateActivity.this,
-                                "Successfully added",
+                                getString(R.string.successfully_added),
                                 Toast.LENGTH_SHORT)
                              .show();
                     }
                     finish();
+                    break;
                 } else {
                     Toast.makeText(
                             OutfitCreateActivity.this,
@@ -152,6 +153,7 @@ public class OutfitCreateActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
     private Outfit compileOutfitDetails() {
