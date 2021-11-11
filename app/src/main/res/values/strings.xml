@@ -32,4 +32,7 @@
     <string name="places">Places</string>
     <string name="outfits_per_season">OUTFITS PER SEASON</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="confirm_edit">Confirm Edit</string>
+    <string name="suuccessful_update">Successfully updated</string>
+    <string name="successfully_added">Successfully added</string>
 </resources>

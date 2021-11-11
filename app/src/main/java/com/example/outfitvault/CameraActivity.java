@@ -85,7 +85,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
     }
 
     // sample 14 - allow other activities to access string extra without knowing the TAG
-    public static String getImageNameFromCameraActivity(Intent intent) {
+    public static String getImageName(Intent intent) {
         return intent.getStringExtra(EXTRA_IMAGE_NAME);
     }
 

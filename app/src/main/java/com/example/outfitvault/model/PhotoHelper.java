@@ -2,9 +2,14 @@ package com.example.outfitvault.model;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.ImageView;
+
+import com.example.outfitvault.OutfitEditActivity;
+import com.example.outfitvault.R;
 
 import java.io.File;
 
@@ -22,5 +27,15 @@ public class PhotoHelper {
         String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
         Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
         return new File(imageFilePathName);
+    }
+
+    public static void populateImageViewWithOutfit(Context context, ImageView imageView, Outfit outfit) {
+        String photoFilePath =
+                PhotoHelper
+                        .getPhotoFile(context, outfit.getImageName())
+                        .getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
+        imageView.setImageBitmap(rotatedBitmap);
     }
 }
