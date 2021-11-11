@@ -54,8 +54,7 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
 
         // move to OutfitViewActivity on click
         holder.parent.setOnClickListener(view -> {
-            int currentOutfitID = currentOutfit.getID();
-            Intent intent = OutfitViewActivity.makeIntent(context, currentOutfitID);
+            Intent intent = OutfitViewActivity.makeIntent(context, currentOutfit);
 
             // create shared element transition
             ActivityOptions options =

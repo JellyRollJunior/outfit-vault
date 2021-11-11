@@ -34,9 +34,25 @@ public class OutfitViewActivity extends AppCompatActivity {
         instantiateVariables();
         populateOutfitUI();
         wireDeleteButton();
+        wireEditButton();
 
         // debug
-        Log.d(TAG, "onCreate: Outfit ID: " + getExtraCurrentOutfitID());
+        Log.d(TAG, "onCreate: Outfit ID: " + getExtraOutfitID());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfit.getID());
+        populateOutfitUI();
+    }
+
+    private void wireEditButton() {
+        Button btnEdit = findViewById(R.id.btn_edit);
+        btnEdit.setOnClickListener(view -> {
+            Intent intent = OutfitEditActivity.makeIntent(OutfitViewActivity.this, currentOutfit);
+            startActivity(intent);
+        });
     }
 
     private void wireDeleteButton() {
@@ -95,20 +111,20 @@ public class OutfitViewActivity extends AppCompatActivity {
     }
 
     private void instantiateVariables() {
-        int currentOutfitID = getExtraCurrentOutfitID();
+        int currentOutfitID = getExtraOutfitID();
 
         dataBaseHelper = new DataBaseHelper(OutfitViewActivity.this);
         currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
     }
 
-    private int getExtraCurrentOutfitID() {
+    private int getExtraOutfitID() {
         Intent i = getIntent();
         return i.getIntExtra(EXTRA_OUTFIT_ID, -1);
     }
 
-    public static Intent makeIntent(Context context, int outfitID) {
+    public static Intent makeIntent(Context context, Outfit outfit) {
         Intent intent = new Intent(context, OutfitViewActivity.class);
-        intent.putExtra(EXTRA_OUTFIT_ID, outfitID);
+        intent.putExtra(EXTRA_OUTFIT_ID, outfit.getID());
         return intent;
     }
 }
