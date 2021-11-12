@@ -134,13 +134,14 @@ public class OutfitCreateActivity extends AppCompatActivity {
             case R.id.outfit_menu_create:
                 if (photoName != null) {
                     Outfit newOutfit = compileOutfitDetails();
-                    if (addToDatabase(newOutfit)) {
-                        Toast.makeText(
-                                OutfitCreateActivity.this,
-                                getString(R.string.successfully_added),
-                                Toast.LENGTH_SHORT)
-                             .show();
+                    boolean insertSuccess = addToDatabase(newOutfit);
+
+                    if (insertSuccess) {
+                        Toast.makeText(OutfitCreateActivity.this, getString(R.string.successfully_added), Toast.LENGTH_SHORT)
+                                .show();
                     }
+
+                    Log.d(TAG, "onOptionsItemSelected: insert success? " + insertSuccess);
                     finish();
                     break;
                 } else {

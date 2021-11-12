@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -19,14 +18,12 @@ import android.widget.Spinner;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
-import com.example.outfitvault.model.PhotoHelper;
 import com.example.outfitvault.types.Season;
 
 import java.io.File;
@@ -42,6 +39,42 @@ public abstract class OutfitModifierAbstract extends AppCompatActivity {
     public boolean isFavorite = false;
 
     abstract void instantiateUI();
+
+    public void instantiateDatabase(Context context) {
+        if (dataBaseHelper == null) {
+            dataBaseHelper = new DataBaseHelper(context);
+        }
+    }
+
+    public void populateOutfitImageView(Context context, ImageView imageView, Outfit outfit) {
+        String photoFilePath = getPhotoFile(context, outfit.getPhotoName())
+                .getAbsolutePath();
+        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
+        Bitmap rotatedBitmap = rotate90Degrees(photoBitmap);
+        imageView.setImageBitmap(rotatedBitmap);
+    }
+
+    private File getPhotoFile(Context context, String photoName) {
+        String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
+        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
+        return new File(imageFilePathName);
+    }
+
+    private Bitmap rotate90Degrees(Bitmap bitmap) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        return Bitmap.createBitmap(
+                bitmap, 0, 0,
+                bitmap.getWidth(),
+                bitmap.getHeight(),
+                matrix, true);
+    }
+
+    public void wireFavoriteButton(Button button) {
+        button.setOnClickListener(view -> {
+            isFavorite = !isFavorite;
+        });
+    }
 
     public void populateSpinner(Context context, Spinner spnSeason) {
         ArrayAdapter<Season> spinnerAdapter =
@@ -101,18 +134,6 @@ public abstract class OutfitModifierAbstract extends AppCompatActivity {
         );
     }
 
-    public void instantiateDatabase(Context context) {
-        if (dataBaseHelper == null) {
-            dataBaseHelper = new DataBaseHelper(context);
-        }
-    }
-
-    public void wireFavoriteButton(Button button) {
-        button.setOnClickListener(view -> {
-            isFavorite = !isFavorite;
-        });
-    }
-
     public Outfit compileOutfitDetails(int outfitID, EditText etDescription, Spinner spnSeason) {
         String description = etDescription.getText().toString();
         Season season = (Season) spnSeason.getSelectedItem();
@@ -130,29 +151,5 @@ public abstract class OutfitModifierAbstract extends AppCompatActivity {
         // debug
         Log.d(TAG, "compileOutfitDetails: " + newOutfit.toString());
         return newOutfit;
-    }
-
-    public void populateOutfitImageView(Context context, ImageView imageView, Outfit outfit) {
-        String photoFilePath = getPhotoFile(context, outfit.getImageName())
-                                    .getAbsolutePath();
-        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-        Bitmap rotatedBitmap = rotate90Degrees(photoBitmap);
-        imageView.setImageBitmap(rotatedBitmap);
-    }
-
-    private File getPhotoFile(Context context, String photoName) {
-        String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
-        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
-        return new File(imageFilePathName);
-    }
-
-    private Bitmap rotate90Degrees(Bitmap bitmap) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        return Bitmap.createBitmap(
-                        bitmap, 0, 0,
-                        bitmap.getWidth(),
-                        bitmap.getHeight(),
-                        matrix, true);
     }
 }

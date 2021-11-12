@@ -52,8 +52,8 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
 
     @Override
     protected void onResume() {
-        ImageView ivOutfit = findViewById(R.id.iv_outfit_edit);
-        Outfit tmpOutfit = compileOutfitDetails(currentOutfitID,etDescription, spnSeason);
+        // refresh imageView with new Photo
+        Outfit tmpOutfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
         populateOutfitImageView(OutfitEditActivity.this, ivOutfit, tmpOutfit);
         super.onResume();
     }
@@ -63,7 +63,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         currentOutfitID = getExtraOutfitID();
         currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
         isFavorite = currentOutfit.getFavorite();
-        photoName = currentOutfit.getImageName();
+        photoName = currentOutfit.getPhotoName();
     }
 
     @Override
@@ -73,12 +73,6 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         spnSeason = findViewById(R.id.spn_season_edit);
         btnTakePhoto = findViewById(R.id.btn_take_photo_edit);
         etDescription = findViewById(R.id.et_description_outfit_edit);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_outfit_edit, menu);
-        return true;
     }
 
     private void setDefaultSpinnerSelection() {
@@ -92,6 +86,12 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_outfit_edit, menu);
+        return true;
+    }
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -99,14 +99,13 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
             case R.id.outfit_menu_edit:
                 Outfit outfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
                 boolean updateSuccess = dataBaseHelper.update(currentOutfitID, outfit);
+
                 if (updateSuccess) {
-                        Toast.makeText(
-                                OutfitEditActivity.this,
-                                getString(R.string.suuccessful_update),
-                                Toast.LENGTH_SHORT)
+                        Toast.makeText(OutfitEditActivity.this, getString(R.string.suuccessful_update), Toast.LENGTH_SHORT)
                                 .show();
                 }
-                Log.d(TAG, "onOptionsItemSelected: " + updateSuccess);
+
+                Log.d(TAG, "onOptionsItemSelected: update success? " + updateSuccess);
                 finish();
                 break;
             default:

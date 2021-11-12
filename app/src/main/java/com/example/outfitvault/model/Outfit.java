@@ -7,14 +7,14 @@ import com.example.outfitvault.types.Season;
 public class Outfit {
 
     private int id;
-    private String imageName;
+    private String photoName;
     private String description;
     private Season season;
     private Boolean favorite;
 
-    public Outfit(int id, String imageName, String description, Season season, Boolean favorite) {
+    public Outfit(int id, String photoName, String description, Season season, Boolean favorite) {
         this.id = id;
-        this.imageName = imageName;
+        this.photoName = photoName;
         this.description = description;
         this.season = season;
         this.favorite = favorite;
@@ -28,12 +28,12 @@ public class Outfit {
         this.id = id;
     }
 
-    public String getImageName() {
-        return imageName;
+    public String getPhotoName() {
+        return photoName;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     public String getDescription() {
@@ -65,7 +65,7 @@ public class Outfit {
     public String toString() {
         return "Outfit{" +
                 "id=" + id +
-                ", imageName='" + imageName + '\'' +
+                ", imageName='" + photoName + '\'' +
                 ", description='" + description + '\'' +
                 ", season=" + season + '\'' +
                 ", favorite=" + favorite.toString() + '\'' +

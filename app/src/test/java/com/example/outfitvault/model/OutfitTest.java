@@ -11,6 +11,6 @@ public class OutfitTest {
     @Test
     public void getImageName() {
         Outfit outfit = new Outfit(1,"imageName", "that's an image", Season.FALL, true);
-        assertEquals("imageName", outfit.getImageName());
+        assertEquals("imageName", outfit.getPhotoName());
     }
 }

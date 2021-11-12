@@ -98,7 +98,7 @@ public class OutfitViewActivity extends AppCompatActivity {
         ImageView ivOutfit = findViewById(R.id.iv_outfit_view);
         String photoFilePath =
                     PhotoHelper
-                        .getPhotoFile(OutfitViewActivity.this, currentOutfit.getImageName())
+                        .getPhotoFile(OutfitViewActivity.this, currentOutfit.getPhotoName())
                         .getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);

@@ -45,7 +45,7 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
 
         // set image
         String photoFilePath = PhotoHelper
-                                    .getPhotoFile(context, currentOutfit.getImageName())
+                                    .getPhotoFile(context, currentOutfit.getPhotoName())
                                     .getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
 
