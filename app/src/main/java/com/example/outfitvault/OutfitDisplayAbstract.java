@@ -21,7 +21,7 @@ public abstract class OutfitDisplayAbstract extends AppCompatActivity {
     private static String TAG = "com.example.outfitvault.OutfitDisplayAbstract";
 
     public DataBaseHelper dataBaseHelper;
-
+    public boolean isFavorite = false;
 
     abstract void instantiateUI();
 

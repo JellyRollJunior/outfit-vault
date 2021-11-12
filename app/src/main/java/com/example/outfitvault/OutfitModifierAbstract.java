@@ -35,7 +35,6 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
     private static final int CAMERA_REQUEST_CODE = 10;
 
     public String photoName;
-    public boolean isFavorite = false;
 
     public void wireFavoriteButton(Button button) {
         button.setOnClickListener(view -> {
