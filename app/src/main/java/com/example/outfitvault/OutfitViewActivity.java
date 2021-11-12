@@ -1,7 +1,6 @@
 package com.example.outfitvault;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -101,37 +99,28 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     }
 
     private void wireDeleteButton() {
-        //TODO: refactor this to not make it ugly
         Button btnDelete = findViewById(R.id.btn_delete);
         btnDelete.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(context)
-                        .setTitle(R.string.delete_outfit)
-                        .setMessage(R.string.delete_outfit_confirmation)
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // do nothing
-                            }
-                        })
-                        .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dataBaseHelper = new DataBaseHelper(context);
-
-                                boolean deleteSuccess = dataBaseHelper.deleteOne(currentOutfit.getID());
-                                if (deleteSuccess){
-                                    Toast.makeText(context, R.string.successful_delete, Toast.LENGTH_SHORT)
-                                            .show();
-                                } else {
-                                    Toast.makeText(context, R.string.error_deleting_outfit, Toast.LENGTH_SHORT)
-                                            .show();
-                                }
-
-                                finish();
-                            }
-                        })
-                        .show();
+                    .setTitle(R.string.delete_outfit)
+                    .setMessage(R.string.delete_outfit_confirmation)
+                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> { /* do nothing*/ } )
+                    .setPositiveButton(R.string.delete, (dialogInterface, i) -> deleteOutfit())
+                    .show();
         });
+    }
+
+    private void deleteOutfit() {
+        boolean deleteSuccess = dataBaseHelper.deleteOne(currentOutfit.getID());
+        if (deleteSuccess){
+            Toast.makeText(context, R.string.successful_delete, Toast.LENGTH_SHORT)
+                    .show();
+        } else {
+            Toast.makeText(context, R.string.error_deleting_outfit, Toast.LENGTH_SHORT)
+                    .show();
+        }
+
+        finish();
     }
 
     private int getExtraOutfitID() {
