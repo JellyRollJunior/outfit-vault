@@ -39,12 +39,14 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         instantiateVariables();
         instantiateUI();
 
+        // abstract methods
         populateOutfitImageView(OutfitEditActivity.this, ivOutfit, currentOutfit);
         wireFavoriteButton(btnFavorite);
         populateSpinner(OutfitEditActivity.this, spnSeason);
-        setDefaultSpinner();
         wireSetTakePhoto(OutfitEditActivity.this, btnTakePhoto);
 
+        // non abstract methods
+        setDefaultSpinnerSelection();
         etDescription.setText(currentOutfit.getDescription());
     }
 
@@ -79,7 +81,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         return true;
     }
 
-    private void setDefaultSpinner() {
+    private void setDefaultSpinnerSelection() {
         Spinner spnSeason = findViewById(R.id.spn_season_edit);
         int i = 0;
         for (Season season: Season.values()) {
