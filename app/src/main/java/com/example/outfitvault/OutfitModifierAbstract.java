@@ -30,15 +30,19 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
     public String photoName;
 
-    public void wireFavoriteButton(ImageButton button) {
-        button.setOnClickListener(view -> {
+    public void wireFavoriteButton(ImageButton imageButton) {
+        setFavoriteButtonVector(imageButton);
+        imageButton.setOnClickListener(view -> {
             isFavorite = !isFavorite;
-
+            setFavoriteButtonVector(imageButton);
         });
+    }
+
+    private void setFavoriteButtonVector(ImageButton imageButton) {
         if (isFavorite) {
-            button.setImageResource(R.drawable.ic_baseline_favorite_24);
+            imageButton.setImageResource(R.drawable.ic_baseline_favorite_24);
         } else {
-            button.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+            imageButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
         }
     }
 
