@@ -1,12 +1,9 @@
 package com.example.outfitvault;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,19 +17,15 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
-import com.example.outfitvault.model.PhotoHelper;
 import com.example.outfitvault.types.Season;
 
-public class OutfitEditActivity extends AppCompatActivity {
+public class OutfitEditActivity extends OutfitModifierAbstract {
 
     public static final String EXTRA_OUTFIT_ID_EDIT = "com.example.outfitvault.OutfitEditActivity - outfit ID";
     public static final String TAG = "com.example.outfitvault.OutfitEditActivity";
+
     private Outfit currentOutfit;
-    private DataBaseHelper dataBaseHelper;
-    private boolean isFavorite;
-    private String photoName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +33,7 @@ public class OutfitEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_outfit_edit);
 
         // instantiate variables
-        dataBaseHelper = new DataBaseHelper(OutfitEditActivity.this);
+        instantiateDatabase(OutfitEditActivity.this);
         currentOutfit = dataBaseHelper.getOutfitFromID(getExtraOutfitID());
         isFavorite = currentOutfit.getFavorite();
         photoName = currentOutfit.getImageName();
@@ -49,12 +42,11 @@ public class OutfitEditActivity extends AppCompatActivity {
         populateEditText();
 
         ImageView ivOutfit = findViewById(R.id.iv_outfit_edit);
-        PhotoHelper.populateImageViewWithOutfit(
-                        OutfitEditActivity.this,
-                        ivOutfit,
-                        currentOutfit);
+        populateOutfitImageView(OutfitEditActivity.this, ivOutfit, currentOutfit);
 
-        wireFavoriteButton();
+        Button btnFavorite = findViewById(R.id.btn_favorite_outfit_edit);
+        wireFavoriteButton(btnFavorite);
+
         wireSetTakePhoto();
     }
 
@@ -62,32 +54,11 @@ public class OutfitEditActivity extends AppCompatActivity {
     protected void onResume() {
         ImageView ivOutfit = findViewById(R.id.iv_outfit_edit);
         Outfit tmpOutfit = compileOutfitDetails();
-        PhotoHelper.populateImageViewWithOutfit(
-                OutfitEditActivity.this,
-                ivOutfit,
-                tmpOutfit);
+        populateOutfitImageView(OutfitEditActivity.this, ivOutfit, tmpOutfit);
         super.onResume();
     }
 
     private void wireSetTakePhoto() {
-        ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-
-                        if (data != null) {
-                            photoName = CameraActivity.getImageName(data);
-
-                            // debug
-                            Log.d(TAG, "from camera: imageName is " + photoName);
-                        }
-                    } else {
-                        Log.d(TAG, "onCreate: " + result.toString());
-                    }
-                }
-        );
-
         Button btnSetImage = findViewById(R.id.btn_take_photo_edit);
         btnSetImage.setOnClickListener(view -> {
             enableCamera(cameraActivityResultLauncher);
@@ -97,13 +68,6 @@ public class OutfitEditActivity extends AppCompatActivity {
     private void enableCamera(ActivityResultLauncher<Intent> cameraActivityResultLauncher) {
         Intent intent = CameraActivity.makeIntent(OutfitEditActivity.this);
         cameraActivityResultLauncher.launch(intent);
-    }
-
-    private void wireFavoriteButton() {
-        Button btnFavorite = findViewById(R.id.btn_favorite_outfit_edit);
-        btnFavorite.setOnClickListener(view -> {
-            isFavorite = !isFavorite;
-        });
     }
 
     private void populateEditText() {
