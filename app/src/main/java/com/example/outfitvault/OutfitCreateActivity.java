@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
 
     private Context context;
     private ImageView ivOutfit;
-    private Button btnFavorite;
+    private ImageButton btnFavorite;
     private Spinner spnSeason;
     private Button btnTakePhoto;
     private EditText etDescription;

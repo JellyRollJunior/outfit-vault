@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -29,10 +30,16 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
     public String photoName;
 
-    public void wireFavoriteButton(Button button) {
+    public void wireFavoriteButton(ImageButton button) {
         button.setOnClickListener(view -> {
             isFavorite = !isFavorite;
+
         });
+        if (isFavorite) {
+            button.setImageResource(R.drawable.ic_baseline_favorite_24);
+        } else {
+            button.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+        }
     }
 
     public void populateSpinner(Context context, Spinner spnSeason) {
