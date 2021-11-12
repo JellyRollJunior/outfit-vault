@@ -1,2 +1,4 @@
 # outfit-vault
 An app for storing outfits. 
+
+PROUD: I CHANGED MY SPAGHETTI (LOTS OF CODE REUSE) -> INTO ABSTRACTS WITHOUT CODE REUSE AND COHERENT CODE!!!! 
