@@ -28,47 +28,14 @@ import com.example.outfitvault.types.Season;
 
 import java.io.File;
 
-public abstract class OutfitModifierAbstract extends AppCompatActivity {
+public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
-    private static String TAG = "com.example.outfitvault.OutfitDisplayAbstract";
+    private static String TAG = "com.example.outfitvault.OutfitModifierAbstract";
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
     private static final int CAMERA_REQUEST_CODE = 10;
 
     public String photoName;
-    public DataBaseHelper dataBaseHelper;
     public boolean isFavorite = false;
-
-    abstract void instantiateUI();
-
-    public void instantiateDatabase(Context context) {
-        if (dataBaseHelper == null) {
-            dataBaseHelper = new DataBaseHelper(context);
-        }
-    }
-
-    public void populateOutfitImageView(Context context, ImageView imageView, Outfit outfit) {
-        String photoFilePath = getPhotoFile(context, outfit.getPhotoName())
-                .getAbsolutePath();
-        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-        Bitmap rotatedBitmap = rotate90Degrees(photoBitmap);
-        imageView.setImageBitmap(rotatedBitmap);
-    }
-
-    private File getPhotoFile(Context context, String photoName) {
-        String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
-        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
-        return new File(imageFilePathName);
-    }
-
-    private Bitmap rotate90Degrees(Bitmap bitmap) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        return Bitmap.createBitmap(
-                bitmap, 0, 0,
-                bitmap.getWidth(),
-                bitmap.getHeight(),
-                matrix, true);
-    }
 
     public void wireFavoriteButton(Button button) {
         button.setOnClickListener(view -> {
