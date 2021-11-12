@@ -8,9 +8,6 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.example.outfitvault.OutfitEditActivity;
-import com.example.outfitvault.R;
-
 import java.io.File;
 
 public class PhotoHelper {
@@ -29,13 +26,6 @@ public class PhotoHelper {
         return new File(imageFilePathName);
     }
 
-    public static void populateImageViewWithOutfit(Context context, ImageView imageView, Outfit outfit) {
-        String photoFilePath =
-                PhotoHelper
-                        .getPhotoFile(context, outfit.getImageName())
-                        .getAbsolutePath();
-        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
-        imageView.setImageBitmap(rotatedBitmap);
-    }
+    // TODO: MAKE ABSTRACTS USE THIS CODE INSTEAD OF CREATING THEIR OWN
+
 }

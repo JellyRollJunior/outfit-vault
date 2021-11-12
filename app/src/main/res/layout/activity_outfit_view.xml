@@ -88,13 +88,13 @@
                     android:text="@string/season"
 
                     android:layout_marginBottom="5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/et_description_outfit_view"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_description_outfit_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/et_description_outfit_view"
+                    android:id="@+id/tv_description_outfit_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/sample_outfit_description"

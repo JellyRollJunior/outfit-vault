@@ -52,7 +52,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_IMAGE_NAME, outfit.getImageName());
+        cv.put(COLUMN_IMAGE_NAME, outfit.getPhotoName());
         cv.put(COLUMN_DESCRIPTION, outfit.getDescription());
         cv.put(COLUMN_SEASON, outfit.getSeason().toString());
         cv.put(COLUMN_FAVORITE, outfit.getFavorite());
@@ -81,7 +81,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString =
                 "UPDATE " + OUTFIT_TABLE + " " +
-                "SET " + COLUMN_IMAGE_NAME + " = '" + outfit.getImageName() + "', " +
+                "SET " + COLUMN_IMAGE_NAME + " = '" + outfit.getPhotoName() + "', " +
                          COLUMN_DESCRIPTION + " = '" + outfit.getDescription() + "', " +
                          COLUMN_SEASON + " = '" + outfit.getSeason() + "', " +
                          COLUMN_FAVORITE + " = " + favoriteToInt + " " +
