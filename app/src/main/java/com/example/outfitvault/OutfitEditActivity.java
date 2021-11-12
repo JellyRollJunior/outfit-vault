@@ -23,6 +23,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
     public static final String EXTRA_OUTFIT_ID_EDIT = "com.example.outfitvault.OutfitEditActivity - outfit ID";
     public static final String TAG = "com.example.outfitvault.OutfitEditActivity";
 
+    private Context context;
     private int currentOutfitID;
     private Outfit currentOutfit;
     private ImageView ivOutfit;
@@ -40,10 +41,10 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         instantiateUI();
 
         // abstract methods
-        populateOutfitImageView(OutfitEditActivity.this, ivOutfit, currentOutfit);
+        populateOutfitImageView(context, ivOutfit, currentOutfit);
         wireFavoriteButton(btnFavorite);
-        populateSpinner(OutfitEditActivity.this, spnSeason);
-        wireSetTakePhoto(OutfitEditActivity.this, btnTakePhoto);
+        populateSpinner(context, spnSeason);
+        wireSetTakePhoto(context, btnTakePhoto);
 
         // non abstract methods
         setDefaultSpinnerSelection();
@@ -54,12 +55,13 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
     protected void onResume() {
         // refresh imageView with new Photo
         Outfit tmpOutfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
-        populateOutfitImageView(OutfitEditActivity.this, ivOutfit, tmpOutfit);
+        populateOutfitImageView(context, ivOutfit, tmpOutfit);
         super.onResume();
     }
 
     private void instantiateVariables() {
-        instantiateDatabase(OutfitEditActivity.this);
+        context = OutfitEditActivity.this;
+        instantiateDatabase(context);
         currentOutfitID = getExtraOutfitID();
         currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
         isFavorite = currentOutfit.getFavorite();
@@ -101,7 +103,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
                 boolean updateSuccess = dataBaseHelper.update(currentOutfitID, outfit);
 
                 if (updateSuccess) {
-                        Toast.makeText(OutfitEditActivity.this, getString(R.string.suuccessful_update), Toast.LENGTH_SHORT)
+                        Toast.makeText(context, getString(R.string.suuccessful_update), Toast.LENGTH_SHORT)
                                 .show();
                 }
 
