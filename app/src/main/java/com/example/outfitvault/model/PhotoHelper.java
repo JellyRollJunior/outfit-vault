@@ -26,13 +26,6 @@ public class PhotoHelper {
         return new File(imageFilePathName);
     }
 
-    public static void populateImageViewWithOutfit(Context context, ImageView imageView, Outfit outfit) {
-        String photoFilePath =
-                PhotoHelper
-                        .getPhotoFile(context, outfit.getPhotoName())
-                        .getAbsolutePath();
-        Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
-        imageView.setImageBitmap(rotatedBitmap);
-    }
+    // TODO: MAKE ABSTRACTS USE THIS CODE INSTEAD OF CREATING THEIR OWN
+
 }

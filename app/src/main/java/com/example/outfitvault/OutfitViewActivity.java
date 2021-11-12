@@ -82,12 +82,15 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     private void wireFavoriteButton() {
         btnFavorite.setOnClickListener(view -> {
             isFavorite = !isFavorite;
+
+            currentOutfit.setFavorite(isFavorite);
+            boolean updateSuccess = dataBaseHelper.update(currentOutfit.getID(), currentOutfit);
+
+            //debug
+            Log.d(TAG, "wireFavoriteButton: update success: " + updateSuccess);
+
+            // TODO: change UI to reflect favorite status (maybe put in abstract)
         });
-
-        currentOutfit.setFavorite(isFavorite);
-        dataBaseHelper.update(currentOutfit.getID(), currentOutfit);
-
-        // TODO: change UI to reflect favorite status
     }
 
     private void wireEditButton() {

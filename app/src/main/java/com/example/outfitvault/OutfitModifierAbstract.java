@@ -5,28 +5,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.outfitvault.model.DataBaseHelper;
+import com.example.outfitvault.CameraActivity;
+import com.example.outfitvault.OutfitDisplayAbstract;
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.types.Season;
-
-import java.io.File;
 
 public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 

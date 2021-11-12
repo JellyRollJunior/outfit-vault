@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 
 public class OutfitCreateActivity extends OutfitModifierAbstract {
