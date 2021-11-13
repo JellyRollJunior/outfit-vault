@@ -35,4 +35,5 @@
     <string name="confirm_edit">Confirm Edit</string>
     <string name="suuccessful_update">Successfully updated</string>
     <string name="successfully_added">Successfully added</string>
+    <string name="favorite_button">favorite button</string>
 </resources>

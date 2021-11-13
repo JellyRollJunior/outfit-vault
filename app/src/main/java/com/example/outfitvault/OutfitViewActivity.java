@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     private Context context;
 
     private ImageView ivOutfit;
-    private Button btnFavorite;
+    private ImageButton ibtnFavorite;
     private TextView tvSeason;
     private TextView tvDescription;
 
@@ -54,6 +55,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfit.getID());
         populateOutfitImageView(context, ivOutfit, currentOutfit);
         populateTextViews();
+        setFavoriteButtonVector(ibtnFavorite);
     }
 
     private void instantiateVariables() {
@@ -69,7 +71,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     @Override
     void instantiateUI() {
         ivOutfit = findViewById(R.id.iv_outfit_view);
-        btnFavorite = findViewById(R.id.btn_favorite_outfit_view);
+        ibtnFavorite = findViewById(R.id.btn_favorite_outfit_view);
         tvSeason = findViewById(R.id.tv_season);
         tvDescription = findViewById(R.id.tv_description_outfit_view);
     }
@@ -80,16 +82,17 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     }
 
     private void wireFavoriteButton() {
-        btnFavorite.setOnClickListener(view -> {
+        setFavoriteButtonVector(ibtnFavorite);
+        ibtnFavorite.setOnClickListener(view -> {
             isFavorite = !isFavorite;
 
             currentOutfit.setFavorite(isFavorite);
             boolean updateSuccess = dataBaseHelper.update(currentOutfit.getID(), currentOutfit);
 
+            setFavoriteButtonVector(ibtnFavorite);
+
             //debug
             Log.d(TAG, "wireFavoriteButton: update success: " + updateSuccess);
-
-            // TODO: change UI to reflect favorite status (maybe put in abstract)
         });
     }
 

@@ -17,8 +17,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.outfitvault.CameraActivity;
-import com.example.outfitvault.OutfitDisplayAbstract;
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.types.Season;
 
@@ -30,16 +28,12 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
     public String photoName;
 
-    public void wireFavoriteButton(ImageButton button) {
-        button.setOnClickListener(view -> {
+    public void wireFavoriteButton(ImageButton imageButton) {
+        setFavoriteButtonVector(imageButton);
+        imageButton.setOnClickListener(view -> {
             isFavorite = !isFavorite;
-
+            setFavoriteButtonVector(imageButton);
         });
-        if (isFavorite) {
-            button.setImageResource(R.drawable.ic_baseline_favorite_24);
-        } else {
-            button.setImageResource(R.drawable.ic_baseline_favorite_border_24);
-        }
     }
 
     public void populateSpinner(Context context, Spinner spnSeason) {
