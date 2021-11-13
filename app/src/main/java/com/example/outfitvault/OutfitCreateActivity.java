@@ -23,7 +23,7 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
 
     private Context context;
     private ImageView ivOutfit;
-    private ImageButton btnFavorite;
+    private ImageButton ibtnFavorite;
     private Spinner spnSeason;
     private Button btnTakePhoto;
     private EditText etDescription;
@@ -36,7 +36,7 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
         instantiateUI();
 
         // abstract methods
-        wireFavoriteButton(btnFavorite);
+        wireFavoriteButton(ibtnFavorite);
         populateSpinner(context, spnSeason);
         wireSetTakePhoto(context, btnTakePhoto);
 
@@ -56,7 +56,7 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
     void instantiateUI() {
         context = OutfitCreateActivity.this;
         ivOutfit = findViewById(R.id.iv_outfit_create);
-        btnFavorite = findViewById(R.id.btn_favorite_outfit_create);
+        ibtnFavorite = findViewById(R.id.btn_favorite_outfit_create);
         spnSeason = findViewById(R.id.spn_season_create);
         btnTakePhoto = findViewById(R.id.btn_take_photo_create);
         etDescription = findViewById(R.id.et_description_outfit_create);

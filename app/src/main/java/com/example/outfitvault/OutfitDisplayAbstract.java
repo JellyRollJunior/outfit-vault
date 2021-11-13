@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,14 @@ public abstract class OutfitDisplayAbstract extends AppCompatActivity {
     public void instantiateDatabase(Context context) {
         if (dataBaseHelper == null) {
             dataBaseHelper = new DataBaseHelper(context);
+        }
+    }
+
+    public void setFavoriteButtonVector(ImageButton imageButton) {
+        if (isFavorite) {
+            imageButton.setImageResource(R.drawable.ic_baseline_favorite_44);
+        } else {
+            imageButton.setImageResource(R.drawable.ic_baseline_favorite_border_44);
         }
     }
 

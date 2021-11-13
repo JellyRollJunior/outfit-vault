@@ -28,7 +28,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
     private int currentOutfitID;
     private Outfit currentOutfit;
     private ImageView ivOutfit;
-    private ImageButton btnFavorite;
+    private ImageButton ibtnFavorite;
     private Spinner spnSeason;
     private Button btnTakePhoto;
     private EditText etDescription;
@@ -43,7 +43,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
 
         // abstract methods
         populateOutfitImageView(context, ivOutfit, currentOutfit);
-        wireFavoriteButton(btnFavorite);
+        wireFavoriteButton(ibtnFavorite);
         populateSpinner(context, spnSeason);
         wireSetTakePhoto(context, btnTakePhoto);
 
@@ -72,7 +72,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
     @Override
     void instantiateUI() {
         ivOutfit = findViewById(R.id.iv_outfit_edit);
-        btnFavorite = findViewById(R.id.btn_favorite_outfit_edit);
+        ibtnFavorite = findViewById(R.id.btn_favorite_outfit_edit);
         spnSeason = findViewById(R.id.spn_season_edit);
         btnTakePhoto = findViewById(R.id.btn_take_photo_edit);
         etDescription = findViewById(R.id.et_description_outfit_edit);

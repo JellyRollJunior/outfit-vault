@@ -36,14 +36,6 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         });
     }
 
-    private void setFavoriteButtonVector(ImageButton imageButton) {
-        if (isFavorite) {
-            imageButton.setImageResource(R.drawable.ic_baseline_favorite_44);
-        } else {
-            imageButton.setImageResource(R.drawable.ic_baseline_favorite_border_44);
-        }
-    }
-
     public void populateSpinner(Context context, Spinner spnSeason) {
         ArrayAdapter<Season> spinnerAdapter =
                     new ArrayAdapter<Season>(
