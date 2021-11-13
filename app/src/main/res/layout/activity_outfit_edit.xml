@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2" />
+            app:layout_constraintGuide_percent="0.175" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_vert_right_outfit_edit"
@@ -50,7 +50,7 @@
         <Spinner
             android:id="@+id/spn_season_edit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
 
             android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_take_photo_edit"
@@ -106,12 +106,15 @@
             android:id="@+id/btn_favorite_outfit_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:text="@string/favorite"
 
+            app:layout_constraintBottom_toBottomOf="@+id/btn_take_photo_edit"
             app:layout_constraintEnd_toStartOf="@+id/gl_vert_left_outfit_edit"
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="@+id/gl_vert_left_outfit_edit"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_edit" />
+            app:layout_constraintTop_toTopOf="@+id/btn_take_photo_edit"
+            android:contentDescription="@string/favorite_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

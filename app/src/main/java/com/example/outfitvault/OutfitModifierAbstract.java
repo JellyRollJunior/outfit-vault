@@ -17,8 +17,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.outfitvault.CameraActivity;
-import com.example.outfitvault.OutfitDisplayAbstract;
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.types.Season;
 
@@ -40,9 +38,9 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
     private void setFavoriteButtonVector(ImageButton imageButton) {
         if (isFavorite) {
-            imageButton.setImageResource(R.drawable.ic_baseline_favorite_24);
+            imageButton.setImageResource(R.drawable.ic_baseline_favorite_44);
         } else {
-            imageButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+            imageButton.setImageResource(R.drawable.ic_baseline_favorite_border_44);
         }
     }
 
