@@ -32,10 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // NEVER DELETE THIS LINE BY ACCIDENT OR CANT ACCESS VIEWS
 
-
         setupBottomNavDefault();
         setupBottomNavFragmentSwitch();
-
     }
 
     private void setupBottomNavDefault() {
