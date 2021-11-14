@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +53,14 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         holder.ivOutfit.setImageBitmap(rotatedBitmap);
 
+        // set favorite iv visibility
+        if (!currentOutfit.getFavorite()) {
+            holder.ivFavorite.setVisibility(View.GONE);
+        }
+
+        // set season text
+        holder.tvSeason.setText(currentOutfit.getSeason().toString());
+
         // move to OutfitViewActivity on click
         holder.parent.setOnClickListener(view -> {
             Intent intent = OutfitViewActivity.makeIntent(context, currentOutfit);
@@ -75,13 +84,15 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView ivOutfit;
         private final MaterialCardView parent;
-        final View ivOutfitViewActivityIV;
+        private final ImageView ivFavorite;
+        private final TextView tvSeason;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivOutfit = itemView.findViewById(R.id.iv_recycler_item);
-            ivOutfitViewActivityIV = itemView.findViewById(R.id.iv_outfit_view);
+            ivOutfit = itemView.findViewById(R.id.iv_recycler);
             parent = itemView.findViewById(R.id.cv_recycler_item);
+            ivFavorite = itemView.findViewById(R.id.iv_favorite_recycler);
+            tvSeason = itemView.findViewById(R.id.tv_season_recycler);
         }
     }
 }
