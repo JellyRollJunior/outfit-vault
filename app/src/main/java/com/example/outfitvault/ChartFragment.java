@@ -81,7 +81,7 @@ public class ChartFragment extends Fragment {
                     outfitsPerSeason[2]++;
                     break;
                 case "SUMMER":
-                    outfitsPerSeason[4]++;
+                    outfitsPerSeason[3]++;
                     break;
             }
         }
