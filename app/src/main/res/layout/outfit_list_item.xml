@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     android:id="@+id/cv_recycler_item"
     app:cardElevation="5dp"
     app:cardCornerRadius="5dp">
@@ -14,11 +14,42 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_recycler_item"
+            android:id="@+id/iv_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:contentDescription="@string/iv_outfit_content_description" />
+            android:layout_height="170dp"
+            android:contentDescription="@string/iv_outfit_content_description"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vert_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/iv_favorite_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_favorite_22"
+
+            app:layout_constraintEnd_toStartOf="@id/tv_season_recycler"
+            app:layout_constraintTop_toTopOf="@id/tv_season_recycler"
+            android:contentDescription="@string/rec_view_favorite_content_description" />
+
+        <TextView
+            android:id="@+id/tv_season_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@tools:sample/cities"
+
+            app:layout_constraintEnd_toEndOf="@id/gl_vert_recycler"
+            app:layout_constraintStart_toStartOf="@id/gl_vert_recycler"
+            app:layout_constraintTop_toBottomOf="@id/iv_recycler" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
