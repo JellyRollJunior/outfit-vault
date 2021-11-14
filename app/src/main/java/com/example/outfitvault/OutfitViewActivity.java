@@ -1,9 +1,13 @@
 package com.example.outfitvault;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.util.Log;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,6 +31,9 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().setExitTransition(new Fade());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outfit_view);
 
@@ -100,7 +107,9 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         Button btnEdit = findViewById(R.id.btn_edit);
         btnEdit.setOnClickListener(view -> {
             Intent intent = OutfitEditActivity.makeIntent(context, currentOutfit);
-            startActivity(intent);
+            startActivity(intent, ActivityOptions
+                                        .makeSceneTransitionAnimation((Activity) context)
+                                        .toBundle());
         });
     }
 
