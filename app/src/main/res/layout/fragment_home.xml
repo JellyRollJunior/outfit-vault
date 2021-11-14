@@ -7,7 +7,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_display_outfits2"
+    android:id="@+id/rv_display_outfits"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 

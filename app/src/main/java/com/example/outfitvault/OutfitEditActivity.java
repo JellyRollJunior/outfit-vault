@@ -39,7 +39,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         setContentView(R.layout.activity_outfit_edit);
 
         instantiateVariables();
-        instantiateUI();
+        instantiateViews();
 
         // abstract methods
         populateOutfitImageView(context, ivOutfit, currentOutfit);
@@ -70,7 +70,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
     }
 
     @Override
-    void instantiateUI() {
+    void instantiateViews() {
         ivOutfit = findViewById(R.id.iv_outfit_edit);
         ibtnFavorite = findViewById(R.id.btn_favorite_outfit_edit);
         spnSeason = findViewById(R.id.spn_season_edit);

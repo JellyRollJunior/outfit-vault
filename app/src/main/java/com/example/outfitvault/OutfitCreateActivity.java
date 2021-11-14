@@ -33,7 +33,9 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outfit_create);
 
-        instantiateUI();
+        context = OutfitCreateActivity.this;
+        instantiateDatabase(context);
+        instantiateViews();
 
         // abstract methods
         wireFavoriteButton(ibtnFavorite);
@@ -53,8 +55,7 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
     }
 
     @Override
-    void instantiateUI() {
-        context = OutfitCreateActivity.this;
+    void instantiateViews() {
         ivOutfit = findViewById(R.id.iv_outfit_create);
         ibtnFavorite = findViewById(R.id.btn_favorite_outfit_create);
         spnSeason = findViewById(R.id.spn_season_create);
