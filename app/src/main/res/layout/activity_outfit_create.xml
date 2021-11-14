@@ -47,6 +47,18 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.8" />
 
+        <ImageButton
+            android:id="@+id/btn_favorite_outfit_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/favorite"
+
+            app:layout_constraintEnd_toStartOf="@+id/gl_vert_left_outfit_create"
+            app:layout_constraintStart_toStartOf="@+id/gl_vert_left_outfit_create"
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_create"
+            android:contentDescription="@string/favorite_button" />
+
         <Spinner
             android:id="@+id/spn_season_create"
             android:layout_width="wrap_content"
@@ -70,8 +82,9 @@
 
         <ScrollView
             android:id="@+id/sv_outfit_create"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="100dp"
+            android:background="@drawable/rectangle_background"
 
             android:layout_margin="5dp"
             android:layout_marginTop="16dp"
@@ -101,18 +114,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
-
-        <ImageButton
-            android:id="@+id/btn_favorite_outfit_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/favorite"
-
-            app:layout_constraintEnd_toStartOf="@+id/gl_vert_left_outfit_create"
-            app:layout_constraintStart_toStartOf="@+id/gl_vert_left_outfit_create"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_create"
-            android:contentDescription="@string/favorite_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

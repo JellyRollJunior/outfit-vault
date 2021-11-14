@@ -81,8 +81,10 @@
 
         <ScrollView
             android:id="@+id/sv_outfit_view"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="100dp"
+            android:background="@drawable/rectangle_background"
+
 
             android:layout_margin="5dp"
             android:layout_marginTop="16dp"
@@ -100,6 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/season"
+                    android:textSize="18sp"
 
                     android:layout_marginBottom="5dp"
                     app:layout_constraintBottom_toTopOf="@+id/tv_description_outfit_view"
@@ -110,8 +113,10 @@
                 <TextView
                     android:id="@+id/tv_description_outfit_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/sample_outfit_description"
+                    android:textSize="18sp"
+                    android:padding="5dp"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
