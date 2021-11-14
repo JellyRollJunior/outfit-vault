@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.util.Log;
@@ -84,6 +85,8 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     }
 
     private void populateTextViews() {
+        tvSeason.setTypeface(null, Typeface.BOLD);
+
         tvSeason.setText(currentOutfit.getSeason().toString());
         tvDescription.setText(currentOutfit.getDescription());
     }
