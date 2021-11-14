@@ -35,7 +35,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
 
         // abstract methods
         instantiateVariables();
-        instantiateUI();
+        instantiateViews();
         populateOutfitImageView(context, ivOutfit, currentOutfit);
 
         // non abstract methods
@@ -69,7 +69,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     }
 
     @Override
-    void instantiateUI() {
+    void instantiateViews() {
         ivOutfit = findViewById(R.id.iv_outfit_view);
         ibtnFavorite = findViewById(R.id.btn_favorite_outfit_view);
         tvSeason = findViewById(R.id.tv_season);

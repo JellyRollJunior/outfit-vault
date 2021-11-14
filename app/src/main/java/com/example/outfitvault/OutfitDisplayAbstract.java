@@ -24,7 +24,7 @@ public abstract class OutfitDisplayAbstract extends AppCompatActivity {
     public DataBaseHelper dataBaseHelper;
     public boolean isFavorite = false;
 
-    abstract void instantiateUI();
+    abstract void instantiateViews();
 
     public void instantiateDatabase(Context context) {
         if (dataBaseHelper == null) {

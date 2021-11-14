@@ -33,19 +33,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main); // NEVER DELETE THIS LINE BY ACCIDENT OR CANT ACCESS VIEWS
 
 
-        setupBottomNavDefaults();
+        setupBottomNavDefault();
         setupBottomNavFragmentSwitch();
 
     }
 
-    private void setupBottomNavDefaults() {
+    private void setupBottomNavDefault() {
         navigationBar = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_host_fragment, new HomeFragment())
-                .commit();
-
         navigationBar.setSelectedItemId(R.id.nav_home);
-
         navigationBar.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
     }
 
@@ -60,14 +55,16 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new ChartFragment();
                         break;
                     case R.id.nav_home:
-                        selectedFragment = HomeFragment.displayOnlyFavorites(false);
+                        selectedFragment = new HomeFragment();
                         break;
                     case R.id.nav_favorites:
-                        selectedFragment = HomeFragment.displayOnlyFavorites(true);
+                        selectedFragment = new FavoritesFragment();
                         break;
                     case R.id.nav_places:
                         selectedFragment = new MapsFragment();
                         break;
+                    default:
+                        selectedFragment = new HomeFragment();
                 }
 
                 getSupportFragmentManager().beginTransaction()
