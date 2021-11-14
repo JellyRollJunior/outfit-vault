@@ -71,15 +71,14 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
 
     @Override
     void instantiateViews() {
-        ivOutfit = findViewById(R.id.iv_outfit_edit);
-        ibtnFavorite = findViewById(R.id.btn_favorite_outfit_edit);
-        spnSeason = findViewById(R.id.spn_season_edit);
-        btnTakePhoto = findViewById(R.id.btn_take_photo_edit);
-        etDescription = findViewById(R.id.et_description_outfit_edit);
+        ivOutfit = findViewById(R.id.iv_outfit_create);
+        ibtnFavorite = findViewById(R.id.btn_favorite_outfit_create);
+        spnSeason = findViewById(R.id.spn_season_create);
+        btnTakePhoto = findViewById(R.id.btn_take_photo_create);
+        etDescription = findViewById(R.id.et_description_outfit_create);
     }
 
     private void setDefaultSpinnerSelection() {
-        Spinner spnSeason = findViewById(R.id.spn_season_edit);
         int i = 0;
         for (Season season: Season.values()) {
             if (currentOutfit.getSeason() == season) {
