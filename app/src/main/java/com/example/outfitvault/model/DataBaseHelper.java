@@ -69,9 +69,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                     "WHERE " + COLUMN_ID + " = " + ID;
 
         Cursor cursor = db.rawQuery(queryString, null);
+        boolean deleteSuccess = !cursor.moveToFirst();
 
         cursor.close();
-        return true;
+        return deleteSuccess;
     }
 
     public boolean update(int ID, Outfit outfit) {
