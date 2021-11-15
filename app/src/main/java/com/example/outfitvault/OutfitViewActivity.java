@@ -136,6 +136,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         } else {
             Toast.makeText(context, R.string.error_deleting_outfit, Toast.LENGTH_SHORT)
                     .show();
+            Log.d(TAG, "deleteOutfit: " + currentOutfit.toString());
         }
 
         finish();
