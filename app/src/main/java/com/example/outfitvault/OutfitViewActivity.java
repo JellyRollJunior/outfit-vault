@@ -107,7 +107,8 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     }
 
     private void wireEditButton() {
-        Button btnEdit = findViewById(R.id.btn_edit);
+        ImageButton btnEdit = findViewById(R.id.btn_edit);
+        btnEdit.setImageResource(R.drawable.ic_baseline_edit_44);
         btnEdit.setOnClickListener(view -> {
             Intent intent = OutfitEditActivity.makeIntent(context, currentOutfit);
             startActivity(intent, ActivityOptions
@@ -117,7 +118,8 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     }
 
     private void wireDeleteButton() {
-        Button btnDelete = findViewById(R.id.btn_delete);
+        ImageButton btnDelete = findViewById(R.id.btn_delete);
+        btnDelete.setImageResource(R.drawable.ic_baseline_delete_44);
         btnDelete.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(context)
                     .setTitle(R.string.delete_outfit)
