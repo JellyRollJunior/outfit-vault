@@ -37,4 +37,6 @@
     <string name="successfully_added">Successfully added</string>
     <string name="favorite_button">favorite button</string>
     <string name="rec_view_favorite_content_description">Display favorite status</string>
+    <string name="edit_button">edit button</string>
+    <string name="delete_button">delete button</string>
 </resources>

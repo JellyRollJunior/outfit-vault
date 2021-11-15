@@ -49,36 +49,41 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.8" />
 
-        <Button
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete"
-
-            app:layout_constraintEnd_toEndOf="@+id/gl_vert_right_outfit_view"
-            app:layout_constraintStart_toStartOf="@+id/gl_vert_right_outfit_view"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view" />
-
         <ImageButton
             android:id="@+id/btn_favorite_outfit_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/ripple"
             android:text="@string/favorite"
 
             app:layout_constraintEnd_toStartOf="@+id/gl_vert_left_outfit_view"
             app:layout_constraintStart_toStartOf="@+id/gl_vert_left_outfit_view"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view" />
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view"
+            android:contentDescription="@string/favorite_button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:background="@drawable/ripple"
             android:text="@string/edit"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view" />
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view"
+            android:contentDescription="@string/edit_button"/>
+
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:text="@string/delete"
+
+            app:layout_constraintEnd_toEndOf="@+id/gl_vert_right_outfit_view"
+            app:layout_constraintStart_toStartOf="@+id/gl_vert_right_outfit_view"
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_view"
+            android:contentDescription="@string/delete_button"/>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="350dp"
