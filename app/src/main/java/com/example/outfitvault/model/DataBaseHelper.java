@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -69,10 +70,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(queryString, null);
 
-        // rawQuery returns deleted item. if deleted item is present in cursor, success!
-        boolean deleteSuccess = cursor.moveToFirst();
         cursor.close();
-        return deleteSuccess;
+        return true;
     }
 
     public boolean update(int ID, Outfit outfit) {

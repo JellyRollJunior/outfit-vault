@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FavoritesFragment extends OutfitRecyclerAbstract {
     private static final int NUM_COLS = 3;
