@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,8 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+
 import com.example.outfitvault.model.Outfit;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.Objects;
 
 public class OutfitViewActivity extends OutfitDisplayAbstract {
 
@@ -51,6 +57,9 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         wireFavoriteButton();
         wireEditButton();
         wireDeleteButton();
+
+        ActionBar ab = getSupportActionBar();
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -132,6 +141,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         });
     }
 
+
     private void deleteOutfit() {
         boolean deleteSuccess = dataBaseHelper.deleteOne(currentOutfit.getID());
         if (deleteSuccess){
@@ -144,6 +154,18 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         }
 
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     private int getExtraOutfitID() {

@@ -15,9 +15,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.types.Season;
+
+import java.util.Objects;
 
 public class OutfitEditActivity extends OutfitModifierAbstract {
 
@@ -50,6 +53,9 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         // non abstract methods
         setDefaultSpinnerSelection();
         etDescription.setText(currentOutfit.getDescription());
+
+        ActionBar ab = getSupportActionBar();
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -98,6 +104,9 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
             case R.id.outfit_menu_edit:
                 Outfit outfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
                 boolean updateSuccess = dataBaseHelper.update(currentOutfitID, outfit);
