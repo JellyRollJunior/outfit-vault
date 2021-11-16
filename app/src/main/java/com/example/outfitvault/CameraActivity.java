@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.Surface;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
@@ -27,6 +29,7 @@ import com.example.outfitvault.model.PhotoHelper;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
@@ -43,6 +46,9 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
 
         startCamera();
         wireTakePhotoButton();
+
+        ActionBar ab = getSupportActionBar();
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
     private void wireTakePhotoButton() {
@@ -156,5 +162,17 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
     @Override
     public void analyze(@NonNull ImageProxy image) {
         image.close();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }

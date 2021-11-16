@@ -15,8 +15,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 
 import com.example.outfitvault.model.Outfit;
+
+import java.util.Objects;
 
 public class OutfitCreateActivity extends OutfitModifierAbstract {
     private final String TAG = "com.example.outfitvault.OutfitCreateActivity";
@@ -43,6 +46,8 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
         wireSetTakePhoto(context, btnTakePhoto);
 
         // non abstract methods
+        ActionBar ab = getSupportActionBar();
+        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -73,6 +78,9 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
             case R.id.outfit_menu_create:
                 if (photoName != null) {
                     Outfit newOutfit = compileOutfitDetails(999, etDescription, spnSeason);
@@ -89,6 +97,7 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
                 } else {
                     Toast.makeText(context, "Take photo first!", Toast.LENGTH_SHORT)
                             .show();
+                    break;
                 }
             default:
                 return super.onOptionsItemSelected(item);
