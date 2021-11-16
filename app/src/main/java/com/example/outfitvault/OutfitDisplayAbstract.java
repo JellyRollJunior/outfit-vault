@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.model.PhotoHelper;
 
 import java.io.File;
 
@@ -41,29 +42,10 @@ public abstract class OutfitDisplayAbstract extends AppCompatActivity {
     }
 
     public void populateOutfitImageView(Context context, ImageView imageView, Outfit outfit) {
-        String photoFilePath = getPhotoFile(context, outfit.getPhotoName())
+        String photoFilePath = PhotoHelper.getPhotoFile(context, outfit.getPhotoName())
                 .getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-        Bitmap rotatedBitmap = rotate90Degrees(photoBitmap);
+        Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         imageView.setImageBitmap(rotatedBitmap);
     }
-
-    private File getPhotoFile(Context context, String photoName) {
-        String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
-        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
-        return new File(imageFilePathName);
-    }
-
-    private Bitmap rotate90Degrees(Bitmap bitmap) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        return Bitmap.createBitmap(
-                bitmap, 0, 0,
-                bitmap.getWidth(),
-                bitmap.getHeight(),
-                matrix, true);
-    }
-
-
-
 }

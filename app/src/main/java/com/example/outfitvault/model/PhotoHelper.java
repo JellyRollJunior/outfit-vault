@@ -26,6 +26,4 @@ public class PhotoHelper {
         return new File(imageFilePathName);
     }
 
-    // TODO: MAKE ABSTRACTS USE THIS CODE INSTEAD OF CREATING THEIR OWN
-
 }
