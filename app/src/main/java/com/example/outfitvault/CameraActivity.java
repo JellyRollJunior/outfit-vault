@@ -77,6 +77,7 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                         Log.d(TAG, "onImageSaved: " + "Image: " + photoName);
 
                         passImageNameToOutfitCreateActivity(photoName);
+                        finish();
                     }
 
                     @Override
