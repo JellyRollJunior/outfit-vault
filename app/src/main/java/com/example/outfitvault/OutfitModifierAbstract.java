@@ -43,6 +43,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
                             android.R.layout.simple_spinner_dropdown_item,
                             Season.values()
                     );
+        spnSeason.setPopupBackgroundResource(R.drawable.spinner_popup_background);
         spnSeason.setAdapter(spinnerAdapter);
     }
 

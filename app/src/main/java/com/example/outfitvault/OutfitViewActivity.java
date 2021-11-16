@@ -61,6 +61,8 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
 
     private void refreshCardView() {
         currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfit.getID());
+        isFavorite = currentOutfit.getFavorite();
+
         populateOutfitImageView(context, ivOutfit, currentOutfit);
         populateTextViews();
         setFavoriteButtonVector(ibtnFavorite);
