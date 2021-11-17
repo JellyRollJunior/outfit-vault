@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupBottomNavDefault();
         setupBottomNavFragmentSwitch();
+
     }
 
     private void setupBottomNavDefault() {
