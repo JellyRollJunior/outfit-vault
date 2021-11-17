@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,7 +19,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.model.PhotoHelper;
 import com.example.outfitvault.types.Season;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
@@ -26,7 +32,8 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
     private static final int CAMERA_REQUEST_CODE = 10;
 
-    public String photoName;
+    public List<String> garbageCollectionPhotoList = new ArrayList<>();
+    public String outfitPhotoName;
 
     public void wireFavoriteButton(ImageButton imageButton) {
         setFavoriteButtonVector(imageButton);
@@ -38,11 +45,11 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
     public void populateSpinner(Context context, Spinner spnSeason) {
         ArrayAdapter<Season> spinnerAdapter =
-                    new ArrayAdapter<Season>(
-                            context,
-                            android.R.layout.simple_spinner_dropdown_item,
-                            Season.values()
-                    );
+                new ArrayAdapter<>(
+                        context,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        Season.values()
+                );
         spnSeason.setPopupBackgroundResource(R.drawable.spinner_popup_background);
         spnSeason.setAdapter(spinnerAdapter);
     }
@@ -63,10 +70,12 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data != null) {
-                        photoName = CameraActivity.getImageName(data);
+                        outfitPhotoName = CameraActivity.getImageName(data);
+
+                        garbageCollectionPhotoList.add(outfitPhotoName);
 
                         // debug
-                        Log.d(TAG, "from camera: imageName is " + photoName);
+                        Log.d(TAG, "from camera: imageName is " + outfitPhotoName);
                     }
                 } else {
                     Log.d(TAG, "onCreate: " + result.toString());
@@ -100,8 +109,8 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         Season season = (Season) spnSeason.getSelectedItem();
 
         Outfit newOutfit;
-        if (photoName != null) {
-            newOutfit = new Outfit(outfitID, photoName, description, season, isFavorite);
+        if (outfitPhotoName != null) {
+            newOutfit = new Outfit(outfitID, outfitPhotoName, description, season, isFavorite);
         } else {
             // this should never be reached:
             //      (OutfitCreateActivity) checks if photoName is null,
@@ -113,4 +122,29 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         Log.d(TAG, "compileOutfitDetails: " + newOutfit.toString());
         return newOutfit;
     }
+
+    public void deleteUnusedPhotos(Context context) {
+        for (String photo: garbageCollectionPhotoList) {
+            File deletePhoto = PhotoHelper.getPhotoFile(context, photo);
+            boolean deleteSuccess = deletePhoto.delete();
+
+            if (deleteSuccess) {
+                Log.d(TAG, "deleteUnusedPhotos: DELETED PHOTO: " + photo);
+            }
+        }
+    }
+
+    public void removePhotoFromGarbageCollection(String outfitName) {
+        int i = 0;
+        for (String photo : new ArrayList<String>(garbageCollectionPhotoList)) {
+            if (outfitName.equals(photo)) {
+                garbageCollectionPhotoList.remove(i);
+
+                // debug
+                Log.d(TAG, "popped from garbage collection: " + photo);
+            }
+            i++;
+        }
+    }
+
 }

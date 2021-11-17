@@ -135,7 +135,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
             new MaterialAlertDialogBuilder(context)
                     .setTitle(R.string.delete_outfit)
                     .setMessage(R.string.delete_outfit_confirmation)
-                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> { /* do nothing*/ } )
+                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> { /* do nothing */ } )
                     .setPositiveButton(R.string.delete, (dialogInterface, i) -> deleteOutfit())
                     .show();
         });

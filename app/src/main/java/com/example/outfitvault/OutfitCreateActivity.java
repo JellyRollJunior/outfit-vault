@@ -52,11 +52,17 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
 
     @Override
     protected void onResume() {
-        if (photoName != null) {
+        if (outfitPhotoName != null) {
             Outfit tmpOutfit = compileOutfitDetails(999, etDescription, spnSeason);
             populateOutfitImageView(context, ivOutfit, tmpOutfit);
         }
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        deleteUnusedPhotos(context);
+        super.onDestroy();
     }
 
     @Override
@@ -82,23 +88,21 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
                 finish();
                 break;
             case R.id.outfit_menu_create:
-                if (photoName != null) {
+                if (outfitPhotoName != null) {
                     Outfit newOutfit = compileOutfitDetails(999, etDescription, spnSeason);
                     boolean insertSuccess = dataBaseHelper.addOne(newOutfit);
-
                     if (insertSuccess) {
                         Toast.makeText(context, getString(R.string.successfully_added), Toast.LENGTH_SHORT)
                                 .show();
                     }
 
-                    Log.d(TAG, "onOptionsItemSelected: insert success? " + insertSuccess);
+                    removePhotoFromGarbageCollection(newOutfit.getPhotoName());
                     finish();
-                    break;
                 } else {
                     Toast.makeText(context, "Take photo first!", Toast.LENGTH_SHORT)
                             .show();
-                    break;
                 }
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -66,13 +65,22 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        removePhotoFromGarbageCollection(currentOutfit.getPhotoName());
+        deleteUnusedPhotos(context);
+        super.onDestroy();
+    }
+
     private void instantiateVariables() {
         context = OutfitEditActivity.this;
         instantiateDatabase(context);
         currentOutfitID = getExtraOutfitID();
         currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
         isFavorite = currentOutfit.getFavorite();
-        photoName = currentOutfit.getPhotoName();
+        outfitPhotoName = currentOutfit.getPhotoName();
+
+        garbageCollectionPhotoList.add(outfitPhotoName);
     }
 
     @Override
@@ -110,13 +118,14 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
             case R.id.outfit_menu_edit:
                 Outfit outfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
                 boolean updateSuccess = dataBaseHelper.update(currentOutfitID, outfit);
-
                 if (updateSuccess) {
                         Toast.makeText(context, getString(R.string.suuccessful_update), Toast.LENGTH_SHORT)
                                 .show();
                 }
 
-                Log.d(TAG, "onOptionsItemSelected: update success? " + updateSuccess);
+                removePhotoFromGarbageCollection(outfit.getPhotoName());
+                deleteUnusedPhotos(context);
+
                 finish();
                 break;
             default:
