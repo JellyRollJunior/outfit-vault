@@ -67,7 +67,8 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
 
     @Override
     protected void onDestroy() {
-        removePhotoFromGarbageCollection(currentOutfit.getPhotoName());
+        currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
+        removePhotoFromList(photoList, currentOutfit.getPhotoName());
         deleteUnusedPhotos(context);
         super.onDestroy();
     }
@@ -80,7 +81,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         isFavorite = currentOutfit.getFavorite();
         outfitPhotoName = currentOutfit.getPhotoName();
 
-        garbageCollectionPhotoList.add(outfitPhotoName);
+        photoList.add(outfitPhotoName);
     }
 
     @Override
@@ -116,16 +117,12 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
                 finish();
                 break;
             case R.id.outfit_menu_edit:
-                Outfit outfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
-                boolean updateSuccess = dataBaseHelper.update(currentOutfitID, outfit);
+                Outfit newOutfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
+                boolean updateSuccess = dataBaseHelper.update(currentOutfitID, newOutfit);
                 if (updateSuccess) {
                         Toast.makeText(context, getString(R.string.suuccessful_update), Toast.LENGTH_SHORT)
                                 .show();
                 }
-
-                removePhotoFromGarbageCollection(outfit.getPhotoName());
-                deleteUnusedPhotos(context);
-
                 finish();
                 break;
             default:
