@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -96,7 +95,7 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
                                 .show();
                     }
 
-                    removePhotoFromGarbageCollection(newOutfit.getPhotoName());
+                    removePhotoFromList(photoList, newOutfit.getPhotoName());
                     finish();
                 } else {
                     Toast.makeText(context, "Take photo first!", Toast.LENGTH_SHORT)

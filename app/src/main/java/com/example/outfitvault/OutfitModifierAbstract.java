@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,7 +31,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
     private static final int CAMERA_REQUEST_CODE = 10;
 
-    public List<String> garbageCollectionPhotoList = new ArrayList<>();
+    public List<String> photoList = new ArrayList<>();
     public String outfitPhotoName;
 
     public void wireFavoriteButton(ImageButton imageButton) {
@@ -71,8 +70,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
                     Intent data = result.getData();
                     if (data != null) {
                         outfitPhotoName = CameraActivity.getImageName(data);
-
-                        garbageCollectionPhotoList.add(outfitPhotoName);
+                        photoList.add(outfitPhotoName);
 
                         // debug
                         Log.d(TAG, "from camera: imageName is " + outfitPhotoName);
@@ -124,7 +122,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
     }
 
     public void deleteUnusedPhotos(Context context) {
-        for (String photo: garbageCollectionPhotoList) {
+        for (String photo: photoList) {
             File deletePhoto = PhotoHelper.getPhotoFile(context, photo);
             boolean deleteSuccess = deletePhoto.delete();
 
@@ -134,14 +132,14 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         }
     }
 
-    public void removePhotoFromGarbageCollection(String outfitName) {
+    public void removePhotoFromList(List photoList, String outfitName) {
         int i = 0;
-        for (String photo : new ArrayList<String>(garbageCollectionPhotoList)) {
+        for (String photo : new ArrayList<String>(photoList)) {
             if (outfitName.equals(photo)) {
-                garbageCollectionPhotoList.remove(i);
+                photoList.remove(i);
 
                 // debug
-                Log.d(TAG, "popped from garbage collection: " + photo);
+                Log.d(TAG, "popped photo from garbage collection: " + photo);
             }
             i++;
         }
