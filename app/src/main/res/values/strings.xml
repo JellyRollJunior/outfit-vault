@@ -39,4 +39,5 @@
     <string name="rec_view_favorite_content_description">Display favorite status</string>
     <string name="edit_button">edit button</string>
     <string name="delete_button">delete button</string>
+    <string name="chart_title">Outfits \nby Season</string>
 </resources>

@@ -6,6 +6,7 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart_season"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
