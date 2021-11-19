@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         navigationBar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
+                Fragment selectedFragment = new HomeFragment();
 
                 switch (item.getItemId()) {
                     case R.id.nav_charts:
@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_places:
                         selectedFragment = new MapsFragment();
                         break;
-                    default:
-                        selectedFragment = new HomeFragment();
                 }
 
                 getSupportFragmentManager().beginTransaction()

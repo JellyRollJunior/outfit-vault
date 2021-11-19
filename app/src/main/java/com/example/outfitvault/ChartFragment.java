@@ -1,19 +1,23 @@
 package com.example.outfitvault;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.types.Season;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -25,7 +29,7 @@ import java.util.List;
 public class ChartFragment extends Fragment {
     private static String TAG = "com.example.outfitvault.ChartFragment";
     private DataBaseHelper dataBaseHelper;
-    private float[] outfitsPerSeason = {0.0f, 0.0f, 0.0f, 0.0f};
+    private int[] outfitsPerSeason = {0, 0, 0, 0};
     private List<Outfit> outfits;
     private PieChart pieChart;
 
@@ -48,7 +52,9 @@ public class ChartFragment extends Fragment {
         List<PieEntry> pieEntries = new ArrayList<>();
         int i = 0;
         for (Season season: Season.values()) {
-            pieEntries.add(new PieEntry(outfitsPerSeason[i], season.toString()));
+            if (outfitsPerSeason[i] > 0) {
+                pieEntries.add(new PieEntry(outfitsPerSeason[i], season.toString()));
+            }
             i++;
 
             // debug
@@ -57,12 +63,26 @@ public class ChartFragment extends Fragment {
 
         PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.outfits_per_season));
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        PieData data = new PieData(dataSet);
+        dataSet.setValueTextSize(15);
 
-        // get the chart
+        PieData data = new PieData(dataSet);
         pieChart.setData(data);
-        pieChart.animateY(1000);
+
+        setChartVisuals();
         pieChart.invalidate();     // make chart redraw
+    }
+
+    private void setChartVisuals() {
+        pieChart.setCenterText(getString(R.string.chart_title));
+        pieChart.setCenterTextSize(30);
+        pieChart.setCenterTextColor(Color.WHITE);
+        pieChart.setHoleColor(Color.BLACK);
+
+        Legend l = pieChart.getLegend();
+        l.setTextColor(Color.WHITE);
+
+        pieChart.setMinAngleForSlices(20);
+        pieChart.animateY(1000);
     }
 
     private void countArticlesPerSeason() {
