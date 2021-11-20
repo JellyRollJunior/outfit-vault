@@ -108,7 +108,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
             isFavorite = !isFavorite;
 
             currentOutfit.setFavorite(isFavorite);
-            boolean updateSuccess = dataBaseHelper.update(currentOutfit.getID(), currentOutfit);
+            boolean updateSuccess = dataBaseHelper.update(currentOutfit);
 
             setFavoriteButtonVector(ibtnFavorite);
 

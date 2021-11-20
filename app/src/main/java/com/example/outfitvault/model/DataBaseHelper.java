@@ -75,7 +75,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return deleteSuccess;
     }
 
-    public boolean update(int ID, Outfit outfit) {
+    public boolean update(Outfit outfit) {
         int favoriteToInt = outfit.getFavorite() ? 1 : 0;
 
         SQLiteDatabase db = this.getWritableDatabase();
