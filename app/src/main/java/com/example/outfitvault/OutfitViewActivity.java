@@ -10,7 +10,6 @@ import android.transition.Fade;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
