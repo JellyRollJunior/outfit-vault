@@ -3,10 +3,6 @@ package com.example.outfitvault;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.os.Environment;
-import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -15,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.model.PhotoHelper;
-
-import java.io.File;
 
 public abstract class OutfitDisplayAbstract extends AppCompatActivity {
 

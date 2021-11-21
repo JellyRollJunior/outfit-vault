@@ -10,7 +10,6 @@ import android.transition.Fade;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -108,7 +107,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
             isFavorite = !isFavorite;
 
             currentOutfit.setFavorite(isFavorite);
-            boolean updateSuccess = dataBaseHelper.update(currentOutfit.getID(), currentOutfit);
+            boolean updateSuccess = dataBaseHelper.update(currentOutfit);
 
             setFavoriteButtonVector(ibtnFavorite);
 

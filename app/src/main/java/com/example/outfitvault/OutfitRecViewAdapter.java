@@ -22,6 +22,7 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdapter.ViewHolder>{
+
     private static final String TAG = "com.example.outfitvault.OutfitRecViewAdapter";
     private final List<Outfit> outfits;
     private final Context context;
@@ -49,7 +50,6 @@ public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdap
                                     .getPhotoFile(context, currentOutfit.getPhotoName())
                                     .getAbsolutePath();
         Bitmap photoBitmap = BitmapFactory.decodeFile(photoFilePath);
-
         Bitmap rotatedBitmap = PhotoHelper.rotate90Degrees(photoBitmap);
         holder.ivOutfit.setImageBitmap(rotatedBitmap);
 

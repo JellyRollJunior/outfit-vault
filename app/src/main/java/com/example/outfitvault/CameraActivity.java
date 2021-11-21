@@ -34,7 +34,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
 public class CameraActivity extends AppCompatActivity implements ImageAnalysis.Analyzer {
-    public static final String EXTRA_IMAGE_NAME = "com.example.outfitvault.CameraActivity - imageName";
+    private static final String EXTRA_IMAGE_NAME = "com.example.outfitvault.CameraActivity - imageName";
     private static final String TAG = "com.example.outfitvault.CameraActivity";
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ImageCapture imageCapture;
@@ -49,6 +49,21 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
 
         ActionBar ab = getSupportActionBar();
         Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void startCamera() {
+        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
+
+        // verify CameraProvider initialization succeeded
+        cameraProviderFuture.addListener(() -> {
+            try {
+                ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
+                bindPreview(cameraProvider);
+            } catch (ExecutionException | InterruptedException e) {
+                // No errors need to be handled for this Future.
+                // This should never be reached.
+            }
+        }, getExecutor());
     }
 
     private void wireTakePhotoButton() {
@@ -68,10 +83,8 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                 new ImageCapture.OnImageSavedCallback() {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        Toast.makeText(
-                                CameraActivity.this,
-                                "Image has been saved successfully",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CameraActivity.this, "Image has been saved successfully", Toast.LENGTH_SHORT)
+                                .show();
 
                         // debug
                         Log.d(TAG, "onImageSaved: " + "Image: " + photoName);
@@ -91,38 +104,18 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         );
     }
 
-    public static String getImageName(Intent intent) {
-        return intent.getStringExtra(EXTRA_IMAGE_NAME);
-    }
-
     private void passImageNameToOutfitCreateActivity(String photoName) {
         Intent intent = new Intent();
         intent.putExtra(EXTRA_IMAGE_NAME, photoName);
         setResult(Activity.RESULT_OK, intent);
     }
 
+    public static String getImageName(Intent intent) {
+        return intent.getStringExtra(EXTRA_IMAGE_NAME);
+    }
+
     private Executor getExecutor() {
         return ContextCompat.getMainExecutor(this);
-    }
-
-    public static Intent makeIntent(Context context) {
-        Intent intent = new Intent(context, CameraActivity.class);
-        return intent;
-    }
-
-    private void startCamera() {
-        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
-
-        // verify CameraProvider initialization succeeded
-        cameraProviderFuture.addListener(() -> {
-            try {
-                ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
-                bindPreview(cameraProvider);
-            } catch (ExecutionException | InterruptedException e) {
-                // No errors need to be handled for this Future.
-                // This should never be reached.
-            }
-        }, getExecutor());
     }
 
     // bind all use cases to camera in this function
@@ -174,5 +167,10 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    public static Intent makeIntent(Context context) {
+        Intent intent = new Intent(context, CameraActivity.class);
+        return intent;
     }
 }

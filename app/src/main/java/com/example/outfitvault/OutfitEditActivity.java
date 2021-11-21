@@ -118,7 +118,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
                 break;
             case R.id.outfit_menu_edit:
                 Outfit newOutfit = compileOutfitDetails(currentOutfitID, etDescription, spnSeason);
-                boolean updateSuccess = dataBaseHelper.update(currentOutfitID, newOutfit);
+                boolean updateSuccess = dataBaseHelper.update(newOutfit);
                 if (updateSuccess) {
                         Toast.makeText(context, getString(R.string.suuccessful_update), Toast.LENGTH_SHORT)
                                 .show();
