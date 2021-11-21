@@ -132,7 +132,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         }
     }
 
-    public void removePhotoFromList(List photoList, String outfitName) {
+    public void removePhotoFromList(List<String> photoList, String outfitName) {
         int i = 0;
         for (String photo : new ArrayList<String>(photoList)) {
             if (outfitName.equals(photo)) {

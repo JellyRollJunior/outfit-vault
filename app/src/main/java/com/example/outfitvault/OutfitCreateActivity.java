@@ -87,25 +87,29 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
                 finish();
                 break;
             case R.id.outfit_menu_create:
-                if (outfitPhotoName != null) {
-                    Outfit newOutfit = compileOutfitDetails(999, etDescription, spnSeason);
-                    boolean insertSuccess = dataBaseHelper.addOne(newOutfit);
-                    if (insertSuccess) {
-                        Toast.makeText(context, getString(R.string.successfully_added), Toast.LENGTH_SHORT)
-                                .show();
-                    }
-
-                    removePhotoFromList(photoList, newOutfit.getPhotoName());
-                    finish();
-                } else {
-                    Toast.makeText(context, "Take photo first!", Toast.LENGTH_SHORT)
-                            .show();
-                }
+                createOutfit();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    private void createOutfit() {
+        if (outfitPhotoName != null) {
+            Outfit newOutfit = compileOutfitDetails(999, etDescription, spnSeason);
+            boolean insertSuccess = dataBaseHelper.addOne(newOutfit);
+            if (insertSuccess) {
+                Toast.makeText(context, getString(R.string.successfully_added), Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            removePhotoFromList(photoList, newOutfit.getPhotoName());
+            finish();
+        } else {
+            Toast.makeText(context, "Take photo first!", Toast.LENGTH_SHORT)
+                    .show();
+        }
     }
 
     public static Intent makeIntent(Context context) {
