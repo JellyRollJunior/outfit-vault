@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,6 @@ import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class OutfitRecyclerAbstract extends Fragment{

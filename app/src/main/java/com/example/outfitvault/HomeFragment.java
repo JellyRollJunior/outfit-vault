@@ -7,12 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.outfitvault.model.Outfit;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.List;
 
 public class HomeFragment extends OutfitRecyclerAbstract {
     private static final String TAG = "com.example.outfitvault.HomeFragment";

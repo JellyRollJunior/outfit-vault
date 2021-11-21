@@ -1,21 +1,12 @@
 package com.example.outfitvault;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.outfitvault.model.DataBaseHelper;
-import com.example.outfitvault.model.Outfit;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class FavoritesFragment extends OutfitRecyclerAbstract {
     private static final String TAG = "com.example.outfitvault.FavoritesFragment";
