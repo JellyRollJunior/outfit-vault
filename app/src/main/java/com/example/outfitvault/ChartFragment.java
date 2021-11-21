@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.outfitvault.model.DataBaseHelper;
@@ -27,9 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChartFragment extends Fragment {
-    private static String TAG = "com.example.outfitvault.ChartFragment";
-    private DataBaseHelper dataBaseHelper;
-    private int[] outfitsPerSeason = {0, 0, 0, 0};
+    private static final String TAG = "com.example.outfitvault.ChartFragment";
+    private final int[] outfitsPerSeason = {0, 0, 0, 0};
     private List<Outfit> outfits;
     private PieChart pieChart;
 
@@ -108,7 +105,7 @@ public class ChartFragment extends Fragment {
     }
 
     private void instantiateDatabase() {
-        dataBaseHelper = new DataBaseHelper(getActivity());
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(getActivity());
         outfits = dataBaseHelper.getAll();
     }
 
