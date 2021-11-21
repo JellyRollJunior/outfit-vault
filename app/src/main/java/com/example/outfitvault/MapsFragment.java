@@ -26,6 +26,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MapsFragment extends Fragment {
     private static final String TAG = "com.example.outfitvault.MapFragment";
@@ -79,7 +80,9 @@ public class MapsFragment extends Fragment {
                     public void onMapReady(@NonNull GoogleMap googleMap) {
                         map = googleMap;
 
-                        map.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getName()));
+                        map.addMarker(new MarkerOptions()
+                                .position(Objects.requireNonNull(place.getLatLng()))
+                                .title(place.getName()));
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15));
                     }
                 });
