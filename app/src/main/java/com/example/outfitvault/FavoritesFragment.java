@@ -18,12 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class FavoritesFragment extends OutfitRecyclerAbstract {
-    private static final int NUM_COLS = 3;
     private static final String TAG = "com.example.outfitvault.FavoritesFragment";
-
-    private List<Outfit> outfits;
-    private FloatingActionButton fabAddButton;
-    private RecyclerView rvDisplayOutfits;
 
     @Nullable
     @Override
@@ -39,22 +34,9 @@ public class FavoritesFragment extends OutfitRecyclerAbstract {
     }
 
     @Override
-    void instantiateViews(View view) {
-        fabAddButton = view.findViewById(R.id.fab_add_outfits);
-        rvDisplayOutfits = view.findViewById(R.id.rv_display_outfits);
-    }
-
-    @Override
     void instantiateOutfits() {
         instantiateDatabase(getActivity());
         outfits = dataBaseHelper.getAllFavorites();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        instantiateOutfits();
-        displayOutfitsOnRecView(getActivity(), outfits, rvDisplayOutfits, NUM_COLS);
-    }
 }

@@ -20,12 +20,21 @@ import java.util.List;
 
 public abstract class OutfitRecyclerAbstract extends Fragment{
     private static final String TAG = "com.example.outfitvault.MainActivity.OutfitRecyclerAbstract";
+    public static final int NUM_COLS = 3;
 
+    public List<Outfit> outfits;
     public DataBaseHelper dataBaseHelper;
+    public FloatingActionButton fabAddButton;
+    public RecyclerView rvDisplayOutfits;
 
-    abstract void instantiateViews(View view);
+
 
     abstract void instantiateOutfits();
+
+    public void instantiateViews(View view) {
+        fabAddButton = view.findViewById(R.id.fab_add_outfits);
+        rvDisplayOutfits = view.findViewById(R.id.rv_display_outfits);
+    }
 
     public void instantiateDatabase(Context context) {
         if (dataBaseHelper == null) {
@@ -52,8 +61,11 @@ public abstract class OutfitRecyclerAbstract extends Fragment{
         });
     }
 
-    private void refreshRecyclerView(Context context, List<Outfit> outfits, RecyclerView recyclerView, int numCols) {
+    @Override
+    public void onResume() {
+        super.onResume();
+
         instantiateOutfits();
-        displayOutfitsOnRecView(context, outfits, recyclerView, numCols);
+        displayOutfitsOnRecView(getActivity(), outfits, rvDisplayOutfits, NUM_COLS);
     }
 }
