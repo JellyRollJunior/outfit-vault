@@ -27,8 +27,6 @@ public abstract class OutfitRecyclerAbstract extends Fragment{
     public FloatingActionButton fabAddButton;
     public RecyclerView rvDisplayOutfits;
 
-
-
     abstract void instantiateOutfits();
 
     public void instantiateViews(View view) {
