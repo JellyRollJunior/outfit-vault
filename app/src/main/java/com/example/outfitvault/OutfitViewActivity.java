@@ -22,8 +22,6 @@ import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.model.TextHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.w3c.dom.Text;
-
 import java.util.Objects;
 
 public class OutfitViewActivity extends OutfitDisplayAbstract {
