@@ -3,7 +3,10 @@ package com.example.outfitvault;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -76,6 +79,13 @@ public class OutfitCreateActivity extends OutfitModifierAbstract {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_outfit_create, menu);
+
+        // make menu text white
+        MenuItem menuItemCreate = menu.getItem(0);
+        SpannableString s = new SpannableString(menuItemCreate.getTitle());
+        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
+        menuItemCreate.setTitle(s);
+
         return true;
     }
 
