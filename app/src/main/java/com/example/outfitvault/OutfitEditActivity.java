@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 
 import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.model.TextHelper;
 import com.example.outfitvault.types.Season;
 
 import java.util.Objects;
@@ -111,10 +112,10 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         getMenuInflater().inflate(R.menu.menu_outfit_edit, menu);
 
         // make menu text white
-        MenuItem menuItemCreate = menu.getItem(0);
-        SpannableString s = new SpannableString(menuItemCreate.getTitle());
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), 0);
-        menuItemCreate.setTitle(s);
+        MenuItem menuItemEdit = menu.getItem(0);
+        menuItemEdit.setTitle(TextHelper
+                .stringColorToWhite(menuItemEdit.getTitle())
+        );
 
         return true;
     }
