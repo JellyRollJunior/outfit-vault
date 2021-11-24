@@ -30,17 +30,16 @@
             app:layout_constraintGuide_percent="0.68" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/image_card_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/gl_hor_iv_bot"
-
             app:layout_constraintDimensionRatio="2:3"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_iv_top">
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_iv_top"
+            app:layout_constraintBottom_toTopOf="@+id/gl_hor_iv_bot" >
 
             <ImageView
                 android:id="@+id/iv_outfit_view"
