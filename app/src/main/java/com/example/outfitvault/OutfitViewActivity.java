@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 
 import com.example.outfitvault.model.Outfit;
+import com.example.outfitvault.model.TextHelper;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
@@ -134,8 +135,14 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
             new MaterialAlertDialogBuilder(context)
                     .setTitle(R.string.delete_outfit)
                     .setMessage(R.string.delete_outfit_confirmation)
-                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> { /* do nothing */ } )
-                    .setPositiveButton(R.string.delete, (dialogInterface, i) -> deleteOutfit())
+                    .setNegativeButton(
+                            TextHelper.stringColorToWhite(getString(R.string.cancel)),
+                            (dialogInterface, i) -> { /* do nothing */ }
+                    )
+                    .setPositiveButton(
+                            TextHelper.stringColorToWhite(getString(R.string.delete)),
+                            (dialogInterface, i) -> deleteOutfit()
+                    )
                     .show();
         });
     }

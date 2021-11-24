@@ -14,51 +14,69 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_outfit_create"
-            android:layout_width="300dp"
-            android:layout_height="450dp"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:contentDescription="@string/iv_outfit_content_description"
-            android:padding="5dp"
-
-            app:layout_constraintBottom_toTopOf="@+id/gl_hor_outfit_create"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hor_iv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.03" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_hor_outfit_create"
+            android:id="@+id/gl_hor_iv_bot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.68" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintDimensionRatio="2:3"
+            app:cardCornerRadius="10dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gl_hor_iv_top"
+            app:layout_constraintBottom_toTopOf="@+id/gl_hor_iv_bot">
+
+            <ImageView
+                android:id="@+id/iv_outfit_create"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_launcher_background"
+                android:contentDescription="@string/iv_outfit_content_description" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hor_btn_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_vert_left_outfit_create"
+            android:id="@+id/gl_hor_btn_bot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.175" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_vert_right_outfit_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.76" />
 
         <ImageButton
             android:id="@+id/btn_favorite_outfit_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/favorite"
+            android:contentDescription="@string/favorite_button"
+            app:layout_constraintDimensionRatio="1:1"
 
-            app:layout_constraintEnd_toStartOf="@+id/gl_vert_left_outfit_create"
-            app:layout_constraintStart_toStartOf="@+id/gl_vert_left_outfit_create"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_create"
-            android:contentDescription="@string/favorite_button" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/spn_season_create"
+            app:layout_constraintTop_toBottomOf="@id/gl_hor_btn_top"
+            app:layout_constraintBottom_toTopOf="@id/gl_hor_btn_bot"
+             />
 
         <Spinner
             android:id="@+id/spn_season_create"
@@ -66,10 +84,10 @@
             android:layout_height="40dp"
 
             android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_take_photo_create"
-            app:layout_constraintEnd_toStartOf="@+id/btn_take_photo_create"
-            app:layout_constraintStart_toEndOf="@+id/btn_favorite_outfit_create"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_create" />
+            app:layout_constraintStart_toEndOf="@id/btn_favorite_outfit_create"
+            app:layout_constraintEnd_toStartOf="@id/btn_take_photo_create"
+            app:layout_constraintTop_toBottomOf="@id/gl_hor_btn_top"
+            app:layout_constraintBottom_toTopOf="@id/gl_hor_btn_bot"/>
 
         <Button
             android:id="@+id/btn_take_photo_create"
@@ -78,22 +96,49 @@
             android:text="@string/take_photo"
             android:textColor="@color/white"
 
-            app:layout_constraintEnd_toStartOf="@+id/gl_vert_right_outfit_create"
-            app:layout_constraintStart_toStartOf="@+id/gl_vert_right_outfit_create"
-            app:layout_constraintTop_toTopOf="@+id/gl_hor_outfit_create" />
+            app:layout_constraintStart_toEndOf="@id/spn_season_create"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gl_hor_btn_top"
+            app:layout_constraintBottom_toTopOf="@id/gl_hor_btn_bot"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hor_sv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.78" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hor_sv_bot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.98" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vert_sv_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.03" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vert_sv_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.97" />
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="350dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:cardElevation="5dp"
             app:cardCornerRadius="20dp"
 
-            android:layout_margin="5dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_favorite_outfit_create" >
+            app:layout_constraintStart_toStartOf="@id/gl_vert_sv_start"
+            app:layout_constraintEnd_toEndOf="@id/gl_vert_sv_end"
+            app:layout_constraintTop_toTopOf="@id/gl_hor_sv_top"
+            app:layout_constraintBottom_toBottomOf="@id/gl_hor_sv_bot">
 
             <ScrollView
                 android:id="@+id/sv_outfit_create"
