@@ -63,7 +63,7 @@ In light of my database shenanigans, I realized I need to make my code more modu
   
 Overall I had a really fun month making this project (Oct 25 2021 - Nov 24 2021). I got over my aversion of poorly documented external libraries (just the source code!) and created something a real person is actually using (besides myself)! I'd like to learn how move my databases from local storage to cloud storage next! I'd also like to challenge myself by writing more complex projects. See ya next time!
   
-## External libraries used were:
+## External libraries:
   
 [CameraX](https://developer.android.com/jetpack/androidx/releases/camera): Accessing camera
   
