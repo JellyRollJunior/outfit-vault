@@ -2,7 +2,7 @@
 
 A Java android mobile app for saving outfit photos and details. 
 
-    AKA KEEP YOUR FITS FRESH WITHOUT THE MENTAL STRAIN OF REMEMBER EVERY OUTFIT.
+    AKA KEEP YOUR FITS FRESH WITHOUT THE MENTAL STRAIN OF REMEMBERING EVERY OUTFIT.
 
 OutfitVault allows users to create, edit, and view their own outfits. Users take a photo of their outfit in-app, then provide a description, the season, and a favorite status. Once saved, users can view and edit the outfit, see chart statistics based on the outfits, and search for stores using the in-app map. 
 
