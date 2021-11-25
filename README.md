@@ -55,7 +55,7 @@ This app really drove home the importance of refactoring for me. Below was the d
 
 ## Obstacles 
 
-My first obstacle was figuring out how to setup dependencies for MP Android Chart. My inexperienc on external libraries coupled with MP Android Chart documentation being unhelpful was a complete disaster. Hiding my google maps API key also took took a couple hours to figure out. Halfway into the project, I realized there was a lot of reused code so I went through an iterative process to remedy this (which was explained in reflections). Two thirds into the project, I added favorites into the DB schema. My one hour of refactoring could easily turn to mutiple days on a larger project. Another issue arose when I tested the app on my phone instead of the emulator. In short, the sizing was very unappealing as my phone is quite large. This was fixed by learning how to properly use constraint layout!
+My first obstacle was figuring out how to setup dependencies for MP Android Chart. My inexperience with external libraries coupled with MP Android Chart documentation being unhelpful was a complete disaster. Hiding my google maps API key also took took a couple hours to figure out. Halfway into the project, I realized there was a lot of reused code so I went through an iterative process to remedy this (which was explained in reflections). Two thirds into the project, I added favorites into the DB schema. My one hour of refactoring could easily turn to mutiple days on a larger project. Another issue arose when I tested the app on my phone instead of the emulator. In short, the sizing was very unappealing as my phone is quite large. This was fixed by learning how to properly use constraint layout!
   
 ## Improvements + Additional thoughts 
  
