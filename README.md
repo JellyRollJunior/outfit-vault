@@ -4,7 +4,7 @@ A Java android mobile app for saving outfit photos and details.
 
     AKA KEEP YOUR FITS FRESH WITHOUT THE MENTAL STRAIN OF REMEMBERING EVERY OUTFIT.
 
-OutfitVault allows users to create, edit, and view their own outfits. Users take a photo of their outfit in-app, then provide a description, the season, and a favorite status. Once saved, users can view and edit the outfit, see chart statistics based on the outfits, and search for stores using the in-app map. 
+OutfitVault allows users to create, edit, and view their own outfits. OutfitVault uses CameraX to take a photo which is stored in external memory. The user then inputs outfit details which are stored in a local SQLite databse. Once saved, outfit statistics are drawn using MP Android Chart. Oufitvault also contains a map for finding clothing stores. 
 
 ## Project Screen Shot(s)
 
@@ -12,16 +12,14 @@ OutfitVault allows users to create, edit, and view their own outfits. Users take
 
 ## Reflection
 
-This is my first self driven project which I made for my girlfriend and I to use! The goal was to refamiliarize myself with android app development while making something useful for the both of us. I also wanted to challenge myself to try out new libraries and dig into documentation.
+OutfitVault is my first self driven project which I made for my girlfriend and I to use! The goal was to refamiliarize myself with android app development while making something useful for the both of us. I also wanted to challenge myself to try out new libraries and dig into documentation.
 
-I started designing by brainstorming with my girlfriend about what details to save with each outfit. I then asked her what features she'd like which became the basis for my paper prototypes. 
+I started designing by brainstorming with my girlfriend about what details to save with each outfit. I then asked her what features she'd like which became the basis for my paper prototypes. I had never worked with the camera, coded a database, or saved data to local storage before making this app. Coding the database was relatively easy since I had taken advanced databases courses (theory finally coming in handy).
 
-I had never worked with the camera, coded a database, or saved data to local storage before making this app. Coding the database was relatively easy since I had taken advanced databases courses (theory finally coming in handy) but the rest was new territory. To my surprise, I actually quite enjoyed the learning process. 
-
-This app really drove home the importance of refactoring for me. Below was the design process for the Home fragment and Favorites fragment. Throughout this process, functionality was relatively unchanged but clarity and scalability increased dramatically. 
+Outfitvault emphasized refactoring for me. Below was the design process for the Home fragment and Favorites fragment (both perform similar tasks of displaying outfits). Throughout this process, functionality was relatively unchanged but clarity and scalability increased dramatically. 
 
   1. Start out as recycler views on the main activity
-  2. Split main activity into home_activity (which displays all outfits) and favorite_activity (which displays all favorited outfits)
+  2. Split main activity into home_activity and favorite_activity
   3. Combine home and favorite into one activity and switch the databases when necessary (led to confusing purpose of each activity)
   4. Split again but into fragments this time so I could navigate between them using a bottom navigation widget. 
   5. These approaches resulted in a lot of shared code so I decided to create an abstract class which holds all the resused code. 
@@ -55,7 +53,7 @@ This app really drove home the importance of refactoring for me. Below was the d
 
 ## Obstacles 
 
-My first obstacle was figuring out how to setup dependencies for MP Android Chart. My inexperience with external libraries coupled with MP Android Chart documentation being unhelpful was a complete disaster. Hiding my google maps API key also took took a couple hours to figure out. Halfway into the project, I realized there was a lot of reused code so I went through an iterative process to remedy this (which was explained in reflections). Two thirds into the project, I added favorites into the DB schema. My one hour of refactoring could easily turn to mutiple days on a larger project. Another issue arose when I tested the app on my phone instead of the emulator. In short, the sizing was very unappealing as my phone is quite large. This was fixed by learning how to properly use constraint layout!
+Dependencies setup was an issue for MP Android Chart. MP Android Chart's unhelpful documentation and my inexperience resulted in a disaster. Hiding my google maps API key also took took a couple hours to figure out. Halfway into the project, I realized there was a lot of reused code so I went through an iterative process to reduce code (which is explained in reflections). Two thirds into the project, I added favorites into the DB schema which took an hour of coding. This could easily turn to mutiple days on a larger project. During my final round of testing, UI sizing became very unappealing once I tested on my phone (which is larger than the emulator I used). This was fixed by learning how to properly use constraint layout!
   
 ## Improvements + Additional thoughts 
  
