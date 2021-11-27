@@ -8,7 +8,27 @@ OutfitVault allows users to create, edit, and view their own outfits. OutfitVaul
 
 ## Project Screen Shot(s)
 
-[ Coming Soon tm ]
+![OutfitVault - Chart](https://user-images.githubusercontent.com/44827002/143723012-7b60fcf3-758c-4b80-b030-4e969d85f08c.jpg)
+![OutfitVault - Home](https://user-images.githubusercontent.com/44827002/143722894-902b8d08-a295-48ea-b7b7-e2e4cdc25592.jpg) 
+![OutfitVault - Favorites](https://user-images.githubusercontent.com/44827002/143722995-6d5032c7-4e92-4efb-8080-e65aafc5ce43.jpg)
+![OufitVault - Map](https://user-images.githubusercontent.com/44827002/143723029-5eb64a0c-6568-44b9-8e73-caa779039503.jpg)
+
+On clicking outfit recycler view
+
+![OutfitVault - View](https://user-images.githubusercontent.com/44827002/143723060-20a0dbdd-f7eb-40ae-9153-d83f8c5662dd.jpg)
+
+On edit button click
+
+![OutfitVault - Edit](https://user-images.githubusercontent.com/44827002/143723062-832e7649-0e12-43c0-a07b-62ec1b791690.jpg)
+
+On create outfit FAB click
+
+![OutfitVault - Create](https://user-images.githubusercontent.com/44827002/143723070-e1d6c4c2-4a6e-4e12-b52a-f5a9ac67ab19.jpg)
+
+On take photo click
+
+![OutfitVault - ViewFinder](https://user-images.githubusercontent.com/44827002/143723073-2ecbfd4a-ccff-46f7-a2b8-df59e0ac9e23.jpg)
+
 
 ## Reflection
 
