@@ -1,6 +1,6 @@
 ## Outfit Vault
 
-A Java android mobile app for saving outfit photos and details. 
+An android mobile app built in Java for saving outfit photos and details. 
 
     AKA KEEP YOUR FITS FRESH WITHOUT THE MENTAL STRAIN OF REMEMBERING EVERY OUTFIT.
 
