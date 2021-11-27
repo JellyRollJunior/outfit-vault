@@ -8,11 +8,6 @@ OutfitVault allows users to create, edit, and view their own outfits. OutfitVaul
 
 ## Project Screen Shot(s)
 
-
- 
-
-
-
 | Chart Fragment | Home Fragment | Favorites Fragment  | Map Fragment |
 | ------------- | ------------- | ------------- | ------------- |
 | ![OutfitVault - Chart](https://user-images.githubusercontent.com/44827002/143723012-7b60fcf3-758c-4b80-b030-4e969d85f08c.jpg)  | !![OutfitVault - Home](https://user-images.githubusercontent.com/44827002/143722894-902b8d08-a295-48ea-b7b7-e2e4cdc25592.jpg) | ![OutfitVault - Favorites](https://user-images.githubusercontent.com/44827002/143722995-6d5032c7-4e92-4efb-8080-e65aafc5ce43.jpg)  | ![OufitVault - Map](https://user-images.githubusercontent.com/44827002/143723029-5eb64a0c-6568-44b9-8e73-caa779039503.jpg) |
@@ -64,11 +59,11 @@ Outfitvault emphasized refactoring for me. Below was the design process for the 
 
 ## Obstacles 
 
-Dependencies setup was an issue for MP Android Chart. MP Android Chart's unhelpful documentation and my inexperience resulted in a disaster. Hiding my google maps API key also took took a couple hours to figure out. Halfway into the project, I realized there was a lot of reused code so I went through an iterative process to reduce code (which is explained in reflections). Two thirds into the project, I added favorites into the DB schema which took an hour of coding. This could easily turn to mutiple days on a larger project. During my final round of testing, UI sizing became very unappealing once I tested on my phone (which is larger than the emulator I used). This was fixed by learning how to properly use constraint layout!
+Dependencies setup was an issue for MP Android Chart. MP Android Chart's unhelpful documentation and my inexperience resulted in a disaster. Hiding my google maps API key also took took a couple hours to figure out. Halfway into the project, I realized there was a lot of reused code so I went through an iterative process to reduce code (which is explained in reflections). Two thirds into the project, I added favorites into the DB schema which took an hour of coding. This could easily turn to mutiple days on a larger project. During my final round of testing, UI sizing became very unappealing once I tested on my phone (which is larger than the emulator I used). This was fixed by learning how to properly use constraint layout! 
   
 ## Improvements + Additional thoughts 
  
-In light of my database shenanigans, I realized I need to make my code more modular in the future. I also didn't explore automated testing. My next project might be done on test drive development to build good testing habits. I also didn't explore maps and the places SDK to it's full potential. I plan to make a map related app in the near future. 
+In light of my database shenanigans, I realized I need to make my code more modular in the future. I also didn't explore automated testing. My next project might be done on test drive development to build good testing habits. I also didn't explore maps and the places SDK to it's full potential. I plan to make a map related app in the near future. Upon the final round of testing on my phone, I also noticed accessing photo files from external storage is quite slow. 
   
 Overall I had a really fun month making this project (Oct 25 2021 - Nov 24 2021). I got over my aversion of poorly documented external libraries (just the source code!) and created something a real person is actually using (besides myself)! I'd like to learn how move my databases from local storage to cloud storage next! I'd also like to challenge myself by writing more complex projects. See ya next time!
   
