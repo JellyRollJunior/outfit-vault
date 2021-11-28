@@ -22,7 +22,9 @@ public class PhotoHelper {
 
     public static File getPhotoFile(Context context, String photoName) {
         String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
-        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
+
+        // debug
+//        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
         return new File(imageFilePathName);
     }
 

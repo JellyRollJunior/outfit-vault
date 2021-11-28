@@ -45,7 +45,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         setContentView(R.layout.activity_outfit_view);
 
         // debug
-        Log.d(TAG, "onCreate: Outfit ID: " + getExtraOutfitID());
+//        Log.d(TAG, "onCreate: Outfit ID: " + getExtraOutfitID());
 
         // abstract methods
         instantiateVariables();

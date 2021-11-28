@@ -55,7 +55,7 @@ public class ChartFragment extends Fragment {
             i++;
 
             // debug
-            Log.d(TAG, "setUpPieChart: " + season.toString());
+//            Log.d(TAG, "setUpPieChart: " + season.toString());
         }
 
         PieDataSet dataSet = new PieDataSet(pieEntries, getString(R.string.outfits_per_season));
