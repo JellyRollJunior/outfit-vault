@@ -65,7 +65,7 @@ Dependencies setup was an issue for MP Android Chart. MP Android Chart's unhelpf
  
 In light of my database shenanigans, I realized I need to make my code more modular in the future. I also didn't explore automated testing. My next project might be done on test drive development to build good testing habits. I also didn't explore maps and the places SDK to it's full potential. I plan to make a map related app in the near future. Upon the final round of testing on my phone, I also noticed accessing photo files from external storage is quite slow. 
   
-Overall I had a really fun month making this project (Oct 25 2021 - Nov 24 2021). I got over my aversion of poorly documented external libraries (just the source code!) and created something a real person is actually using (besides myself)! I'd like to learn how move my databases from local storage to cloud storage next! I'd also like to challenge myself by writing more complex projects. See ya next time!
+Overall I had a really fun month making this project (Oct 25 2021 - Nov 28 2021). I got over my aversion of poorly documented external libraries (just the source code!) and created something a real person is actually using (besides myself)! I'd like to learn how move my databases from local storage to cloud storage next! I'd also like to challenge myself by writing more complex projects. See ya next time!
   
 ## External libraries:
   
