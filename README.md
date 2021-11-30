@@ -4,7 +4,7 @@ An android mobile app built in Java for saving outfit photos and details.
 
     AKA KEEP YOUR FITS FRESH WITHOUT THE MENTAL STRAIN OF REMEMBERING EVERY OUTFIT.
 
-OutfitVault allows users to create, edit, and view their own outfits. OutfitVault uses CameraX to take a photo which is stored in external memory. The user then inputs outfit details which are stored in a local SQLite databse. Once saved, outfit statistics are drawn using MP Android Chart. Oufitvault also contains a map for finding clothing stores. 
+OutfitVault allows users to create, edit, and view their own outfits. OutfitVault uses CameraX to take a photo which is stored in external memory. The user then inputs outfit details associated with the photo which are stored in a local SQLite databse. Once saved, outfit statistics are drawn using MP Android Chart. Oufitvault also contains a map for finding clothing stores. 
 
 ## Project Screen Shot(s)
 
@@ -20,9 +20,9 @@ OutfitVault allows users to create, edit, and view their own outfits. OutfitVaul
 
 OutfitVault is my first self driven project which I made for my girlfriend and I to use! The goal was to refamiliarize myself with android app development while making something useful for the both of us. I also wanted to challenge myself to try out new libraries and dig into documentation.
 
-I started designing by brainstorming with my girlfriend about what details to save with each outfit. I then asked her what features she'd like which became the basis for my paper prototypes. I had never worked with the camera, coded a database, or saved data to local storage before making this app. Coding the database was relatively easy since I had taken advanced databases courses (theory finally coming in handy).
+I started the design process by brainstorming with my girlfriend about what details to save with each outfit. I then asked her what features she'd like which became the basis for my paper prototypes. Coding the database was relatively easy since I had taken advanced databases courses (theory finally coming in handy). I had never worked with the camera, coded a database, or saved data to local storage before making this app so this was a great learning experience.
 
-Outfitvault emphasized refactoring for me. Below was the design process for the Home fragment and Favorites fragment (both perform similar tasks of displaying outfits). Throughout this process, functionality was relatively unchanged but clarity and scalability increased dramatically. 
+One of the biggest lessons Outfitvault taught me was the importance of refactoring. Below was the design process for the Home fragment and Favorites fragment (both perform similar tasks of displaying outfits). Throughout this process, functionality was relatively unchanged but clarity and scalability increased dramatically with each change. 
 
   1. Start out as recycler views on the main activity
   2. Split main activity into home_activity and favorite_activity
@@ -38,9 +38,10 @@ Outfitvault emphasized refactoring for me. Below was the design process for the 
   - Importance of clarity
       - I was writing spaghetti at the beginning and when I went back to see what was going on, nothing made sense
           - Solution: constant refactoring during and after every commit/push/feature completion
+          - Solution: code with the future in mind, you will eventually have to deal with your own code again! Don't make your future self hate you
           - Solution: pay attention to variable/method names and stay consistent!
   - Importance of Simplicity
-      - Separating large methods in smaller methods allows for clarity
+      - Separating large methods in smaller methods improves clarity
       - Aim for human readable code!
   - Constant testing is key to relieving headaches
       - I would develop a couple features then test complete functionality which resulted in buggy messes
@@ -54,8 +55,8 @@ Outfitvault emphasized refactoring for me. Below was the design process for the 
       - I had never thought about hiding API keys before making this app so I left my google maps API key public and was alerted of the fact by git guardian.
   - Changing database schema halfway through design is a huge pain (THINK IT THROUGH FIRST!)
   - Apps can look great on one device and wonky on another 
-      - Solution: I love constraint layout
-          - The once wrongly ignored layout actually had the power to make view sizing on every device relatively equal!
+      - Solution: stop hard coding view sizes
+          - The layout I wrongly ignored actually had the power to make view sizing on every device relatively equal!
 
 ## Obstacles 
 
