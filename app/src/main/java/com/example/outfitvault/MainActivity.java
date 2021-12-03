@@ -11,6 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationBarView;
 
+/**
+ * Displays fragments to the user and allows users to choose their desired fragment
+ * via bottom navigation.
+ *
+ * Displays ChartFragment, HomeFragment, FavoritesFragment, and MapsFragment.
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "com.example.outfitvault.MainActivity";

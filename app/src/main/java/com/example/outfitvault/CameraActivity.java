@@ -33,6 +33,7 @@ import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 
+/** Provides photo taking and saving functionality to the app. */
 public class CameraActivity extends AppCompatActivity implements ImageAnalysis.Analyzer {
     private static final String EXTRA_IMAGE_NAME = "com.example.outfitvault.CameraActivity - imageName";
     private static final String TAG = "com.example.outfitvault.CameraActivity";
@@ -110,7 +111,8 @@ public class CameraActivity extends AppCompatActivity implements ImageAnalysis.A
         setResult(Activity.RESULT_OK, intent);
     }
 
-    public static String getImageName(Intent intent) {
+    /** Provides photoName of photo taken to other activities. */
+    public static String getPhotoName(Intent intent) {
         return intent.getStringExtra(EXTRA_IMAGE_NAME);
     }
 

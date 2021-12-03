@@ -3,10 +3,7 @@ package com.example.outfitvault;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -24,6 +21,12 @@ import com.example.outfitvault.model.TextHelper;
 
 import java.util.Objects;
 
+/**
+ * Allows user to create outfits then saves the outfit details to local SQLite database and
+ * photo to external memory.
+ *
+ * Starts cameraActivity to take photo.
+ * */
 public class OutfitCreateActivity extends OutfitModifierAbstract {
     private final String TAG = "com.example.outfitvault.OutfitCreateActivity";
 

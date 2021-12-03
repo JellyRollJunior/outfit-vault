@@ -14,6 +14,11 @@ import com.example.outfitvault.types.Season;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides app with a local SQLite database to store outfit details.
+ *
+ * Implements create, add, delete, update, getAll, getById, getFavorites
+ */
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static final String OUTFIT_TABLE = "OUTFIT_TABLE";
@@ -95,12 +100,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Outfit getOutfitFromID(int ID) {
+    public Outfit getOutfitById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString =
                     "SELECT * " +
                     "FROM " + OUTFIT_TABLE + " " +
-                    "WHERE " + COLUMN_ID + " = " + ID;
+                    "WHERE " + COLUMN_ID + " = " + id;
 
         Cursor cursor = db.rawQuery(queryString, null);
         List<Outfit> tempOutfitList = cursorToList(cursor);
@@ -134,7 +139,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public List<Outfit> getAllFavorites() {
+    public List<Outfit> getFavorites() {
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString =
                 "SELECT * " +

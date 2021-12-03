@@ -24,6 +24,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Displays chart with statistics regarding outfits per season. */
 public class ChartFragment extends Fragment {
     private static final String TAG = "com.example.outfitvault.ChartFragment";
     private final int[] outfitsPerSeason = {0, 0, 0, 0};

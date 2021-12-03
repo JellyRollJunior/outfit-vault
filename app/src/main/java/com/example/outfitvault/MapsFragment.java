@@ -28,6 +28,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import java.util.Arrays;
 import java.util.Objects;
 
+/** Displays google map and auto complete search bar. */
 public class MapsFragment extends Fragment {
     private static final String TAG = "com.example.outfitvault.MapFragment";
     private final LatLng LOCATION_2ND_STREET_SAPPORO = new LatLng(43.05856850491828, 141.35414028816592);

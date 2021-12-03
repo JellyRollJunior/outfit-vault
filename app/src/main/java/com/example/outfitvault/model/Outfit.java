@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.outfitvault.types.Season;
 
+/** Stores outfit details id, photoName, description, season, and favorite */
 public class Outfit {
 
     private int id;
