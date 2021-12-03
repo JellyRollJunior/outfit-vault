@@ -26,7 +26,7 @@ import java.util.Objects;
 
 /**
  * Display specified outfit details to user.
- * Supports deletion and favoriting of outfits.
+ * Supports deletion and changing favorite status of outfits.
  *
  * Allows navigation to OutfitEditActivity.
  * */
