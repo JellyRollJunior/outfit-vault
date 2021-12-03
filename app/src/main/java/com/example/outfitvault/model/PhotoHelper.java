@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import java.io.File;
 
+/** Provides frequently used photo manipulation methods. */
 public class PhotoHelper {
 
     private static final String TAG = "com.example.outfitvault.model.PhotoHelper";
@@ -20,9 +21,18 @@ public class PhotoHelper {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
+    /**
+     * Returns (File photo) associated with (String photoName).
+     *
+     * @param context
+     * @param photoName
+     * @return File
+     */
     public static File getPhotoFile(Context context, String photoName) {
         String imageFilePathName = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + photoName;
-        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
+
+        // debug
+//        Log.d(TAG, "getPhotoFilePath: " + imageFilePathName);
         return new File(imageFilePathName);
     }
 

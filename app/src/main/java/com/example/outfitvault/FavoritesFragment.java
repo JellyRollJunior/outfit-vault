@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/** Displays favorite outfits via recycler view. */
 public class FavoritesFragment extends OutfitRecyclerAbstract {
     private static final String TAG = "com.example.outfitvault.FavoritesFragment";
 
@@ -27,7 +28,7 @@ public class FavoritesFragment extends OutfitRecyclerAbstract {
     @Override
     void instantiateOutfits() {
         instantiateDatabase(getActivity());
-        outfits = dataBaseHelper.getAllFavorites();
+        outfits = dataBaseHelper.getFavorites();
     }
 
 }

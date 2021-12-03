@@ -21,6 +21,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
+/** Creates custom adapter for displaying outfits on a recycler view. */
 public class OutfitRecViewAdapter extends RecyclerView.Adapter<OutfitRecViewAdapter.ViewHolder>{
 
     private static final String TAG = "com.example.outfitvault.OutfitRecViewAdapter";

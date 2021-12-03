@@ -12,6 +12,11 @@ import com.example.outfitvault.model.DataBaseHelper;
 import com.example.outfitvault.model.Outfit;
 import com.example.outfitvault.model.PhotoHelper;
 
+/**
+ * Provides methods supporting displaying outfit details.
+ *
+ * Users: OutfitViewActivity, OutfitEditActivity, OutfitCreateActivity.
+ * */
 public abstract class OutfitDisplayAbstract extends AppCompatActivity {
 
     private static String TAG = "com.example.outfitvault.OutfitDisplayAbstract";
@@ -27,6 +32,7 @@ public abstract class OutfitDisplayAbstract extends AppCompatActivity {
         }
     }
 
+    /** Changes favorite button image vector depending on outfit favorite status. */
     public void setFavoriteButtonVector(ImageButton imageButton) {
         if (isFavorite) {
             imageButton.setImageResource(R.drawable.ic_baseline_favorite_44);
@@ -35,6 +41,7 @@ public abstract class OutfitDisplayAbstract extends AppCompatActivity {
         }
     }
 
+    /** Populates image view with outfit photo. */
     public void populateOutfitImageView(Context context, ImageView imageView, Outfit outfit) {
         String photoFilePath = PhotoHelper.getPhotoFile(context, outfit.getPhotoName())
                 .getAbsolutePath();

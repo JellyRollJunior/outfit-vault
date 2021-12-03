@@ -25,6 +25,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides base for activities which modify outfits.
+ * Implements methods which support creation / editing of outfits.
+ *
+ * Users: OutfitCreateActivity, OutfitEditActivity.
+ * */
 public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
 
     private static String TAG = "com.example.outfitvault.OutfitModifierAbstract";
@@ -42,6 +48,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         });
     }
 
+    /** Populate spinner with Seasons. */
     public void populateSpinner(Context context, Spinner spnSeason) {
         ArrayAdapter<Season> spinnerAdapter =
                 new ArrayAdapter<>(
@@ -53,6 +60,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         spnSeason.setAdapter(spinnerAdapter);
     }
 
+    /** Move to CameraActivity on click in order to take photo. */
     public void wireSetTakePhoto(Context context, Button btnTakePhoto) {
         btnTakePhoto.setOnClickListener(view -> {
             if (hasCameraPermission()) {
@@ -69,7 +77,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data != null) {
-                        outfitPhotoName = CameraActivity.getImageName(data);
+                        outfitPhotoName = CameraActivity.getPhotoName(data);
                         photoList.add(outfitPhotoName);
 
                         // debug
@@ -102,6 +110,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         );
     }
 
+    /** Returns an outfit by compiling data in views. */
     public Outfit compileOutfitDetails(int outfitID, EditText etDescription, Spinner spnSeason) {
         String description = etDescription.getText().toString();
         Season season = (Season) spnSeason.getSelectedItem();
@@ -121,6 +130,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         return newOutfit;
     }
 
+    /** Deletes unused photos taken by user. */
     public void deleteUnusedPhotos(Context context) {
         for (String photo: photoList) {
             File deletePhoto = PhotoHelper.getPhotoFile(context, photo);
@@ -132,6 +142,7 @@ public abstract class OutfitModifierAbstract extends OutfitDisplayAbstract {
         }
     }
 
+    /** Removes a photo from garbage collection list. */
     public void removePhotoFromList(List<String> photoList, String outfitName) {
         int i = 0;
         for (String photo : new ArrayList<String>(photoList)) {

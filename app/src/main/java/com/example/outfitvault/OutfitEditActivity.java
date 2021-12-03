@@ -3,10 +3,7 @@ package com.example.outfitvault;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -25,6 +22,11 @@ import com.example.outfitvault.types.Season;
 
 import java.util.Objects;
 
+/**
+ * Edits existing outfits stored in local SQLite database.
+ *
+ * Edited photos are deleted from external storage on edit confirmation.
+ * */
 public class OutfitEditActivity extends OutfitModifierAbstract {
 
     public static final String EXTRA_OUTFIT_ID_EDIT = "com.example.outfitvault.OutfitEditActivity - outfit ID";
@@ -71,7 +73,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
 
     @Override
     protected void onDestroy() {
-        currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
+        currentOutfit = dataBaseHelper.getOutfitById(currentOutfitID);
         removePhotoFromList(photoList, currentOutfit.getPhotoName());
         deleteUnusedPhotos(context);
         super.onDestroy();
@@ -81,7 +83,7 @@ public class OutfitEditActivity extends OutfitModifierAbstract {
         context = OutfitEditActivity.this;
         instantiateDatabase(context);
         currentOutfitID = getExtraOutfitID();
-        currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
+        currentOutfit = dataBaseHelper.getOutfitById(currentOutfitID);
         isFavorite = currentOutfit.getFavorite();
         outfitPhotoName = currentOutfit.getPhotoName();
 

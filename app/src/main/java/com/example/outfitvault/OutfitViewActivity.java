@@ -24,6 +24,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Objects;
 
+/**
+ * Display specified outfit details to user.
+ * Supports deletion and changing favorite status of outfits.
+ *
+ * Allows navigation to OutfitEditActivity.
+ * */
 public class OutfitViewActivity extends OutfitDisplayAbstract {
 
     private static final String EXTRA_OUTFIT_ID = "com.example.outfitvault.OutfitViewActivity - outfitID";
@@ -45,7 +51,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         setContentView(R.layout.activity_outfit_view);
 
         // debug
-        Log.d(TAG, "onCreate: Outfit ID: " + getExtraOutfitID());
+//        Log.d(TAG, "onCreate: Outfit ID: " + getExtraOutfitID());
 
         // abstract methods
         instantiateVariables();
@@ -69,7 +75,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
     }
 
     private void refreshCardView() {
-        currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfit.getID());
+        currentOutfit = dataBaseHelper.getOutfitById(currentOutfit.getID());
         isFavorite = currentOutfit.getFavorite();
 
         populateOutfitImageView(context, ivOutfit, currentOutfit);
@@ -82,7 +88,7 @@ public class OutfitViewActivity extends OutfitDisplayAbstract {
         instantiateDatabase(context);
 
         int currentOutfitID = getExtraOutfitID();
-        currentOutfit = dataBaseHelper.getOutfitFromID(currentOutfitID);
+        currentOutfit = dataBaseHelper.getOutfitById(currentOutfitID);
 
         isFavorite = currentOutfit.getFavorite();
     }

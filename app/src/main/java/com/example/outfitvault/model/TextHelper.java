@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 
+/** Provides frequently used String manipulation methods. */
 public class TextHelper {
 
     public static SpannableString stringColorToWhite(CharSequence string) {

@@ -16,6 +16,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+/**
+ * Provides base for fragments which display outfits through fragment_home.xml.
+ * Implements methods supporting display of outfits on a recycler view.
+ *
+ * Users: HomeFragment, FavoritesFragments
+ * */
 public abstract class OutfitRecyclerAbstract extends Fragment{
     private static final String TAG = "com.example.outfitvault.MainActivity.OutfitRecyclerAbstract";
     public static final int NUM_COLS = 3;
@@ -27,6 +33,7 @@ public abstract class OutfitRecyclerAbstract extends Fragment{
 
     abstract void instantiateOutfits();
 
+    /** Instantiates common views between fragments which display outfits through fragment_home.xml*/
     public void instantiateViews(View view) {
         fabAddButton = view.findViewById(R.id.fab_add_outfits);
         rvDisplayOutfits = view.findViewById(R.id.rv_display_outfits);

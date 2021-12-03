@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/** Displays all outfits via recycler view. */
 public class HomeFragment extends OutfitRecyclerAbstract {
     private static final String TAG = "com.example.outfitvault.HomeFragment";
 
